@@ -1,0 +1,7 @@
+/.idea/
+/.env
+/.phpunit.result.cache
+/_/
+/tests/.env
+/tests/output/
+/vendor/
