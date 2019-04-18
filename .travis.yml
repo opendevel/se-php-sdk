@@ -10,5 +10,8 @@ php:
 
 # before runs environment
 before_script:
+  - chmod +x build.sh
   - composer self-update
   - composer install --prefer-source --no-interaction --dev
+
+script: ./build.sh
