@@ -1,16 +1,11 @@
 # set environment
 language: php
 
-branches:
-  only:
-    - travis
-
-    # php versions
+# php versions
 php:
   - 7.1
   - 7.2
   - 7.3
-  - nightly
 
 # before runs environment
 before_script:
