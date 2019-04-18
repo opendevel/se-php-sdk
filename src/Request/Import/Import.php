@@ -56,7 +56,7 @@ final class Import extends AbstractBaseRequest
         $this->data[] = array_filter($contact->toArray());
     }
 
-    public function getData(): ResponseImport
+    public function send(): ResponseImport
     {
         $contentsArray = $this->decodeStreamToArray();
 

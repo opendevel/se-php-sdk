@@ -39,7 +39,7 @@ abstract class AbstractBaseRequest
         return $this->toArray();
     }
 
-    public function send(): ResponseInterface
+    protected function sendRequest(): ResponseInterface
     {
         $client = $this->api->getHttpClient();
 
@@ -59,7 +59,7 @@ abstract class AbstractBaseRequest
      */
     protected function decodeStreamToArray()
     {
-        $response = $this->send();
+        $response = $this->sendRequest();
 
         $body = $response->getBody();
 
