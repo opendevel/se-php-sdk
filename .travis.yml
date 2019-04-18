@@ -1,7 +1,11 @@
 # set environment
 language: php
 
-# php versions
+branches:
+  only:
+    - travis
+
+    # php versions
 php:
   - 7.1
   - 7.2
