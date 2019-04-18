@@ -39,10 +39,6 @@ abstract class AbstractBaseRequest
         return $this->toArray();
     }
 
-    /**
-     * @return \Psr\Http\Message\ResponseInterface
-     * @throws \Http\Client\Exception
-     */
     public function send(): ResponseInterface
     {
         $client = $this->api->getHttpClient();
@@ -56,6 +52,29 @@ abstract class AbstractBaseRequest
         $request = new Request($this->method, $this->uri, $requestHeader, $stream);
 
         return $client->sendRequest($request);
+    }
+
+    /**
+     * @return mixed|null
+     */
+    protected function decodeStreamToArray()
+    {
+        $response = $this->send();
+
+        $body = $response->getBody();
+
+        $contents = (string)$body->getContents();
+        if ($contents === '') {
+            return null;
+        }
+
+        $contentsArray = json_decode($contents, true);
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw new \RuntimeException('Error trying to decode response: ' . json_last_error_msg());
+        }
+
+        return $contentsArray;
     }
 
 }

@@ -5,6 +5,7 @@ namespace SmartEmailing\Sdk\Request\Import;
 use SmartEmailing\Sdk\Request\AbstractBaseRequest;
 use SmartEmailing\Sdk\Request\Import\Model\Contact;
 use SmartEmailing\Sdk\Request\Import\Model\Settings;
+use SmartEmailing\Sdk\Response\Import\Import as ResponseImport;
 
 final class Import extends AbstractBaseRequest
 {
@@ -53,6 +54,21 @@ final class Import extends AbstractBaseRequest
     public function addContact(Contact $contact): void
     {
         $this->data[] = array_filter($contact->toArray());
+    }
+
+    public function getData(): ResponseImport
+    {
+        $contentsArray = $this->decodeStreamToArray();
+
+        $import = new ResponseImport();
+
+        if (isset($contentsArray['contacts_map'])) {
+            foreach ($contentsArray['contacts_map'] as $contactArray) {
+                $import->newContactMap($contactArray);
+            }
+        }
+
+        return $import;
     }
 
 }
