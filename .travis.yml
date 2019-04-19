@@ -40,6 +40,9 @@ before_script:
   - chmod +x build.sh
 
 script:
+  #phpstan
+  - phpstan analyse -l 7 --memory-limit=500M --debug -c phpstan.neon
+  # nette tester
   - ./vendor/bin/tester -p $TESTER_PHP_BIN -s -c ./tests/php.ini ./tests
 
 after_success:
