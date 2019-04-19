@@ -6,6 +6,7 @@ use SmartEmailing\Sdk\Request\AbstractBaseRequest;
 use SmartEmailing\Sdk\Request\Import\Model\Contact;
 use SmartEmailing\Sdk\Request\Import\Model\Settings;
 use SmartEmailing\Sdk\Response\Import\Import as ResponseImport;
+use SmartEmailing\Sdk\Response\JsonStream;
 
 final class Import extends AbstractBaseRequest
 {
@@ -56,15 +57,16 @@ final class Import extends AbstractBaseRequest
         $this->data[] = array_filter($contact->toArray());
     }
 
-    public function getData(): ResponseImport
+    public function send(): ResponseImport
     {
-        $contentsArray = $this->decodeStreamToArray();
+        $jsonStream = new JsonStream($this->sendRequest()->getBody());
+        $array = $jsonStream->jsonSerialize();
 
         $import = new ResponseImport();
 
-        if (isset($contentsArray['contacts_map'])) {
-            foreach ($contentsArray['contacts_map'] as $contactArray) {
-                $import->newContactMap($contactArray);
+        if (isset($array['contacts_map'])) {
+            foreach ($array['contacts_map'] as $contact) {
+                $import->newContact($contact);
             }
         }
 
