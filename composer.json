@@ -47,7 +47,7 @@
         "phpstan": "phpstan analyse -l 7 --memory-limit=500M --debug -c phpstan.neon",
         "phpcbf": "phpcbf --standard=phpcs.xml --extensions=php --encoding=utf-8 --tab-width=4 -s -p -v",
         "phpcs": "phpcs --standard=phpcs.xml --extensions=php  --encoding=utf-8 --tab-width=4 -s -p -v",
-        "tests": "tester tests -C tests/php.ini",
+        "tester": "tester tests -C tests/php.ini",
         "test": [
             "@phpstan",
             "@phpcbf",
