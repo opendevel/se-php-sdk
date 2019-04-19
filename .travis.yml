@@ -33,7 +33,7 @@ before_install:
   - composer self-update
 
 install:
-  - composer install --prefer-source --no-interaction --dev
+  - composer install --prefer-source --no-interaction
 
 # before runs environment
 before_script:
@@ -41,7 +41,7 @@ before_script:
 
 script:
   #phpstan
-  - phpstan analyse -l 7 --memory-limit=500M --debug -c phpstan.neon
+  - ./vendor/bin/phpstan analyse -l 7 --memory-limit=500M --debug -c phpstan.neon
   # nette tester
   #- ./vendor/bin/tester -p $TESTER_PHP_BIN -s -c ./tests/php.ini ./tests
 
