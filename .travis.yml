@@ -40,13 +40,16 @@ before_script:
   - chmod +x build.sh
 
 script:
-  - ./vendor/bin/tester -p $TESTER_PHP_BIN -s -c ./tests/php.ini ./tests
+  #phpstan
+  - phpstan analyse -l 7 --memory-limit=500M --debug -c phpstan.neon
+  # nette tester
+  #- ./vendor/bin/tester -p $TESTER_PHP_BIN -s -c ./tests/php.ini ./tests
 
 after_success:
 
 
 after_failure:
   # display content of files *.actual
-  - for i in $(find ./tests -name \*.actual); do echo "--- $i"; cat $i; echo; echo; done
+  #- for i in $(find ./tests -name \*.actual); do echo "--- $i"; cat $i; echo; echo; done
 
 after_script:
