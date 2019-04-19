@@ -21,7 +21,7 @@ final class Import
         $this->contacts = new Collection();
     }
 
-    public function addContactMap(Contact $contact): void
+    public function addContact(Contact $contact): void
     {
         $this->contacts->add($contact);
     }
@@ -31,7 +31,7 @@ final class Import
         return $this->contacts;
     }
 
-    public function newContactMap(array $contactArray): void
+    public function newContact(array $contactArray): void
     {
         if (!isset($contactArray['contact_id']) || is_null($contactArray['contact_id'])) {
             //@todo exception
@@ -42,7 +42,7 @@ final class Import
         }
 
         $contactArray = new Contact($contactArray['contact_id'], $contactArray['emailaddress']);
-        $this->addContactMap($contactArray);
+        $this->addContact($contactArray);
     }
 
 }
