@@ -184,6 +184,13 @@ class Collection implements Arrayable, Countable, IteratorAggregate, Jsonable, J
         return $this;
     }
 
+    public function set($key, $item): Collection
+    {
+        $this->items[$key] = $item;
+
+        return $this;
+    }
+
     /**
      * Determine if an item exists at an offset.
      *
