@@ -2,7 +2,6 @@
 
 namespace SmartEmailing\Sdk\Response\Import;
 
-use SmartEmailing\Sdk\Collect\Support\Collection;
 use SmartEmailing\Sdk\Response\Import\Model\Contact;
 use SmartEmailing\Types\Emailaddress;
 
