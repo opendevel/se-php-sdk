@@ -12,27 +12,29 @@ final class Import
      * All imported contacts' email addresses mapped to their Ids.
      * This is only available when not using double opt-in. If double opt-in is used, contacts_map will be empty array.
      *
-     * @var \SmartEmailing\Sdk\Collect\Support\Collection
+     * @var array
      */
     private $contacts;
 
     public function __construct()
     {
-        $this->contacts = new Collection();
+        $this->contacts = [];
     }
 
     public function addContact(Contact $contact): void
     {
-        $this->contacts->add($contact);
+        $this->contacts[$contact->getId()] = $contact;
     }
 
-    public function getContacts(): Collection
+    public function getContacts(): array
     {
         return $this->contacts;
     }
 
     public function newContact(array $contactArray): void
     {
+        //@todo split input to id and email
+
         if (!isset($contactArray['contact_id']) || is_null($contactArray['contact_id'])) {
             //@todo exception
         }
