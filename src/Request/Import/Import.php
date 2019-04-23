@@ -32,7 +32,7 @@ final class Import extends AbstractBaseRequest
      */
     protected $data = [];
 
-    public function __construct(Api $api, Settings $settings = null)
+    public function __construct(Api $api, ?Settings $settings = null)
     {
         parent::__construct($api);
 

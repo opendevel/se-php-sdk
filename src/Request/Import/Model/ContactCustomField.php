@@ -34,7 +34,7 @@ final class ContactCustomField implements ToArrayInterface
      */
     private $options = null;
 
-    public function __construct(int $id, $value = null, array $options = null)
+    public function __construct(int $id, $value = null, ?array $options = null)
     {
         //@todo $value or $options has to be required
 

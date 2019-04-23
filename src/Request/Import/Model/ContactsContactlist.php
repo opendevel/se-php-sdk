@@ -14,11 +14,11 @@ final class ContactsContactlist implements ToArrayInterface
     private $id;
 
     /**
-     * @var ContactListStatus
+     * @var \SmartEmailing\Sdk\Status\ContactListStatus
      */
     private $status;
 
-    public function __construct(int $id, ContactListStatus $status = null)
+    public function __construct(int $id, ?ContactListStatus $status = null)
     {
         if ($status === null) {
             $status = ContactListStatus::from(ContactListStatus::CONFIRMED);

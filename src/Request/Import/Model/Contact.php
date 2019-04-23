@@ -88,7 +88,7 @@ final class Contact implements ToArrayInterface
     private $notes = null;
 
     /**
-     * @var GenderStatus|null
+     * @var \SmartEmailing\Sdk\Status\GenderStatus|null
      */
     private $gender = null;
 
