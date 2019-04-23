@@ -2,7 +2,6 @@
 
 namespace SmartEmailing\Sdk\Request\Import\Model;
 
-use DateTimeImmutable;
 use SmartEmailing\Sdk\Request\ToArrayInterface;
 use SmartEmailing\Types\DateTimeFormatter;
 
@@ -23,7 +22,7 @@ final class ContactCustomField implements ToArrayInterface
      * String value for simple customfields, and YYYY-MM-DD HH:MM:SS for date customfields. Value size is limited to 64KB.
      * Required for simple customfields
      *
-     * @var \DateTimeImmutable|null
+     * @var mixed|null
      */
     private $value = null;
 
@@ -35,7 +34,7 @@ final class ContactCustomField implements ToArrayInterface
      */
     private $options = null;
 
-    public function __construct(int $id, ?DateTimeImmutable $value = null, ?array $options = null)
+    public function __construct(int $id, $value = null, array $options = null)
     {
         //@todo $value or $options has to be required
 
@@ -53,7 +52,7 @@ final class ContactCustomField implements ToArrayInterface
         ];
     }
 
-    public function setValue(DateTimeImmutable $value): ContactCustomField
+    public function setValue($value): ContactCustomField
     {
         $this->value = $value;
         return $this;
