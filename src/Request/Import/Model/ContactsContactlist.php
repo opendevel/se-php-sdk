@@ -14,13 +14,15 @@ final class ContactsContactlist implements ToArrayInterface
     private $id;
 
     /**
-     * @var string
+     * @var ContactListStatus
      */
     private $status;
 
-    public function __construct(int $id, string $status = ContactListStatus::CONFIRMED)
+    public function __construct(int $id, ContactListStatus $status = null)
     {
-        ContactListStatus::checkValue($status);
+        if ($status === null) {
+            $status = ContactListStatus::from(ContactListStatus::CONFIRMED);
+        }
 
         $this->id = $id;
         $this->status = $status;
@@ -30,7 +32,7 @@ final class ContactsContactlist implements ToArrayInterface
     {
         return [
             'id' => $this->id,
-            'status' => $this->status,
+            'status' => $this->status->getValue(),
         ];
     }
 
