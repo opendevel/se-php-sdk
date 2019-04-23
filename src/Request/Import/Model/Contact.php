@@ -88,7 +88,7 @@ final class Contact implements ToArrayInterface
     private $notes = null;
 
     /**
-     * @var string|null
+     * @var GenderStatus|null
      */
     private $gender = null;
 
@@ -158,7 +158,7 @@ final class Contact implements ToArrayInterface
             'phone' => $this->phone,
             'language' => $this->language,
             'notes' => $this->notes,
-            'gender' => $this->gender,
+            'gender' => !is_null($this->gender) ? $this->gender->getValue() : null,
             'blacklisted' => !is_null(PrimitiveTypes::getBoolOrNull($this->blackListed)) ? (int)$this->blackListed : null,
             'nameday' => DateTimeFormatter::formatOrNull($this->nameday),
             'birthday' => DateTimeFormatter::formatOrNull($this->birthday),
@@ -252,16 +252,9 @@ final class Contact implements ToArrayInterface
         return $this;
     }
 
-    public function setGender(?string $gender): Contact
+    public function setGender(?GenderStatus $gender): Contact
     {
-        //@todo input GenderStatus instead of string
-        if (!is_null($gender)) {
-            GenderStatus::checkValue($gender);
-            $this->gender = $gender;
-        } else {
-            $this->gender = null;
-        }
-
+        $this->gender = $gender;
         return $this;
     }
 
