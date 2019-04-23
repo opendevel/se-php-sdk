@@ -4,6 +4,7 @@ namespace SmartEmailing\Sdk\Request\Import\Model;
 
 use DateTimeImmutable;
 use SmartEmailing\Sdk\Request\ToArrayInterface;
+use SmartEmailing\Types\DateTimeFormatter;
 
 /**
  * Customfields assigned to contact
@@ -47,7 +48,7 @@ final class ContactCustomField implements ToArrayInterface
     {
         return [
             'id' => $this->id,
-            'value' => !is_null($this->value) ? $this->value->format('Y-m-d H:i:s') : null,
+            'value' => DateTimeFormatter::formatOrNull($this->value),
             'options' => is_array($this->options) && count($this->options) ? $this->options : null,
         ];
     }

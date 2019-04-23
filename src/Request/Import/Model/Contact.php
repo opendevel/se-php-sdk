@@ -5,6 +5,7 @@ namespace SmartEmailing\Sdk\Request\Import\Model;
 use DateTimeImmutable;
 use SmartEmailing\Sdk\Request\ToArrayInterface;
 use SmartEmailing\Sdk\Status\GenderStatus;
+use SmartEmailing\Types\DateTimeFormatter;
 use SmartEmailing\Types\Emailaddress;
 use SmartEmailing\Types\PrimitiveTypes;
 
@@ -159,8 +160,8 @@ final class Contact implements ToArrayInterface
             'notes' => $this->notes,
             'gender' => $this->gender,
             'blacklisted' => !is_null(PrimitiveTypes::getBoolOrNull($this->blackListed)) ? (int)$this->blackListed : null,
-            'nameday' => !empty($this->nameday) ? $this->nameday->format('Y-m-d H:i:s') : null,
-            'birthday' => !empty($this->birthday) ? $this->birthday->format('Y-m-d H:i:s') : null,
+            'nameday' => DateTimeFormatter::formatOrNull($this->nameday),
+            'birthday' => DateTimeFormatter::formatOrNull($this->birthday),
             'contactlists' => $this->contactLists,
             'customfields' => $this->customFields,
             'purposes' => $this->purposes,
@@ -253,6 +254,7 @@ final class Contact implements ToArrayInterface
 
     public function setGender(?string $gender): Contact
     {
+        //@todo input GenderStatus instead of string
         if (!is_null($gender)) {
             GenderStatus::checkValue($gender);
             $this->gender = $gender;

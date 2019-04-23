@@ -4,6 +4,7 @@ namespace SmartEmailing\Sdk\Request\Import\Model;
 
 use DateTimeImmutable;
 use SmartEmailing\Sdk\Request\ToArrayInterface;
+use SmartEmailing\Types\DateTimeFormatter;
 
 final class ContactPurpose implements ToArrayInterface
 {
@@ -27,8 +28,8 @@ final class ContactPurpose implements ToArrayInterface
     {
         return [
             'id' => $this->id,
-            'valid_from' => !empty($this->valid_from) ? $this->valid_from->format('Y-m-d H:i:s') : null,
-            'valid_to' => !empty($this->valid_to) ? $this->valid_to->format('Y-m-d H:i:s') : null,
+            'valid_from' => DateTimeFormatter::formatOrNull($this->valid_from),
+            'valid_to' => DateTimeFormatter::formatOrNull($this->valid_to),
         ];
     }
 
