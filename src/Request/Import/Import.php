@@ -2,6 +2,7 @@
 
 namespace SmartEmailing\Sdk\Request\Import;
 
+use SmartEmailing\Sdk\Api;
 use SmartEmailing\Sdk\Request\AbstractBaseRequest;
 use SmartEmailing\Sdk\Request\Import\Model\Contact;
 use SmartEmailing\Sdk\Request\Import\Model\Settings;
@@ -22,7 +23,7 @@ final class Import extends AbstractBaseRequest
     protected $uri = 'import';
 
     /**
-     * @var \SmartEmailing\Sdk\Request\Import\Model\Settings|null
+     * @var \SmartEmailing\Sdk\Request\Import\Model\Settings
      */
     protected $settings;
 
@@ -31,18 +32,24 @@ final class Import extends AbstractBaseRequest
      */
     protected $data = [];
 
-    protected function toArray(): array
+    public function __construct(Api $api, Settings $settings = null)
     {
-        if (!is_null($this->settings)) {
-            $return['settings'] = array_filter($this->settings->toArray());
+        parent::__construct($api);
+
+        if (is_null($settings)) {
+            $this->settings = new Settings();
         }
-
-        $return['data'] = array_filter($this->data);
-
-        return $return;
     }
 
-    public function getSettings(): ?Settings
+    protected function toArray(): array
+    {
+        return [
+            'settings' => array_filter($this->settings->toArray()),
+            'data' => array_filter($this->data),
+        ];
+    }
+
+    public function getSettings(): Settings
     {
         return $this->settings;
     }
