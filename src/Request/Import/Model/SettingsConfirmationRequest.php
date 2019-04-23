@@ -2,9 +2,9 @@
 
 namespace SmartEmailing\Sdk\Request\Import\Model;
 
-use SmartEmailing\Sdk\Request\AbstractModel;
+use SmartEmailing\Sdk\Request\ToArrayInterface;
 
-final class SettingsConfirmationRequest extends AbstractModel
+final class SettingsConfirmationRequest implements ToArrayInterface
 {
 
     /**

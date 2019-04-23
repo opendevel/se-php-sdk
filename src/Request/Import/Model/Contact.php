@@ -3,12 +3,12 @@
 namespace SmartEmailing\Sdk\Request\Import\Model;
 
 use DateTimeImmutable;
-use SmartEmailing\Sdk\Request\AbstractModel;
+use SmartEmailing\Sdk\Request\ToArrayInterface;
 use SmartEmailing\Sdk\Status\GenderStatus;
 use SmartEmailing\Types\Emailaddress;
 use SmartEmailing\Types\PrimitiveTypes;
 
-final class Contact extends AbstractModel
+final class Contact implements ToArrayInterface
 {
 
     /**

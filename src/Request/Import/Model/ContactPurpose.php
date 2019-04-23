@@ -3,9 +3,9 @@
 namespace SmartEmailing\Sdk\Request\Import\Model;
 
 use DateTimeImmutable;
-use SmartEmailing\Sdk\Request\AbstractModel;
+use SmartEmailing\Sdk\Request\ToArrayInterface;
 
-final class ContactPurpose extends AbstractModel
+final class ContactPurpose implements ToArrayInterface
 {
 
     /**

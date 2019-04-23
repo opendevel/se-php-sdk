@@ -2,10 +2,10 @@
 
 namespace SmartEmailing\Sdk\Request\Import\Model;
 
-use SmartEmailing\Sdk\Request\AbstractModel;
+use SmartEmailing\Sdk\Request\ToArrayInterface;
 use SmartEmailing\Sdk\Status\ContactListStatus;
 
-final class ContactsContactlist extends AbstractModel
+final class ContactsContactlist implements ToArrayInterface
 {
 
     /**

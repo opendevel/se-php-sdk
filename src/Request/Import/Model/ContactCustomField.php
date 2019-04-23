@@ -3,13 +3,13 @@
 namespace SmartEmailing\Sdk\Request\Import\Model;
 
 use DateTimeImmutable;
-use SmartEmailing\Sdk\Request\AbstractModel;
+use SmartEmailing\Sdk\Request\ToArrayInterface;
 
 /**
  * Customfields assigned to contact
  * Customfields unlisted in imported data will be untouched.
  */
-final class ContactCustomField extends AbstractModel
+final class ContactCustomField implements ToArrayInterface
 {
 
     /**
