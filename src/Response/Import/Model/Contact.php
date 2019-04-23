@@ -2,6 +2,8 @@
 
 namespace SmartEmailing\Sdk\Response\Import\Model;
 
+use SmartEmailing\Types\Emailaddress;
+
 final class Contact
 {
 
@@ -13,13 +15,12 @@ final class Contact
 
     /**
      * Email address of imported contact, lowercased and trimmed
-     * @var string
+     * @var \SmartEmailing\Types\Emailaddress
      */
     private $emailAddress;
 
-    public function __construct(int $contactId, string $emailAddress)
+    public function __construct(int $contactId, Emailaddress $emailAddress)
     {
-        //@todo check types
         $this->id = $contactId;
         $this->emailAddress = $emailAddress;
     }
@@ -29,7 +30,7 @@ final class Contact
         return $this->id;
     }
 
-    public function getEmailAddress(): string
+    public function getEmailAddress(): Emailaddress
     {
         return $this->emailAddress;
     }

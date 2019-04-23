@@ -4,6 +4,7 @@ namespace SmartEmailing\Sdk\Response\Import;
 
 use SmartEmailing\Sdk\Collect\Support\Collection;
 use SmartEmailing\Sdk\Response\Import\Model\Contact;
+use SmartEmailing\Types\Emailaddress;
 
 final class Import
 {
@@ -43,7 +44,7 @@ final class Import
             //@todo exception
         }
 
-        $contactArray = new Contact($contactArray['contact_id'], $contactArray['emailaddress']);
+        $contactArray = new Contact($contactArray['contact_id'], Emailaddress::from($contactArray['emailaddress']));
         $this->addContact($contactArray);
     }
 
