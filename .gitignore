@@ -4,4 +4,5 @@
 /_/
 /tests/.env
 /tests/output/
+/tests/.phpunit.result.cache
 /vendor/
