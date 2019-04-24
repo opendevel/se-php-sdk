@@ -20,11 +20,11 @@
     },
     "require-dev": {
         "guzzlehttp/psr7": "^1.0",
-        "nette/tester": "^2.2",
         "php-http/guzzle6-adapter": "^2.0",
         "php-http/mock-client": "^1.0",
         "php-http/message": "^1.0",
         "phpstan/phpstan": "^0.11.5",
+        "phpunit/phpunit": "^8.1",
         "robertsipek/coding-standard": "^1.0",
         "squizlabs/php_codesniffer": "^3.4",
         "tracy/tracy": "^2.6"
@@ -44,14 +44,14 @@
         }
     },
     "scripts": {
+        "phpunit": "phpunit --colors=always -c ./phpunit.xml",
         "phpstan": "phpstan analyse -l 7 --memory-limit=500M --debug -c phpstan.neon",
         "phpcbf": "phpcbf --standard=phpcs.xml --extensions=php --encoding=utf-8 --tab-width=4 -s -p -v",
         "phpcs": "phpcs --standard=phpcs.xml --extensions=php  --encoding=utf-8 --tab-width=4 -s -p -v",
-        "tester": "tester tests -C tests/php.ini",
         "test": [
-            "@phpstan",
             "@phpcbf",
-            "@phpcs"
+            "@phpstan",
+            "@phpunit"
         ]
     }
 }
