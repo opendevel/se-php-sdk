@@ -5,6 +5,8 @@ namespace SmartEmailing\Sdk\Request\Import\Model;
 use DateTimeImmutable;
 use SmartEmailing\Sdk\Request\ToArrayInterface;
 use SmartEmailing\Types\DateTimeFormatter;
+use SmartEmailing\Types\DateTimesImmutable;
+use SmartEmailing\Types\PrimitiveTypes;
 
 final class ContactPurpose implements ToArrayInterface
 {
@@ -12,43 +14,59 @@ final class ContactPurpose implements ToArrayInterface
     /**
      * @var int
      */
-    public $id;
+    private $id;
 
     /**
      * @var \DateTimeImmutable|null
      */
-    public $valid_from = null;
+    private $validFrom = null;
 
     /**
      * @var \DateTimeImmutable|null
      */
-    public $valid_to = null;
-
-    public function toArray(): array
-    {
-        return [
-            'id' => $this->id,
-            'valid_from' => DateTimeFormatter::formatOrNull($this->valid_from),
-            'valid_to' => DateTimeFormatter::formatOrNull($this->valid_to),
-        ];
-    }
+    private $validTo = null;
 
     public function __construct(int $id, ?DateTimeImmutable $valid_from = null, ?DateTimeImmutable $valid_to = null)
     {
         $this->id = $id;
-        $this->valid_from = $valid_from;
-        $this->valid_to = $valid_to;
+        $this->validFrom = $valid_from;
+        $this->validTo = $valid_to;
     }
 
-    public function setValidFrom(?DateTimeImmutable $valid_from): ContactPurpose
+    public static function fromArray(array $array): self
     {
-        $this->valid_from = $valid_from;
+        $array = array_change_key_case($array, CASE_LOWER);
+        //@todo replace char '_' from array keys? (i jinde)
+
+        return new self(
+            PrimitiveTypes::extractInt($array, 'id'),
+            DateTimesImmutable::extractOrNull($array, 'valid_from', true),
+            DateTimesImmutable::extractOrNull($array, 'valid_to', true)
+        );
+    }
+
+    public function toArray(): array
+    {
+        $array = [
+            'id' => $this->id,
+            'valid_from' => DateTimeFormatter::formatOrNull($this->validFrom),
+            'valid_to' => DateTimeFormatter::formatOrNull($this->validTo),
+        ];
+
+        return array_filter($array, function ($var) {
+            return !is_null($var);
+        });
+    }
+
+    public function setValidFrom(?DateTimeImmutable $validFrom): ContactPurpose
+    {
+        $this->validFrom = $validFrom;
         return $this;
     }
 
-    public function setValidTo(?DateTimeImmutable $valid_to): ContactPurpose
+    public function setValidTo(?DateTimeImmutable $validTo): ContactPurpose
     {
-        $this->valid_to = $valid_to;
+        $this->validTo = $validTo;
         return $this;
     }
 

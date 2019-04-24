@@ -44,7 +44,7 @@ final class Settings implements ToArrayInterface
 
     public function toArray(): array
     {
-        return [
+        $array = [
             'update' => $this->update,
             'add_namedays' => $this->addNamedays,
             'add_genders' => $this->addGenders,
@@ -53,6 +53,10 @@ final class Settings implements ToArrayInterface
             'skip_invalid_emails' => $this->skipInvalidEmails,
             'confirmation_request' => $this->confirmationRequest,
         ];
+
+        return array_filter($array, function ($var) {
+            return !is_null($var);
+        });
     }
 
     public function setUpdate(bool $update = true): Settings

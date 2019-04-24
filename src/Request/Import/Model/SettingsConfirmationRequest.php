@@ -37,7 +37,7 @@ final class SettingsConfirmationRequest implements ToArrayInterface
      */
     public function toArray(): array
     {
-        return [
+        $array = [
             'email_id' => $this->email_id,
             'sender_credentials' => [
                 'from' => $this->from,
@@ -46,6 +46,10 @@ final class SettingsConfirmationRequest implements ToArrayInterface
             ],
             'confirmation_thank_you_page_url' => $this->confirmation_thank_you_page_url,
         ];
+
+        return array_filter($array, function ($var) {
+            return !is_null($var);
+        });
     }
 
     public function __construct(int $emailId, string $from, string $replyTo, string $senderName, ?string $confirmationThankYouPageUrl = null)

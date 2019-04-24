@@ -6,6 +6,7 @@ use DateTimeImmutable;
 use SmartEmailing\Sdk\Request\ToArrayInterface;
 use SmartEmailing\Sdk\Status\GenderStatus;
 use SmartEmailing\Types\DateTimeFormatter;
+use SmartEmailing\Types\DateTimesImmutable;
 use SmartEmailing\Types\Emailaddress;
 use SmartEmailing\Types\PrimitiveTypes;
 
@@ -80,7 +81,7 @@ final class Contact implements ToArrayInterface
     /**
      * @var string|null
      */
-    private $language = null;
+    private $language = null;   //@todo Language in POSIX format, eg. cz_CZ
 
     /**
      * @var string|null
@@ -137,12 +138,64 @@ final class Contact implements ToArrayInterface
      */
     public function __construct(string $emailaddress)
     {
+        //@todo nemel by prijimat rovnou objekt typu Emailaddress? - tim se ale zase komplikuje vstup uzivateli
         $this->emailAddress = Emailaddress::from($emailaddress);
+    }
+
+    public static function fromArray(array $array): self
+    {
+        $array = array_change_key_case($array, CASE_LOWER);
+
+        $contact = new self(Emailaddress::extract($array, 'emailaddress')->getValue()); //@todo vstup: retezec nebo objekt Emailaddress?
+
+        $contact->setName(PrimitiveTypes::extractStringOrNull($array, 'name', true));
+        $contact->setSurname(PrimitiveTypes::extractStringOrNull($array, 'surname', true));
+        $contact->setTitlesBefore(PrimitiveTypes::extractStringOrNull($array, 'titlesbefore', true));
+        $contact->setTitlesAfter(PrimitiveTypes::extractStringOrNull($array, 'titlesafter', true));
+        $contact->setSalutation(PrimitiveTypes::extractStringOrNull($array, 'salutation', true));
+        $contact->setCompany(PrimitiveTypes::extractStringOrNull($array, 'company', true));
+        $contact->setStreet(PrimitiveTypes::extractStringOrNull($array, 'street', true));
+        $contact->setTown(PrimitiveTypes::extractStringOrNull($array, 'town', true));
+        $contact->setPostalCode(PrimitiveTypes::extractStringOrNull($array, 'postalcode', true));
+        $contact->setCountry(PrimitiveTypes::extractStringOrNull($array, 'country', true));
+        $contact->setCellPhone(PrimitiveTypes::extractStringOrNull($array, 'cellphone', true));
+        $contact->setPhone(PrimitiveTypes::extractStringOrNull($array, 'phone', true));
+        $contact->setLanguage(PrimitiveTypes::extractStringOrNull($array, 'language', true));
+        $contact->setNotes(PrimitiveTypes::extractStringOrNull($array, 'notes', true));
+        $contact->setGender(GenderStatus::fromOrNull(PrimitiveTypes::extractStringOrNull($array, 'gender', true)));
+        $contact->setBlackListed(PrimitiveTypes::extractBoolOrNull($array, 'blacklisted', true));
+        $contact->setNameday(DateTimesImmutable::extractOrNull($array, 'nameday', true));
+        $contact->setBirthday(DateTimesImmutable::extractOrNull($array, 'birthday', true));
+
+        $arrayContactLists = PrimitiveTypes::extractArrayOrNull($array, 'contactlists');
+        if (!is_null($arrayContactLists) && is_array($arrayContactLists)) { //@todo kontrolovat nebo nechat vyhodit vyjimku?
+            /** @var array $arrayContactList */
+            foreach ($arrayContactLists as $arrayContactList) {
+                $contact->addContactList(ContactContactlist::fromArray($arrayContactList));
+            }
+        }
+
+        $arrayCustomFields = PrimitiveTypes::extractArrayOrNull($array, 'customfields');
+        if (!is_null($arrayCustomFields) && is_array($arrayCustomFields)) { //@todo kontrolovat nebo nechat vyhodit vyjimku?
+            foreach ($arrayCustomFields as $arrayCustomField) {
+                $contact->addCustomField(ContactCustomField::fromArray($arrayCustomField));
+            }
+        }
+
+        $arrayPurposes = PrimitiveTypes::extractArrayOrNull($array, 'purposes');
+        if (!is_null($arrayPurposes) && is_array($arrayPurposes)) { //@todo kontrolovat nebo nechat vyhodit vyjimku?
+            /** @var array $arrayPurpose */
+            foreach ($arrayPurposes as $arrayPurpose) {
+                $contact->addPurpose(ContactPurpose::fromArray($arrayPurpose));
+            }
+        }
+
+        return $contact;
     }
 
     public function toArray(): array
     {
-        return [
+        $array = [
             'emailaddress' => $this->emailAddress->getValue(),
             'name' => $this->name,
             'surname' => $this->surname,
@@ -166,6 +219,10 @@ final class Contact implements ToArrayInterface
             'customfields' => $this->customFields,
             'purposes' => $this->purposes,
         ];
+
+        return array_filter($array, function ($var) {
+            return !is_null($var);
+        });
     }
 
     public function setName(?string $name = null): Contact
@@ -276,21 +333,36 @@ final class Contact implements ToArrayInterface
         return $this;
     }
 
-    public function addContactList(ContactsContactlist $contactlist): Contact
+    public function addContactList(ContactContactlist $contactlist): Contact
     {
-        $this->contactLists[] = array_filter($contactlist->toArray());
+        $array = array_filter($contactlist->toArray(), function ($var) {
+            return !is_null($var);
+        });
+
+        $this->contactLists[] = $array;
+
         return $this;
     }
 
     public function addCustomField(ContactCustomField $customfield): Contact
     {
-        $this->customFields[] = array_filter($customfield->toArray());
+        $array = array_filter($customfield->toArray(), function ($var) {
+            return !is_null($var);
+        });
+
+        $this->customFields[] = $array;
+
         return $this;
     }
 
     public function addPurpose(ContactPurpose $purpose): Contact
     {
-        $this->purposes[] = array_filter($purpose->toArray());
+        $array = array_filter($purpose->toArray(), function ($var) {
+            return !is_null($var);
+        });
+
+        $this->purposes[] = $array;
+
         return $this;
     }
 
