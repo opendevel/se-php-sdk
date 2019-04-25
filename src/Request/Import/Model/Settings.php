@@ -44,7 +44,6 @@ final class Settings implements ToArrayInterface
 
     public function __construct()
     {
-
     }
 
     public function toArray(): array
@@ -64,7 +63,7 @@ final class Settings implements ToArrayInterface
         });
     }
 
-    public function setUpdate(bool $update = true): Settings
+    public function setUpdate(bool $update): Settings
     {
         $this->update = $update;
         return $this;
