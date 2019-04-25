@@ -335,34 +335,19 @@ final class Contact implements ToArrayInterface
 
     public function addContactList(ContactContactlist $contactlist): Contact
     {
-        $array = array_filter($contactlist->toArray(), function ($var) {
-            return !is_null($var);
-        });
-
-        $this->contactLists[] = $array;
-
+        $this->contactLists[] = $contactlist->toArray();
         return $this;
     }
 
     public function addCustomField(ContactCustomField $customfield): Contact
     {
-        $array = array_filter($customfield->toArray(), function ($var) {
-            return !is_null($var);
-        });
-
-        $this->customFields[] = $array;
-
+        $this->customFields[] = $customfield->toArray();
         return $this;
     }
 
     public function addPurpose(ContactPurpose $purpose): Contact
     {
-        $array = array_filter($purpose->toArray(), function ($var) {
-            return !is_null($var);
-        });
-
-        $this->purposes[] = $array;
-
+        $this->purposes[] = $purpose->toArray();
         return $this;
     }
 
