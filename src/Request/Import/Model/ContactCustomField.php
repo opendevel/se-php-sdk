@@ -3,12 +3,12 @@
 namespace SmartEmailing\Sdk\Request\Import\Model;
 
 use SmartEmailing\Sdk\Request\ToArrayInterface;
-use SmartEmailing\Types\DateTimeFormatter;
 use SmartEmailing\Types\PrimitiveTypes;
+use SmartEmailing\Types\UniqueIntArray;
 
 /**
  * Customfields assigned to contact
- * Customfields unlisted in imported data will be untouched.
+ * (Customfields unlisted in imported data will be untouched.)
  */
 final class ContactCustomField implements ToArrayInterface
 {
@@ -34,7 +34,7 @@ final class ContactCustomField implements ToArrayInterface
      * Array of Customfields options IDs matching with selected Customfield.
      * Required for composite customfields
      *
-     * @var array|null
+     * @var \SmartEmailing\Types\UniqueIntArray|null
      */
     private $options = null;
 
@@ -43,23 +43,34 @@ final class ContactCustomField implements ToArrayInterface
         //@todo $value or $options is required
 
         $this->id = $id;
-        $this->value = $value;  //@todo value can be null
-        $this->options = $options; //@todo options can be null
+        $this->value = $value;
+        $this->options = !is_null($options) ? UniqueIntArray::from($options) : null;
     }
 
     public static function fromArray(array $array): self
     {
         $array = array_change_key_case($array, CASE_LOWER);
 
-        return new self(PrimitiveTypes::extractInt($array, 'id'));
+        $customField = new self(PrimitiveTypes::extractInt($array, 'id'));
+
+        if (!is_null(PrimitiveTypes::extractStringOrNull($array, 'value', true))) {
+            $customField->setValue(PrimitiveTypes::extractString($array, 'value'));
+        }
+
+        if (!is_null(PrimitiveTypes::extractArrayOrNull($array, 'options'))) {
+            $customField->setOptions(PrimitiveTypes::extractArray($array, 'options'));
+        }
+
+        return $customField;
     }
 
     public function toArray(): array
     {
+        //@todo return id and (value or options)
         $array = [
             'id' => $this->id,
-            'value' => DateTimeFormatter::formatOrNull($this->value),
-            'options' => is_array($this->options) && count($this->options) ? $this->options : null,
+            'value' => $this->value,
+            'options' => !is_null($this->options) ? $this->options->getValues() : null,
         ];
 
         return array_filter($array, function ($var) {
@@ -67,6 +78,10 @@ final class ContactCustomField implements ToArrayInterface
         });
     }
 
+    /**
+     * @param mixed $value
+     * @return \SmartEmailing\Sdk\Request\Import\Model\ContactCustomField
+     */
     public function setValue($value): ContactCustomField
     {
         $this->value = $value;
@@ -79,7 +94,7 @@ final class ContactCustomField implements ToArrayInterface
      */
     public function setOptions(array $options): ContactCustomField
     {
-        $this->options = $options;
+        $this->options = UniqueIntArray::from($options);
         return $this;
     }
 
