@@ -4,19 +4,10 @@ namespace SmartEmailing\Sdk\Request\Import;
 
 use SmartEmailing\Sdk\Request\Import\Model\Contact;
 use SmartEmailing\Sdk\Request\Import\Model\Settings;
+use SmartEmailing\Sdk\Request\ToArrayInterface;
 
-final class Import2
+final class Import2 implements ToArrayInterface
 {
-
-    /**
-     * @var string
-     */
-    protected $method = 'POST';
-
-    /**
-     * @var string
-     */
-    protected $uri = 'import';
 
     /**
      * @var \SmartEmailing\Sdk\Request\Import\Model\Settings
@@ -30,18 +21,19 @@ final class Import2
 
     public function __construct(?Settings $settings = null)
     {
-        if (is_null($settings)) {
-            $this->settings = new Settings();
+        if ($settings === null) {
+            $settings = new Settings();
         }
+
+        $this->settings = $settings;
     }
 
-    public static function fromArray(array $array): self
+    public static function fromArrayData(array $array): self
     {
         $import = new self();
 
         foreach ($array as $subarray) {
-            //@todo lze pouzit smartemailing/types?
-            if (is_array($subarray)) {
+            if (is_array($subarray)) {  //@todo lze pouzit smartemailing/types?
                 $contact = Contact::fromArray($subarray);
                 $import->addContact($contact);
             } else {
@@ -52,17 +44,16 @@ final class Import2
         return $import;
     }
 
-    protected function toArray(): array
+    public function toArray(): array
     {
-        return [
-            'settings' => array_filter($this->settings->toArray()),
-            'data' => array_filter($this->data),
+        $array = [
+            'settings' => $this->settings->toArray(),
+            'data' => $this->data,
         ];
-    }
 
-    public function getBody(): array
-    {
-        return $this->toArray();
+        return array_filter($array, function ($var) {
+            return !is_null($var);
+        });
     }
 
     public function getSettings(): Settings
@@ -77,7 +68,7 @@ final class Import2
 
     public function addContact(Contact $contact): void
     {
-        $this->data[] = array_filter($contact->toArray());
+        $this->data[] = $contact->toArray();
     }
 
 }
