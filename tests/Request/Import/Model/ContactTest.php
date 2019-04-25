@@ -119,6 +119,36 @@ final class ContactTest extends TestCase
             'blackListed' => false,
             'nameday' => '2020-12-31 00:00:00',
             'birthday' => '2020-12-31 00:00:00',
+            'contactlists' => [
+                [
+                    'id' => 1,
+                    'status' => 'confirmed',
+                ],
+            ],
+            //@todo
+//            'customfields' => [
+//                [
+//                    'id' => 1,
+//                    'options' => [
+//                        1,
+//                        3,
+//                    ],
+//                ],
+//                [
+//                    'id' => 8,
+//                    'value' => '2016-01-10 13:53:03',
+//                ],
+//            ],
+            'purposes' => [
+                [
+                    'id' => 2,
+                ],
+                [
+                    'id' => 3,
+                    'valid_from' => '2018-01-11 10:30:00',
+                    'valid_to' => '2023-01-11 10:30:00',
+                ],
+            ],
         ];
 
         $output = [
@@ -141,6 +171,36 @@ final class ContactTest extends TestCase
             'blacklisted' => 0,
             'nameday' => '2020-12-31 00:00:00',
             'birthday' => '2020-12-31 00:00:00',
+            'contactlists' => [
+                [
+                    'id' => 1,
+                    'status' => 'confirmed',
+                ],
+            ],
+            //@todo
+//            'customfields' => [
+//                [
+//                    'id' => 1,
+//                    'options' => [
+//                        1,
+//                        3,
+//                    ],
+//                ],
+//                [
+//                    'id' => 8,
+//                    'value' => '2016-01-10 13:53:03',
+//                ],
+//            ],
+            'purposes' => [
+                [
+                    'id' => 2,
+                ],
+                [
+                    'id' => 3,
+                    'valid_from' => '2018-01-11 10:30:00',
+                    'valid_to' => '2023-01-11 10:30:00',
+                ],
+            ],
         ];
 
         $contact = Contact::fromArray($input);
