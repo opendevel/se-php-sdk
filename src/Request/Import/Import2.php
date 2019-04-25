@@ -28,13 +28,13 @@ final class Import2 implements ToArrayInterface
         $this->settings = $settings;
     }
 
-    public static function fromArrayData(array $array): self
+    public static function fromArrayData(array $contactsArray): self
     {
         $import = new self();
 
-        foreach ($array as $subarray) {
-            if (is_array($subarray)) {  //@todo lze pouzit smartemailing/types?
-                $contact = Contact::fromArray($subarray);
+        foreach ($contactsArray as $contactArray) {
+            if (is_array($contactArray)) {  //@todo lze pouzit smartemailing/types?
+                $contact = Contact::fromArray($contactArray);
                 $import->addContact($contact);
             } else {
                 //@todo?
