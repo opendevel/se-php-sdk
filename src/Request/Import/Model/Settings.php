@@ -42,6 +42,11 @@ final class Settings implements ToArrayInterface
      */
     private $confirmationRequest = null;
 
+    public function __construct()
+    {
+
+    }
+
     public function toArray(): array
     {
         $array = [
@@ -51,7 +56,7 @@ final class Settings implements ToArrayInterface
             'add_salutions' => $this->addSalutions,
             'preserve_unsubscribed' => $this->preserveUnsubscribed,
             'skip_invalid_emails' => $this->skipInvalidEmails,
-            'confirmation_request' => $this->confirmationRequest,
+            'confirmation_request' => !is_null($this->confirmationRequest) ? $this->confirmationRequest->toArray() : null,
         ];
 
         return array_filter($array, function ($var) {
