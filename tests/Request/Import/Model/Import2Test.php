@@ -2,11 +2,7 @@
 
 namespace SmartEmailing\Sdk\Request\Import\Model;
 
-use DateTimeImmutable;
-use SmartEmailing\Sdk\Request\Import\Import;
 use SmartEmailing\Sdk\Request\Import\Import2;
-use SmartEmailing\Sdk\Status\ContactListStatus;
-use SmartEmailing\Sdk\Status\GenderStatus;
 use SmartEmailing\Sdk\TestCase;
 
 final class Import2Test extends TestCase
@@ -60,75 +56,38 @@ final class Import2Test extends TestCase
         $this->assertSame($output, $import->toArray());
     }
 
-    public function testCreateFromArrayMinimum(): void
-    {
-        // ARRANGE
-        $input = [
-        ];
-
-        $output = [
-            'settings' => [
-                'update' => true,
-                'add_namedays' => true,
-                'add_genders' => true,
-                'add_salutions' => true,
-                'preserve_unsubscribed' => true,
-                'skip_invalid_emails' => false,
-            ],
-            'data' => [
-            ],
-        ];
-
-        $import = Import2::fromArrayData($input);
-
-        // ACT
-
-        // ASSERT
-        $this->assertInstanceOf(Import2::class, $import);
-        $this->assertSame($output, $import->toArray());
-    }
-
-    public function testCreateFromArrayFull(): void
+    public function testCreateFromArrayDataFull(): void
     {
         // ARRANGE
 
         $input = [
-            'settings' => [
-                'update' => true,
-                'add_namedays' => true,
-                'add_genders' => true,
-                'add_salutions' => true,
-                'preserve_unsubscribed' => true,
-                'skip_invalid_emails' => false,
-            ],
-            'data' => [
-                [
-                    'emailaddress' => 'john.doe@example.com',
-                    'name' => 'John',
-                    'surname' => 'Doe',
-                    'titlesBefore' => 'Mr.',
-                    'titlesAfter' => 'PhD',
-                    'salutation' => 'John Doe',
-                    'company' => 'ACME',
-                    'street' => 'Place Saint-Gervais 4',
-                    'town' => 'Paris',
-                    'postalCode' => '75004',
-                    'country' => 'France',
-                    'cellPhone' => '+33 123 456 789',
-                    'phone' => '+33 987 654 321',
-                    'language' => 'cz_CZ',
-                    'notes' => 'Lorem ipsum',
-                    'gender' => 'M',
-                    'blackListed' => false,
-                    'nameday' => '2020-12-31 00:00:00',
-                    'birthday' => '2020-12-31 00:00:00',
-                    'contactlists' => [
-                        [
-                            'id' => 1,
-                            'status' => 'confirmed',
-                        ],
+            [
+                'emailaddress' => 'john.doe@example.com',
+                'name' => 'John',
+                'surname' => 'Doe',
+                'titlesBefore' => 'Mr.',
+                'titlesAfter' => 'PhD',
+                'salutation' => 'John Doe',
+                'company' => 'ACME',
+                'street' => 'Place Saint-Gervais 4',
+                'town' => 'Paris',
+                'postalCode' => '75004',
+                'country' => 'France',
+                'cellPhone' => '+33 123 456 789',
+                'phone' => '+33 987 654 321',
+                'language' => 'cz_CZ',
+                'notes' => 'Lorem ipsum',
+                'gender' => 'M',
+                'blackListed' => false,
+                'nameday' => '2020-12-31 00:00:00',
+                'birthday' => '2020-12-31 00:00:00',
+                'contactlists' => [
+                    [
+                        'id' => 1,
+                        'status' => 'confirmed',
                     ],
-                    //@todo
+                ],
+                //@todo
 //            'customfields' => [
 //                [
 //                    'id' => 1,
@@ -142,15 +101,14 @@ final class Import2Test extends TestCase
 //                    'value' => '2016-01-10 13:53:03',
 //                ],
 //            ],
-                    'purposes' => [
-                        [
-                            'id' => 2,
-                        ],
-                        [
-                            'id' => 3,
-                            'valid_from' => '2018-01-11 10:30:00',
-                            'valid_to' => '2023-01-11 10:30:00',
-                        ],
+                'purposes' => [
+                    [
+                        'id' => 2,
+                    ],
+                    [
+                        'id' => 3,
+                        'valid_from' => '2018-01-11 10:30:00',
+                        'valid_to' => '2023-01-11 10:30:00',
                     ],
                 ],
             ],
@@ -220,7 +178,7 @@ final class Import2Test extends TestCase
             ],
         ];
 
-        $import = Import2::fromArrayData($input['data']);
+        $import = Import2::fromArrayData($input);
 
         // ACT
 
@@ -231,12 +189,46 @@ final class Import2Test extends TestCase
 
     public function testAddContact(): void
     {
-        //@todo
+        // ARRANGE
+        $output = [
+            'settings' =>
+                [
+                    'update' => true,
+                    'add_namedays' => true,
+                    'add_genders' => true,
+                    'add_salutions' => true,
+                    'preserve_unsubscribed' => true,
+                    'skip_invalid_emails' => false,
+                ],
+            'data' =>
+                [
+                    [
+                        'emailaddress' => 'john.doe@example.com',
+                    ],
+                ],
+        ];
+
+        $import = new Import2();
+
+        // ACT
+        $import->addContact(new Contact('john.doe@example.com'));
+
+        // ASSERT
+        $this->assertSame($output, $import->toArray());
     }
 
     public function testSetSettings(): void
     {
-        //@todo
+        // ARRANGE
+        $import = new Import2();
+        $settings = new Settings();
+
+        // ACT
+        $import->setSettings($settings);
+
+        // ASSERT
+        $this->assertInstanceOf(Settings::class, $import->getSettings());
+        $this->assertSame($settings, $import->getSettings());
     }
 
 }
