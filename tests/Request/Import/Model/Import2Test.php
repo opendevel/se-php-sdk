@@ -87,20 +87,19 @@ final class Import2Test extends TestCase
                         'status' => 'confirmed',
                     ],
                 ],
-                //@todo
-//            'customfields' => [
-//                [
-//                    'id' => 1,
-//                    'options' => [
-//                        1,
-//                        3,
-//                    ],
-//                ],
-//                [
-//                    'id' => 8,
-//                    'value' => '2016-01-10 13:53:03',
-//                ],
-//            ],
+                'customfields' => [
+                    [
+                        'id' => 1,
+                        'options' => [
+                            1,
+                            3,
+                        ],
+                    ],
+                    [
+                        'id' => 8,
+                        'value' => '2016-01-10 13:53:03',
+                    ],
+                ],
                 'purposes' => [
                     [
                         'id' => 2,
@@ -150,20 +149,19 @@ final class Import2Test extends TestCase
                             'status' => 'confirmed',
                         ],
                     ],
-                    //@todo
-//            'customfields' => [
-//                [
-//                    'id' => 1,
-//                    'options' => [
-//                        1,
-//                        3,
-//                    ],
-//                ],
-//                [
-//                    'id' => 8,
-//                    'value' => '2016-01-10 13:53:03',
-//                ],
-//            ],
+                    'customfields' => [
+                        [
+                            'id' => 1,
+                            'options' => [
+                                1,
+                                3,
+                            ],
+                        ],
+                        [
+                            'id' => 8,
+                            'value' => '2016-01-10 13:53:03',
+                        ],
+                    ],
                     'purposes' => [
                         [
                             'id' => 2,
