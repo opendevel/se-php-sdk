@@ -6,6 +6,7 @@ use DateTimeImmutable;
 use SmartEmailing\Sdk\Status\ContactListStatus;
 use SmartEmailing\Sdk\Status\GenderStatus;
 use SmartEmailing\Sdk\TestCase;
+use SmartEmailing\Types\InvalidEmailaddressException;
 
 final class ContactTest extends TestCase
 {
@@ -74,6 +75,12 @@ final class ContactTest extends TestCase
 
         // ASSERT
         $this->assertSame($output, $contact->toArray());
+    }
+
+    public function testCreateException(): void
+    {
+        $this->expectException(InvalidEmailaddressException::class);
+        new Contact('lorem ipsum');
     }
 
     public function testCreateFromArrayMinimum(): void

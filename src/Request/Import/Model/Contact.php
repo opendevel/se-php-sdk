@@ -132,13 +132,8 @@ final class Contact implements ToArrayInterface
      */
     private $purposes = null;
 
-    /**
-     * Contact constructor.
-     * @param string $emailaddress
-     */
     public function __construct(string $emailaddress)
     {
-        //@todo nemel by prijimat rovnou objekt typu Emailaddress? - tim se ale zase komplikuje vstup uzivateli
         $this->emailAddress = Emailaddress::from($emailaddress);
     }
 
@@ -146,7 +141,7 @@ final class Contact implements ToArrayInterface
     {
         $array = array_change_key_case($array, CASE_LOWER);
 
-        $contact = new self(Emailaddress::extract($array, 'emailaddress')->getValue()); //@todo vstup: retezec nebo objekt Emailaddress?
+        $contact = new self(Emailaddress::extract($array, 'emailaddress')->getValue());
 
         $contact->setName(PrimitiveTypes::extractStringOrNull($array, 'name', true));
         $contact->setSurname(PrimitiveTypes::extractStringOrNull($array, 'surname', true));
@@ -168,7 +163,7 @@ final class Contact implements ToArrayInterface
         $contact->setBirthday(DateTimesImmutable::extractOrNull($array, 'birthday', true));
 
         $arrayContactLists = PrimitiveTypes::extractArrayOrNull($array, 'contactlists');
-        if (!is_null($arrayContactLists) && is_array($arrayContactLists)) { //@todo kontrolovat nebo nechat vyhodit vyjimku?
+        if (is_array($arrayContactLists)) {
             /** @var array $arrayContactList */
             foreach ($arrayContactLists as $arrayContactList) {
                 $contact->addContactList(ContactContactlist::fromArray($arrayContactList));
@@ -176,14 +171,15 @@ final class Contact implements ToArrayInterface
         }
 
         $arrayCustomFields = PrimitiveTypes::extractArrayOrNull($array, 'customfields');
-        if (!is_null($arrayCustomFields) && is_array($arrayCustomFields)) { //@todo kontrolovat nebo nechat vyhodit vyjimku?
+        if (is_array($arrayCustomFields)) {
+            /** @var array $arrayCustomField */
             foreach ($arrayCustomFields as $arrayCustomField) {
                 $contact->addCustomField(ContactCustomField::fromArray($arrayCustomField));
             }
         }
 
         $arrayPurposes = PrimitiveTypes::extractArrayOrNull($array, 'purposes');
-        if (!is_null($arrayPurposes) && is_array($arrayPurposes)) { //@todo kontrolovat nebo nechat vyhodit vyjimku?
+        if (is_array($arrayPurposes)) {
             /** @var array $arrayPurpose */
             foreach ($arrayPurposes as $arrayPurpose) {
                 $contact->addPurpose(ContactPurpose::fromArray($arrayPurpose));
