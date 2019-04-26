@@ -55,7 +55,7 @@ final class Settings implements ToArrayInterface
             'add_salutions' => $this->addSalutions,
             'preserve_unsubscribed' => $this->preserveUnsubscribed,
             'skip_invalid_emails' => $this->skipInvalidEmails,
-            'confirmation_request' => !is_null($this->confirmationRequest) ? $this->confirmationRequest->toArray() : null,
+            'confirmation_request' => $this->confirmationRequest !== null ? $this->confirmationRequest->toArray() : null,
         ];
 
     }

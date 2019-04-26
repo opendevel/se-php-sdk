@@ -35,11 +35,11 @@ final class Import
     {
         //@todo split input to id and email
 
-        if (!isset($contactArray['contact_id']) || is_null($contactArray['contact_id'])) {
+        if (!isset($contactArray['contact_id']) || $contactArray['contact_id'] === null) {
             //@todo exception
         }
 
-        if (!isset($contactArray['emailaddress']) || is_null($contactArray['emailaddress'])) {
+        if (!isset($contactArray['emailaddress']) || $contactArray['emailaddress'] === null) {
             //@todo exception
         }
 
