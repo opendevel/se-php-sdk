@@ -40,8 +40,8 @@ final class ContactPurpose implements ToArrayInterface
 
         return new self(
             PrimitiveTypes::extractInt($array, 'id'),
-            DateTimesImmutable::extractOrNull($array, 'valid_from', true),
-            DateTimesImmutable::extractOrNull($array, 'valid_to', true)
+            DateTimesImmutable::extractOrNull($array, 'valid_from'),
+            DateTimesImmutable::extractOrNull($array, 'valid_to')
         );
     }
 

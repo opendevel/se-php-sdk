@@ -143,24 +143,24 @@ final class Contact implements ToArrayInterface
 
         $contact = new self(Emailaddress::extract($array, 'emailaddress')->getValue());
 
-        $contact->setName(PrimitiveTypes::extractStringOrNull($array, 'name', true));
-        $contact->setSurname(PrimitiveTypes::extractStringOrNull($array, 'surname', true));
-        $contact->setTitlesBefore(PrimitiveTypes::extractStringOrNull($array, 'titlesbefore', true));
-        $contact->setTitlesAfter(PrimitiveTypes::extractStringOrNull($array, 'titlesafter', true));
-        $contact->setSalutation(PrimitiveTypes::extractStringOrNull($array, 'salutation', true));
-        $contact->setCompany(PrimitiveTypes::extractStringOrNull($array, 'company', true));
-        $contact->setStreet(PrimitiveTypes::extractStringOrNull($array, 'street', true));
-        $contact->setTown(PrimitiveTypes::extractStringOrNull($array, 'town', true));
-        $contact->setPostalCode(PrimitiveTypes::extractStringOrNull($array, 'postalcode', true));
-        $contact->setCountry(PrimitiveTypes::extractStringOrNull($array, 'country', true));
-        $contact->setCellPhone(PrimitiveTypes::extractStringOrNull($array, 'cellphone', true));
-        $contact->setPhone(PrimitiveTypes::extractStringOrNull($array, 'phone', true));
-        $contact->setLanguage(PrimitiveTypes::extractStringOrNull($array, 'language', true));
-        $contact->setNotes(PrimitiveTypes::extractStringOrNull($array, 'notes', true));
-        $contact->setGender(GenderStatus::fromOrNull(PrimitiveTypes::extractStringOrNull($array, 'gender', true)));
-        $contact->setBlackListed(PrimitiveTypes::extractBoolOrNull($array, 'blacklisted', true));
-        $contact->setNameday(DateTimesImmutable::extractOrNull($array, 'nameday', true));
-        $contact->setBirthday(DateTimesImmutable::extractOrNull($array, 'birthday', true));
+        $contact->setName(PrimitiveTypes::extractStringOrNull($array, 'name'));
+        $contact->setSurname(PrimitiveTypes::extractStringOrNull($array, 'surname'));
+        $contact->setTitlesBefore(PrimitiveTypes::extractStringOrNull($array, 'titlesbefore'));
+        $contact->setTitlesAfter(PrimitiveTypes::extractStringOrNull($array, 'titlesafter'));
+        $contact->setSalutation(PrimitiveTypes::extractStringOrNull($array, 'salutation'));
+        $contact->setCompany(PrimitiveTypes::extractStringOrNull($array, 'company'));
+        $contact->setStreet(PrimitiveTypes::extractStringOrNull($array, 'street'));
+        $contact->setTown(PrimitiveTypes::extractStringOrNull($array, 'town'));
+        $contact->setPostalCode(PrimitiveTypes::extractStringOrNull($array, 'postalcode'));
+        $contact->setCountry(PrimitiveTypes::extractStringOrNull($array, 'country'));
+        $contact->setCellPhone(PrimitiveTypes::extractStringOrNull($array, 'cellphone'));
+        $contact->setPhone(PrimitiveTypes::extractStringOrNull($array, 'phone'));
+        $contact->setLanguage(PrimitiveTypes::extractStringOrNull($array, 'language'));
+        $contact->setNotes(PrimitiveTypes::extractStringOrNull($array, 'notes'));
+        $contact->setGender(GenderStatus::fromOrNull(PrimitiveTypes::extractStringOrNull($array, 'gender')));
+        $contact->setBlackListed(PrimitiveTypes::extractBoolOrNull($array, 'blacklisted'));
+        $contact->setNameday(DateTimesImmutable::extractOrNull($array, 'nameday'));
+        $contact->setBirthday(DateTimesImmutable::extractOrNull($array, 'birthday'));
 
         $arrayContactLists = PrimitiveTypes::extractArrayOrNull($array, 'contactlists');
         if (is_array($arrayContactLists)) {
