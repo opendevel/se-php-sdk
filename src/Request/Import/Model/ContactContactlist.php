@@ -37,14 +37,10 @@ final class ContactContactlist implements ToArrayInterface
 
     public function toArray(): array
     {
-        $array = [
+        return [
             'id' => $this->id,
             'status' => $this->status->getValue(),
         ];
-
-        return array_filter($array, function ($var) {
-            return !is_null($var);
-        });
     }
 
 }

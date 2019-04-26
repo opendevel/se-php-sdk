@@ -113,24 +113,24 @@ final class Contact implements ToArrayInterface
      * Any contactlist presence unlisted in imported data will be untouched.
      * Unsubscribed contacts will stay unsubscribed if settings.preserve_unsubscribed=1
      *
-     * @var array|null
+     * @var array
      */
-    private $contactLists = null;
+    private $contactLists = [];
 
     /**
      * Customfields assigned to contact
      * Customfields unlisted in imported data will be untouched.
      *
-     * @var array|null
+     * @var array
      */
-    private $customFields = null;
+    private $customFields = [];
 
     /**
      * Processing purposes assigned to contact. Every purpose may be assigned multiple times for different time intervals. Exact duplicities will be silently skipped.
      *
-     * @var array|null
+     * @var array
      */
-    private $purposes = null;
+    private $purposes = [];
 
     public function __construct(string $emailaddress)
     {

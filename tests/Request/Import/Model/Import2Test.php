@@ -165,6 +165,8 @@ final class Import2Test extends TestCase
                     'purposes' => [
                         [
                             'id' => 2,
+                            'valid_from' => null,
+                            'valid_to' => null,
                         ],
                         [
                             'id' => 3,
@@ -294,6 +296,8 @@ final class Import2Test extends TestCase
                     'purposes' => [
                         [
                             'id' => 2,
+                            'valid_from' => null,
+                            'valid_to' => null,
                         ],
                         [
                             'id' => 3,
@@ -381,6 +385,9 @@ final class Import2Test extends TestCase
                 [
                     [
                         'emailaddress' => 'john.doe@example.com',
+                        'contactlists' => [],
+                        'customfields' => [],
+                        'purposes' => [],
                     ],
                 ],
         ];

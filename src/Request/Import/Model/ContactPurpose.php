@@ -47,15 +47,11 @@ final class ContactPurpose implements ToArrayInterface
 
     public function toArray(): array
     {
-        $array = [
+        return [
             'id' => $this->id,
             'valid_from' => DateTimeFormatter::formatOrNull($this->validFrom),
             'valid_to' => DateTimeFormatter::formatOrNull($this->validTo),
         ];
-
-        return array_filter($array, function ($var) {
-            return !is_null($var);
-        });
     }
 
     public function setValidFrom(?DateTimeImmutable $validFrom): ContactPurpose

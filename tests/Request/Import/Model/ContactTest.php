@@ -15,6 +15,9 @@ final class ContactTest extends TestCase
         // ARRANGE
         $output = [
             'emailaddress' => 'john.doe@example.com',
+            'contactlists' => [],
+            'customfields' => [],
+            'purposes' => [],
         ];
 
         $contact = new Contact('john.doe@example.com');
@@ -25,6 +28,9 @@ final class ContactTest extends TestCase
         $this->assertSame($output, $contact->toArray());
     }
 
+    /**
+     * @throws \Exception
+     */
     public function testCreateFull(): void
     {
         // ARRANGE
@@ -48,6 +54,9 @@ final class ContactTest extends TestCase
             'blacklisted' => 0,
             'nameday' => '2020-12-31 00:00:00',
             'birthday' => '2020-12-31 00:00:00',
+            'contactlists' => [],
+            'customfields' => [],
+            'purposes' => [],
         ];
 
         $contact = new Contact('john.doe@example.com');
@@ -91,6 +100,9 @@ final class ContactTest extends TestCase
 
         $output = [
             'emailaddress' => 'john.doe@example.com',
+            'contactlists' => [],
+            'customfields' => [],
+            'purposes' => [],
         ];
 
         $contact = Contact::fromArray($input);
@@ -198,6 +210,8 @@ final class ContactTest extends TestCase
             'purposes' => [
                 [
                     'id' => 2,
+                    'valid_from' => null,
+                    'valid_to' => null,
                 ],
                 [
                     'id' => 3,
@@ -227,6 +241,8 @@ final class ContactTest extends TestCase
                     'status' => 'confirmed',
                 ],
             ],
+            'customfields' => [],
+            'purposes' => [],
         ];
 
         $contact = new Contact('john.doe@example.com');
@@ -243,12 +259,14 @@ final class ContactTest extends TestCase
         // ARRANGE
         $output = [
             'emailaddress' => 'john.doe@example.com',
+            'contactlists' => [],
             'customfields' => [
                 [
                     'id' => 1,
                     'value' => '2016-01-10 13:53:03',
                 ],
             ],
+            'purposes' => [],
         ];
 
         $contact = new Contact('john.doe@example.com');
@@ -265,9 +283,13 @@ final class ContactTest extends TestCase
         // ARRANGE
         $output = [
             'emailaddress' => 'john.doe@example.com',
+            'contactlists' => [],
+            'customfields' => [],
             'purposes' => [
                 [
                     'id' => 1,
+                    'valid_from' => null,
+                    'valid_to' => null,
                 ],
             ],
         ];

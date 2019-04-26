@@ -13,6 +13,8 @@ final class ContactPurposeTest extends TestCase
         // ARRANGE
         $output = [
             'id' => 1,
+            'valid_from' => null,
+            'valid_to' => null,
         ];
 
         $contactPurpose = new ContactPurpose(1);
@@ -52,6 +54,8 @@ final class ContactPurposeTest extends TestCase
 
         $output = [
             'id' => 1,
+            'valid_from' => null,
+            'valid_to' => null,
         ];
 
         $contactPurpose = ContactPurpose::fromArray($input);
@@ -74,6 +78,7 @@ final class ContactPurposeTest extends TestCase
         $output = [
             'id' => 1,
             'valid_from' => '2019-04-24 20:35:00',
+            'valid_to' => null,
         ];
 
         $contactPurpose = ContactPurpose::fromArray($input);
@@ -95,6 +100,7 @@ final class ContactPurposeTest extends TestCase
 
         $output = [
             'id' => 1,
+            'valid_from' => null,
             'valid_to' => '2019-04-24 20:35:00',
         ];
 

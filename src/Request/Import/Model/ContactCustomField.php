@@ -73,15 +73,18 @@ final class ContactCustomField implements ToArrayInterface
 
     public function toArray(): array
     {
-        $array = [
-            'id' => $this->id,
-            'value' => $this->value,
-            'options' => !is_null($this->options) ? $this->options->getValues() : null,
-        ];
+        if ($this->options !== null) {
+            return [
+                'id' => $this->id,
+                'options' => !is_null($this->options) ? $this->options->getValues() : null,
+            ];
+        } else {
+            return [
+                'id' => $this->id,
+                'value' => $this->value,
+            ];
+        }
 
-        return array_filter($array, function ($var) {
-            return !is_null($var);
-        });
     }
 
 }
