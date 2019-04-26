@@ -19,6 +19,7 @@ final class SettingsConfirmationRequestTest extends TestCase
                 'sender_name' => "John Doe",
                 'reply_to' => "jane.doe@example.com",
             ],
+            'confirmation_thank_you_page_url' => null,
         ];
 
         $confirmationRequest = new SettingsConfirmationRequest(

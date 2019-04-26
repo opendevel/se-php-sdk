@@ -19,6 +19,7 @@ final class Import2Test extends TestCase
                 'add_salutions' => true,
                 'preserve_unsubscribed' => true,
                 'skip_invalid_emails' => false,
+                'confirmation_request' => null,
             ],
             'data' => [
             ],
@@ -43,6 +44,7 @@ final class Import2Test extends TestCase
                 'add_salutions' => true,
                 'preserve_unsubscribed' => true,
                 'skip_invalid_emails' => false,
+                'confirmation_request' => null,
             ],
             'data' => [
             ],
@@ -121,6 +123,7 @@ final class Import2Test extends TestCase
                 'add_salutions' => true,
                 'preserve_unsubscribed' => true,
                 'skip_invalid_emails' => false,
+                'confirmation_request' => null,
             ],
             'data' => [
                 [
@@ -252,6 +255,7 @@ final class Import2Test extends TestCase
                 'add_salutions' => true,
                 'preserve_unsubscribed' => true,
                 'skip_invalid_emails' => false,
+                'confirmation_request' => null,
             ],
             'data' => [
                 [
@@ -380,11 +384,30 @@ final class Import2Test extends TestCase
                     'add_salutions' => true,
                     'preserve_unsubscribed' => true,
                     'skip_invalid_emails' => false,
+                    'confirmation_request' => null,
                 ],
             'data' =>
                 [
                     [
                         'emailaddress' => 'john.doe@example.com',
+                        'name' => null,
+                        'surname' => null,
+                        'titlesbefore' => null,
+                        'titlesafter' => null,
+                        'salution' => null,
+                        'company' => null,
+                        'street' => null,
+                        'town' => null,
+                        'postalcode' => null,
+                        'country' => null,
+                        'cellphone' => null,
+                        'phone' => null,
+                        'language' => null,
+                        'notes' => null,
+                        'gender' => null,
+                        'blacklisted' => null,
+                        'nameday' => null,
+                        'birthday' => null,
                         'contactlists' => [],
                         'customfields' => [],
                         'purposes' => [],

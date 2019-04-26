@@ -46,14 +46,10 @@ final class Import2 implements ToArrayInterface
 
     public function toArray(): array
     {
-        $array = [
+        return [
             'settings' => $this->settings->toArray(),
             'data' => $this->data,
         ];
-
-        return array_filter($array, function ($var) {
-            return !is_null($var);
-        });
     }
 
     public function getSettings(): Settings

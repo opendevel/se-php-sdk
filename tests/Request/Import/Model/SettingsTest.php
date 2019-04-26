@@ -18,6 +18,7 @@ final class SettingsTest extends TestCase
             'add_salutions' => true,
             'preserve_unsubscribed' => true,
             'skip_invalid_emails' => false,
+            'confirmation_request' => null,
         ];
 
         $settings = new Settings();
@@ -47,6 +48,7 @@ final class SettingsTest extends TestCase
                             'sender_name' => 'John Doe',
                             'reply_to' => 'jane.doe@example.com',
                         ],
+                    'confirmation_thank_you_page_url' => null,
                 ],
         ];
 

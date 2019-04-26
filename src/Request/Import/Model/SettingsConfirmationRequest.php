@@ -63,19 +63,16 @@ final class SettingsConfirmationRequest implements ToArrayInterface
      */
     public function toArray(): array
     {
-        $array = [
+        return [
             'email_id' => $this->emailId,
             'sender_credentials' => [
                 'from' => $this->from->getValue(),
                 'sender_name' => $this->senderName,
                 'reply_to' => $this->replyTo->getValue(),
             ],
-            'confirmation_thank_you_page_url' => !is_null($this->confirmationThankYouPageUrl) ? $this->confirmationThankYouPageUrl->getValue() : null,    //@todo UrlType nema obdobu getStringOrNull?
+            'confirmation_thank_you_page_url' => !is_null($this->confirmationThankYouPageUrl) ? $this->confirmationThankYouPageUrl->getValue() : null,
         ];
 
-        return array_filter($array, function ($var) {
-            return !is_null($var);
-        });
     }
 
     public function setConfirmationThankYouPageUrl(?UrlType $confirmationThankYouPageUrl): SettingsConfirmationRequest

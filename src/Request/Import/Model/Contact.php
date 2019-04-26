@@ -191,7 +191,7 @@ final class Contact implements ToArrayInterface
 
     public function toArray(): array
     {
-        $array = [
+        return [
             'emailaddress' => $this->emailAddress->getValue(),
             'name' => $this->name,
             'surname' => $this->surname,
@@ -215,10 +215,6 @@ final class Contact implements ToArrayInterface
             'customfields' => $this->customFields,
             'purposes' => $this->purposes,
         ];
-
-        return array_filter($array, function ($var) {
-            return !is_null($var);
-        });
     }
 
     public function setName(?string $name = null): Contact
