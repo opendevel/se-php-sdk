@@ -240,6 +240,7 @@ final class ContactTest extends TestCase
             'customfields' => [
                 [
                     'id' => 1,
+                    'value' => '2016-01-10 13:53:03',
                 ],
             ],
         ];
@@ -247,7 +248,7 @@ final class ContactTest extends TestCase
         $contact = new Contact('john.doe@example.com');
 
         // ACT
-        $contact->addCustomField(new ContactCustomField(1));
+        $contact->addCustomField(new ContactCustomField(1, '2016-01-10 13:53:03'));
 
         // ASSERT
         $this->assertSame($output, $contact->toArray());

@@ -38,35 +38,41 @@ final class ContactCustomField implements ToArrayInterface
      */
     private $options = null;
 
-    public function __construct(int $id, $value = null, ?array $options = null)
+    /**
+     * @param int $id
+     * @param mixed $value
+     */
+    public function __construct(int $id, $value)
     {
-        //@todo $value or $options is required
-
         $this->id = $id;
-        $this->value = $value;
-        $this->options = !is_null($options) ? UniqueIntArray::from($options) : null;
+
+        $options = UniqueIntArray::fromOrNull($value, true);
+        if ($options !== null) {
+            $this->options = UniqueIntArray::from($options);
+        } else {
+            $this->value = $value;
+        }
     }
 
     public static function fromArray(array $array): self
     {
         $array = array_change_key_case($array, CASE_LOWER);
 
-        $customField = new self(PrimitiveTypes::extractInt($array, 'id'));
-
-        if (!is_null(PrimitiveTypes::extractStringOrNull($array, 'value', true))) {
-            $customField->setValue(PrimitiveTypes::extractString($array, 'value'));
-        }
+        $id = PrimitiveTypes::extractInt($array, 'id');
 
         if (!is_null(PrimitiveTypes::extractArrayOrNull($array, 'options'))) {
-            $customField->setOptions(PrimitiveTypes::extractArray($array, 'options'));
+            $value = PrimitiveTypes::extractArray($array, 'options');
+        } else {
+            $value = PrimitiveTypes::extractString($array, 'value');
         }
 
+        $customField = new self($id, $value);
         return $customField;
+
     }
 
     public function toArray(): array
     {
-        //@todo return id and (value or options)
         $array = [
             'id' => $this->id,
             'value' => $this->value,
@@ -76,26 +82,6 @@ final class ContactCustomField implements ToArrayInterface
         return array_filter($array, function ($var) {
             return !is_null($var);
         });
-    }
-
-    /**
-     * @param mixed $value
-     * @return \SmartEmailing\Sdk\Request\Import\Model\ContactCustomField
-     */
-    public function setValue($value): ContactCustomField
-    {
-        $this->value = $value;
-        return $this;
-    }
-
-    /**
-     * @param array $options
-     * @return \SmartEmailing\Sdk\Request\Import\Model\ContactCustomField
-     */
-    public function setOptions(array $options): ContactCustomField
-    {
-        $this->options = UniqueIntArray::from($options);
-        return $this;
     }
 
 }

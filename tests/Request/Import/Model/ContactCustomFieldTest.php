@@ -3,6 +3,7 @@
 namespace SmartEmailing\Sdk\Request\Import\Model;
 
 use SmartEmailing\Sdk\TestCase;
+use SmartEmailing\Types\InvalidTypeException;
 
 final class ContactCustomFieldTest extends TestCase
 {
@@ -10,8 +11,7 @@ final class ContactCustomFieldTest extends TestCase
     public function testCreateSimple(): void
     {
         // ARRANGE
-        $customField = new ContactCustomField(1);
-        $customField->setValue('2016-01-10 13:53:03');
+        $customField = new ContactCustomField(1, '2016-01-10 13:53:03');
 
         $output = [
             'id' => 1,
@@ -27,8 +27,7 @@ final class ContactCustomFieldTest extends TestCase
     public function testCreateComposite(): void
     {
         // ARRANGE
-        $customField = new ContactCustomField(1);
-        $customField->setOptions([1, 3]);
+        $customField = new ContactCustomField(1, [1, 3]);
 
         $output = [
             'id' => 1,
@@ -41,7 +40,7 @@ final class ContactCustomFieldTest extends TestCase
         $this->assertSame($output, $customField->toArray());
     }
 
-    public function testCreateSimpleFromArray(): void
+    public function testCreateFromArraySimple(): void
     {
         // ARRANGE
         $input = [
@@ -63,7 +62,7 @@ final class ContactCustomFieldTest extends TestCase
         $this->assertSame($output, $customField->toArray());
     }
 
-    public function testCreateCompositeFromArray(): void
+    public function testCreateFromArrayComposite(): void
     {
         // ARRANGE
         $input = [
@@ -89,6 +88,16 @@ final class ContactCustomFieldTest extends TestCase
         // ASSERT
         $this->assertInstanceOf(ContactCustomField::class, $customField);
         $this->assertSame($output, $customField->toArray());
+    }
+
+    public function testCreateFromArrayException(): void
+    {
+        $input = [
+            'id' => 1,
+        ];
+
+        $this->expectException(InvalidTypeException::class);
+        ContactCustomField::fromArray($input);
     }
 
 }
