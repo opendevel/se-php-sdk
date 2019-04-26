@@ -5,6 +5,7 @@ namespace SmartEmailing\Sdk\Request\Import;
 use SmartEmailing\Sdk\Request\Import\Model\Contact;
 use SmartEmailing\Sdk\Request\Import\Model\Settings;
 use SmartEmailing\Sdk\Request\ToArrayInterface;
+use SmartEmailing\Types\PrimitiveTypes;
 
 final class Import2 implements ToArrayInterface
 {
@@ -28,17 +29,16 @@ final class Import2 implements ToArrayInterface
         $this->settings = $settings;
     }
 
-    public static function fromArrayData(array $contactsArray): self
+    public static function fromArray(array $data, ?Settings $settings = null): self
     {
         $import = new self();
 
-        foreach ($contactsArray as $contactArray) {
-            if (is_array($contactArray)) {  //@todo lze pouzit smartemailing/types?
-                $contact = Contact::fromArray($contactArray);
-                $import->addContact($contact);
-            } else {
-                //@todo?
-            }
+        if ($settings !== null) {
+            $import->setSettings($settings);
+        }
+
+        foreach ($data as $contact) {
+            $import->addContact(Contact::fromArray(PrimitiveTypes::getArray($contact)));
         }
 
         return $import;

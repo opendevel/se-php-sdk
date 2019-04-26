@@ -3,7 +3,6 @@
 namespace SmartEmailing\Sdk\Request\Import\Model;
 
 use SmartEmailing\Sdk\TestCase;
-use SmartEmailing\Types\InvalidTypeException;
 
 final class ContactCustomFieldTest extends TestCase
 {
@@ -96,7 +95,7 @@ final class ContactCustomFieldTest extends TestCase
             'id' => 1,
         ];
 
-        $this->expectException(InvalidTypeException::class);
+        $this->expectException(\SmartEmailing\Types\InvalidTypeException::class);
         ContactCustomField::fromArray($input);
     }
 
