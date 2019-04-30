@@ -208,7 +208,7 @@ final class Contact implements ToArrayInterface
             'language' => $this->language,
             'notes' => $this->notes,
             'gender' => $this->gender !== null ? $this->gender->getValue() : null,
-            'blacklisted' => PrimitiveTypes::getBoolOrNull($this->blackListed) !== null ? (int)$this->blackListed : null,
+            'blacklisted' => PrimitiveTypes::getBoolOrNull($this->blackListed) !== null ? (int)$this->blackListed : 0,  // blacklisted must not be null
             'nameday' => DateTimeFormatter::formatOrNull($this->nameday),
             'birthday' => DateTimeFormatter::formatOrNull($this->birthday),
             'contactlists' => $this->contactLists,
