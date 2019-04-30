@@ -2,9 +2,9 @@
 
 namespace SmartEmailing\Sdk\Request\Test;
 
-use SmartEmailing\Sdk\Request\AbstractBaseRequest;
+use SmartEmailing\Sdk\Request\BaseRequest;
 
-final class Credentials extends AbstractBaseRequest
+final class CheckCredentialsRequest extends BaseRequest
 {
 
     /**
@@ -16,13 +16,5 @@ final class Credentials extends AbstractBaseRequest
      * @var string
      */
     protected $uri = 'check-credentials';
-
-    /**
-     * @return string[]
-     */
-    public function toArray(): array
-    {
-        return [];
-    }
 
 }

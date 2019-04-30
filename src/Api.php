@@ -2,42 +2,48 @@
 
 namespace SmartEmailing\Sdk;
 
-use GuzzleHttp\Client as GuzzleClient;
-use Http\Adapter\Guzzle6\Client as GuzzleAdapter;
-use Http\Client\HttpClient;
+use SmartEmailing\Sdk\Request\Import\ImportRequest;
+use SmartEmailing\Sdk\Request\Import\Model\Import;
+use SmartEmailing\Sdk\Request\Test\CheckCredentialsRequest;
+use SmartEmailing\Sdk\Request\Test\Model\CheckCredentials;
+use SmartEmailing\Sdk\Request\Test\Model\Ping;
+use SmartEmailing\Sdk\Request\Test\PingRequest;
+use SmartEmailing\Sdk\Response\Import\ImportResponse;
+use SmartEmailing\Sdk\Response\Test\CheckCredentialsResponse;
+use SmartEmailing\Sdk\Response\Test\PingResponse;
 
-final class Api
+class Api
 {
 
     /**
-     * @var string
+     * @var \SmartEmailing\Sdk\HttpClient
      */
-    private $baseUri = 'https://app.smartemailing.cz/api/v3/';
+    private $httpClient;
 
-    /**
-     * @var \Http\Client\HttpClient
-     */
-    private $client;
-
-    public function __construct(string $username, string $password)
+    public function __construct(?string $username = null, ?string $password = null)
     {
-
-        $config = [
-            'auth' => [
-                $username,
-                $password,
-            ],
-            'base_uri' => $this->baseUri,
-            'timeout' => 5.0,
-        ];
-
-        $this->client = new GuzzleAdapter(new GuzzleClient($config));
+        $this->httpClient = new HttpClient($username, $password);
     }
 
-
-    public function getHttpClient(): HttpClient
+    public function ping(Ping $requestModel): PingResponse
     {
-        return $this->client;
+        $request = new PingRequest();
+        $result = $this->httpClient->send($request->getMethod(), $request->getUri(), $requestModel->toArray());
+        return PingResponse::fromArray(json_decode($result, true));
+    }
+
+    public function checkCredentials(CheckCredentials $requestModel): CheckCredentialsResponse
+    {
+        $request = new CheckCredentialsRequest();
+        $result = $this->httpClient->send($request->getMethod(), $request->getUri(), $requestModel->toArray());
+        return CheckCredentialsResponse::fromArray(json_decode($result, true));
+    }
+
+    public function import(Import $requestModel): ImportResponse
+    {
+        $request = new ImportRequest();
+        $result = $this->httpClient->send($request->getMethod(), $request->getUri(), $requestModel->toArray());
+        return ImportResponse::fromArray(json_decode($result, true));
     }
 
 }

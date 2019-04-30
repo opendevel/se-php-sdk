@@ -3,7 +3,11 @@
 namespace SmartEmailing\Sdk\Response\Import\Model;
 
 use SmartEmailing\Types\Emailaddress;
+use SmartEmailing\Types\PrimitiveTypes;
 
+/**
+ * Imported contact
+ */
 final class Contact
 {
 
@@ -23,6 +27,14 @@ final class Contact
     {
         $this->id = $contactId;
         $this->emailAddress = $emailAddress;
+    }
+
+    public static function fromArray(array $array): self
+    {
+        return new self(
+            PrimitiveTypes::extractInt($array, 'contact_id'),
+            Emailaddress::extract($array, 'emailaddress')
+        );
     }
 
     public function getId(): int

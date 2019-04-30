@@ -46,9 +46,6 @@ final class ContactTest extends TestCase
         $this->assertSame($output, $contact->toArray());
     }
 
-    /**
-     * @throws \Exception
-     */
     public function testCreateFull(): void
     {
         // ARRANGE
@@ -388,6 +385,43 @@ final class ContactTest extends TestCase
 
         // ACT
         $contact->addPurpose(new ContactPurpose(1));
+
+        // ASSERT
+        $this->assertSame($output, $contact->toArray());
+    }
+
+    public function testSetBlacklisted(): void
+    {
+        // ARRANGE
+        $output = [
+            'emailaddress' => 'john.doe@example.com',
+            'name' => null,
+            'surname' => null,
+            'titlesbefore' => null,
+            'titlesafter' => null,
+            'salution' => null,
+            'company' => null,
+            'street' => null,
+            'town' => null,
+            'postalcode' => null,
+            'country' => null,
+            'cellphone' => null,
+            'phone' => null,
+            'language' => null,
+            'notes' => null,
+            'gender' => null,
+            'blacklisted' => 1,
+            'nameday' => null,
+            'birthday' => null,
+            'contactlists' => [],
+            'customfields' => [],
+            'purposes' => [],
+        ];
+
+        $contact = new Contact('john.doe@example.com');
+        $contact->setBlackListed(true);
+
+        // ACT
 
         // ASSERT
         $this->assertSame($output, $contact->toArray());

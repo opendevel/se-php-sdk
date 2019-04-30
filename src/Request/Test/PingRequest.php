@@ -2,9 +2,9 @@
 
 namespace SmartEmailing\Sdk\Request\Test;
 
-use SmartEmailing\Sdk\Request\AbstractBaseRequest;
+use SmartEmailing\Sdk\Request\BaseRequest;
 
-final class Ping extends AbstractBaseRequest
+final class PingRequest extends BaseRequest
 {
 
     /**
@@ -16,13 +16,5 @@ final class Ping extends AbstractBaseRequest
      * @var string
      */
     protected $uri = 'ping';
-
-    /**
-     * @return string[]
-     */
-    public function toArray(): array
-    {
-        return [];
-    }
 
 }
