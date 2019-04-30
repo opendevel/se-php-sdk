@@ -3,8 +3,8 @@
 namespace SmartEmailing\Sdk\Request\Import\Model;
 
 use DateTimeImmutable;
-use SmartEmailing\Sdk\Status\ContactListStatus;
-use SmartEmailing\Sdk\Status\GenderStatus;
+use SmartEmailing\Sdk\Enum\ContactListStatus;
+use SmartEmailing\Sdk\Enum\Gender;
 use SmartEmailing\Sdk\TestCase;
 
 final class ContactTest extends TestCase
@@ -92,7 +92,7 @@ final class ContactTest extends TestCase
         $contact->setPhone('+33 987 654 321');
         $contact->setLanguage('cz_CZ');
         $contact->setNotes('Lorem ipsum');
-        $contact->setGender(GenderStatus::from('M'));
+        $contact->setGender(Gender::from('M'));
         $contact->setBlackListed(false);
         $contact->setNameday(new DateTimeImmutable('2020-12-31 00:00:00'));
         $contact->setBirthday(new DateTimeImmutable('2020-12-31 00:00:00'));

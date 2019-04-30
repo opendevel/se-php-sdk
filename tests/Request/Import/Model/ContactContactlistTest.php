@@ -2,7 +2,7 @@
 
 namespace SmartEmailing\Sdk\Request\Import\Model;
 
-use SmartEmailing\Sdk\Status\ContactListStatus;
+use SmartEmailing\Sdk\Enum\ContactListStatus;
 use SmartEmailing\Sdk\TestCase;
 
 final class ContactContactlistTest extends TestCase

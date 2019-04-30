@@ -3,8 +3,8 @@
 namespace SmartEmailing\Sdk\Request\Import\Model;
 
 use DateTimeImmutable;
-use SmartEmailing\Sdk\Request\ToArrayInterface;
-use SmartEmailing\Sdk\Status\GenderStatus;
+use SmartEmailing\Sdk\Enum\Gender;
+use SmartEmailing\Sdk\ToArrayInterface;
 use SmartEmailing\Types\DateTimeFormatter;
 use SmartEmailing\Types\DateTimesImmutable;
 use SmartEmailing\Types\Emailaddress;
@@ -89,7 +89,7 @@ final class Contact implements ToArrayInterface
     private $notes = null;
 
     /**
-     * @var \SmartEmailing\Sdk\Status\GenderStatus|null
+     * @var \SmartEmailing\Sdk\Enum\Gender|null
      */
     private $gender = null;
 
@@ -157,7 +157,7 @@ final class Contact implements ToArrayInterface
         $contact->setPhone(PrimitiveTypes::extractStringOrNull($array, 'phone'));
         $contact->setLanguage(PrimitiveTypes::extractStringOrNull($array, 'language'));
         $contact->setNotes(PrimitiveTypes::extractStringOrNull($array, 'notes'));
-        $contact->setGender(GenderStatus::fromOrNull(PrimitiveTypes::extractStringOrNull($array, 'gender')));
+        $contact->setGender(Gender::fromOrNull(PrimitiveTypes::extractStringOrNull($array, 'gender')));
         $contact->setBlackListed(PrimitiveTypes::extractBoolOrNull($array, 'blacklisted'));
         $contact->setNameday(DateTimesImmutable::extractOrNull($array, 'nameday'));
         $contact->setBirthday(DateTimesImmutable::extractOrNull($array, 'birthday'));
@@ -301,7 +301,7 @@ final class Contact implements ToArrayInterface
         return $this;
     }
 
-    public function setGender(?GenderStatus $gender): Contact
+    public function setGender(?Gender $gender): Contact
     {
         $this->gender = $gender;
         return $this;
