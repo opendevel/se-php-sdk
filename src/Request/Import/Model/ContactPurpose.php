@@ -3,7 +3,7 @@
 namespace SmartEmailing\Sdk\Request\Import\Model;
 
 use DateTimeImmutable;
-use SmartEmailing\Sdk\Request\ToArrayInterface;
+use SmartEmailing\Sdk\ToArrayInterface;
 use SmartEmailing\Types\DateTimeFormatter;
 use SmartEmailing\Types\DateTimesImmutable;
 use SmartEmailing\Types\PrimitiveTypes;

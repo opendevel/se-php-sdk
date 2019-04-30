@@ -2,8 +2,8 @@
 
 namespace SmartEmailing\Sdk\Request\Import\Model;
 
-use SmartEmailing\Sdk\Request\ToArrayInterface;
-use SmartEmailing\Sdk\Status\ContactListStatus;
+use SmartEmailing\Sdk\Enum\ContactListStatus;
+use SmartEmailing\Sdk\ToArrayInterface;
 use SmartEmailing\Types\PrimitiveTypes;
 
 final class ContactContactlist implements ToArrayInterface
@@ -15,7 +15,7 @@ final class ContactContactlist implements ToArrayInterface
     private $id;
 
     /**
-     * @var \SmartEmailing\Sdk\Status\ContactListStatus
+     * @var \SmartEmailing\Sdk\Enum\ContactListStatus
      */
     private $status;
 

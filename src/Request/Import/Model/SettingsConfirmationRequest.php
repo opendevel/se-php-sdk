@@ -2,7 +2,7 @@
 
 namespace SmartEmailing\Sdk\Request\Import\Model;
 
-use SmartEmailing\Sdk\Request\ToArrayInterface;
+use SmartEmailing\Sdk\ToArrayInterface;
 use SmartEmailing\Types\Emailaddress;
 use SmartEmailing\Types\UrlType;
 
@@ -72,7 +72,6 @@ final class SettingsConfirmationRequest implements ToArrayInterface
             ],
             'confirmation_thank_you_page_url' => $this->confirmationThankYouPageUrl !== null ? $this->confirmationThankYouPageUrl->getValue() : null,
         ];
-
     }
 
     public function setConfirmationThankYouPageUrl(?UrlType $confirmationThankYouPageUrl): SettingsConfirmationRequest

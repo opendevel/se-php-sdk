@@ -2,7 +2,7 @@
 
 namespace SmartEmailing\Sdk\Request\Import\Model;
 
-use SmartEmailing\Sdk\Request\ToArrayInterface;
+use SmartEmailing\Sdk\ToArrayInterface;
 
 final class Settings implements ToArrayInterface
 {
@@ -57,7 +57,6 @@ final class Settings implements ToArrayInterface
             'skip_invalid_emails' => $this->skipInvalidEmails,
             'confirmation_request' => $this->confirmationRequest !== null ? $this->confirmationRequest->toArray() : null,
         ];
-
     }
 
     public function setUpdate(bool $update): Settings

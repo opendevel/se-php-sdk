@@ -2,7 +2,7 @@
 
 namespace SmartEmailing\Sdk\Request\Import\Model;
 
-use SmartEmailing\Sdk\Request\ToArrayInterface;
+use SmartEmailing\Sdk\ToArrayInterface;
 use SmartEmailing\Types\PrimitiveTypes;
 use SmartEmailing\Types\UniqueIntArray;
 
@@ -68,7 +68,6 @@ final class ContactCustomField implements ToArrayInterface
 
         $customField = new self($id, $value);
         return $customField;
-
     }
 
     public function toArray(): array
@@ -84,7 +83,6 @@ final class ContactCustomField implements ToArrayInterface
                 'value' => $this->value,
             ];
         }
-
     }
 
 }
