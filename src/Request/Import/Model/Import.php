@@ -1,13 +1,11 @@
 <?php declare(strict_types = 1);
 
-namespace SmartEmailing\Sdk\Request\Import;
+namespace SmartEmailing\Sdk\Request\Import\Model;
 
-use SmartEmailing\Sdk\Request\Import\Model\Contact;
-use SmartEmailing\Sdk\Request\Import\Model\Settings;
-use SmartEmailing\Sdk\Request\ToArrayInterface;
+use SmartEmailing\Sdk\ToArrayInterface;
 use SmartEmailing\Types\PrimitiveTypes;
 
-final class Import2 implements ToArrayInterface
+final class Import implements ToArrayInterface
 {
 
     /**
