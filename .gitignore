@@ -7,3 +7,4 @@
 /tests/.phpunit.result.cache
 /tests/Request/Import/Model/.phpunit.result.cache
 /vendor/
+*.cache
