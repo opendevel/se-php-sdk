@@ -139,10 +139,7 @@ final class Contact implements ToArrayInterface
 
     public static function fromArray(array $array): self
     {
-        $array = array_change_key_case($array, CASE_LOWER);
-
         $contact = new self(PrimitiveTypes::extractString($array, 'emailaddress'));
-
         $contact->setName(PrimitiveTypes::extractStringOrNull($array, 'name'));
         $contact->setSurname(PrimitiveTypes::extractStringOrNull($array, 'surname'));
         $contact->setTitlesBefore(PrimitiveTypes::extractStringOrNull($array, 'titlesbefore'));

@@ -56,8 +56,6 @@ final class ContactCustomField implements ToArrayInterface
 
     public static function fromArray(array $array): self
     {
-        $array = array_change_key_case($array, CASE_LOWER);
-
         $id = PrimitiveTypes::extractInt($array, 'id');
 
         if (PrimitiveTypes::extractArrayOrNull($array, 'options') !== null) {

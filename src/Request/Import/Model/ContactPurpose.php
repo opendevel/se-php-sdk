@@ -35,9 +35,6 @@ final class ContactPurpose implements ToArrayInterface
 
     public static function fromArray(array $array): self
     {
-        $array = array_change_key_case($array, CASE_LOWER);
-        //@todo replace char '_' from array keys? (i jinde)
-
         return new self(
             PrimitiveTypes::extractInt($array, 'id'),
             DateTimesImmutable::extractOrNull($array, 'valid_from'),

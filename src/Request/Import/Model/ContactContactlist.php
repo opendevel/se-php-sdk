@@ -27,8 +27,6 @@ final class ContactContactlist implements ToArrayInterface
 
     public static function fromArray(array $array): self
     {
-        $array = array_change_key_case($array, CASE_LOWER);
-
         return new self(
             PrimitiveTypes::extractInt($array, 'id'),
             ContactListStatus::extract($array, 'status')
