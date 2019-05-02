@@ -26,11 +26,11 @@ final class ContactPurpose implements ToArrayInterface
      */
     private $validTo = null;
 
-    public function __construct(int $id, ?DateTimeImmutable $valid_from = null, ?DateTimeImmutable $valid_to = null)
+    public function __construct(int $id, ?DateTimeImmutable $validFrom = null, ?DateTimeImmutable $validTo = null)
     {
         $this->id = $id;
-        $this->validFrom = $valid_from;
-        $this->validTo = $valid_to;
+        $this->validFrom = $validFrom;
+        $this->validTo = $validTo;
     }
 
     public static function fromArray(array $array): self
