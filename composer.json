@@ -10,6 +10,7 @@
     ],
     "require": {
         "ext-json": "*",
+        "php-http/client-common": "^2.0",
         "php-http/client-implementation": "^1.0",
         "php-http/httplug": "^2.0",
         "php-http/message-factory": "^1.0",

@@ -2,6 +2,7 @@
 
 namespace SmartEmailing\Sdk\ApiV3Client;
 
+use Http\Message\Authentication;
 use SmartEmailing\Sdk\ApiV3Client\Request\Import\Import;
 use SmartEmailing\Sdk\ApiV3Client\Request\Test\CheckCredentials;
 use SmartEmailing\Sdk\ApiV3Client\Request\Test\Ping;
@@ -9,7 +10,7 @@ use SmartEmailing\Sdk\ApiV3Client\Response\Import\ImportResponse;
 use SmartEmailing\Sdk\ApiV3Client\Response\Test\CheckCredentialsResponse;
 use SmartEmailing\Sdk\ApiV3Client\Response\Test\PingResponse;
 
-class Api
+final class Api
 {
 
     /**
@@ -17,9 +18,9 @@ class Api
      */
     private $apiClient;
 
-    public function __construct(?string $username = null, ?string $password = null)
+    public function __construct(Authentication $authentication)
     {
-        $this->apiClient = new ApiClient($username, $password);
+        $this->apiClient = new ApiClient($authentication);
     }
 
     public function ping(Ping $apiRequest): PingResponse

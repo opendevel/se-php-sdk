@@ -3,6 +3,7 @@
 namespace SmartEmailing\Sdk\ApiV3Client;
 
 use Dotenv\Dotenv;
+use Http\Message\Authentication\BasicAuth;
 use SmartEmailing\Sdk\ApiV3Client\Request\Import\Import;
 use SmartEmailing\Sdk\ApiV3Client\Request\Import\Model\Contact;
 use SmartEmailing\Sdk\ApiV3Client\Request\Test\CheckCredentials;
@@ -14,11 +15,30 @@ use SmartEmailing\Sdk\ApiV3Client\Response\Test\PingResponse;
 final class ApiTest extends TestCase
 {
 
+    /**
+     * @var string
+     */
+    private $username;
+
+    /**
+     * @var string
+     */
+    private $password;
+
+    public function __construct(?string $name = null, array $data = [], string $dataName = '')
+    {
+        parent::__construct($name, $data, $dataName);
+
+        $dotEnv = Dotenv::create(__DIR__)->load();
+        $this->username = $dotEnv['username'] ?? '';
+        $this->password = $dotEnv['password'] ?? '';
+    }
+
     public function testApiPing(): void
     {
         // API
-        $dotEnv = Dotenv::create(__DIR__)->load();
-        $api = new Api($dotEnv['username'], $dotEnv['password']);
+        $authentication = new BasicAuth($this->username, $this->password);
+        $api = new Api($authentication);
 
         // Ping
         $ping = new Ping();
@@ -33,8 +53,8 @@ final class ApiTest extends TestCase
     public function testCheckCredentials(): void
     {
         // API
-        $dotEnv = Dotenv::create(__DIR__)->load();
-        $api = new Api($dotEnv['username'], $dotEnv['password']);
+        $authentication = new BasicAuth($this->username, $this->password);
+        $api = new Api($authentication);
 
         // Check Credentials
         $checkCredentials = new CheckCredentials();
@@ -49,8 +69,8 @@ final class ApiTest extends TestCase
     public function testImport(): void
     {
         // API
-        $dotEnv = Dotenv::create(__DIR__)->load();
-        $api = new Api($dotEnv['username'], $dotEnv['password']);
+        $authentication = new BasicAuth($this->username, $this->password);
+        $api = new Api($authentication);
 
         // Import contacts
         $import = new Import();
