@@ -1,43 +1,43 @@
 <?php declare(strict_types = 1);
 
-namespace SmartEmailing\Sdk;
+namespace SmartEmailing\Sdk\ApiV3Client;
 
-use GuzzleHttp\Client as GuzzleClient;
-use Http\Adapter\Guzzle6\Client as GuzzleAdapter;
-use Http\Client\HttpClient;
+use SmartEmailing\Sdk\ApiV3Client\Request\Import\Import;
+use SmartEmailing\Sdk\ApiV3Client\Request\Test\CheckCredentials;
+use SmartEmailing\Sdk\ApiV3Client\Request\Test\Ping;
+use SmartEmailing\Sdk\ApiV3Client\Response\Import\ImportResponse;
+use SmartEmailing\Sdk\ApiV3Client\Response\Test\CheckCredentialsResponse;
+use SmartEmailing\Sdk\ApiV3Client\Response\Test\PingResponse;
 
-final class Api
+class Api
 {
 
     /**
-     * @var string
+     * @var \SmartEmailing\Sdk\ApiV3Client\ApiClient
      */
-    private $baseUri = 'https://app.smartemailing.cz/api/v3/';
+    private $apiClient;
 
-    /**
-     * @var \Http\Client\HttpClient
-     */
-    private $client;
-
-    public function __construct(string $username, string $password)
+    public function __construct(?string $username = null, ?string $password = null)
     {
-
-        $config = [
-            'auth' => [
-                $username,
-                $password,
-            ],
-            'base_uri' => $this->baseUri,
-            'timeout' => 5.0,
-        ];
-
-        $this->client = new GuzzleAdapter(new GuzzleClient($config));
+        $this->apiClient = new ApiClient($username, $password);
     }
 
-
-    public function getHttpClient(): HttpClient
+    public function ping(Ping $apiRequest): PingResponse
     {
-        return $this->client;
+        $result = $this->apiClient->sendRequest($apiRequest);
+        return PingResponse::fromArray(json_decode($result, true));
+    }
+
+    public function checkCredentials(CheckCredentials $apiRequest): CheckCredentialsResponse
+    {
+        $result = $this->apiClient->sendRequest($apiRequest);
+        return CheckCredentialsResponse::fromArray(json_decode($result, true));
+    }
+
+    public function import(Import $apiRequest): ImportResponse
+    {
+        $result = $this->apiClient->sendRequest($apiRequest);
+        return ImportResponse::fromArray(json_decode($result, true));
     }
 
 }

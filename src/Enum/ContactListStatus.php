@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace SmartEmailing\Sdk\Status;
+namespace SmartEmailing\Sdk\ApiV3Client\Enum;
 
 use SmartEmailing\Types\Enum;
 use SmartEmailing\Types\ExtractableTraits\EnumExtractableTrait;

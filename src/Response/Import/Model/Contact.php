@@ -1,7 +1,13 @@
 <?php declare(strict_types = 1);
 
-namespace SmartEmailing\Sdk\Response\Import\Model;
+namespace SmartEmailing\Sdk\ApiV3Client\Response\Import\Model;
 
+use SmartEmailing\Types\Emailaddress;
+use SmartEmailing\Types\PrimitiveTypes;
+
+/**
+ * Imported contact
+ */
 final class Contact
 {
 
@@ -13,15 +19,22 @@ final class Contact
 
     /**
      * Email address of imported contact, lowercased and trimmed
-     * @var string
+     * @var \SmartEmailing\Types\Emailaddress
      */
     private $emailAddress;
 
-    public function __construct(int $contactId, string $emailAddress)
+    public function __construct(int $contactId, Emailaddress $emailAddress)
     {
-        //@todo check types
         $this->id = $contactId;
         $this->emailAddress = $emailAddress;
+    }
+
+    public static function fromArray(array $array): self
+    {
+        return new self(
+            PrimitiveTypes::extractInt($array, 'contact_id'),
+            Emailaddress::extract($array, 'emailaddress')
+        );
     }
 
     public function getId(): int
@@ -29,7 +42,7 @@ final class Contact
         return $this->id;
     }
 
-    public function getEmailAddress(): string
+    public function getEmailAddress(): Emailaddress
     {
         return $this->emailAddress;
     }

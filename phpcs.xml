@@ -2,7 +2,7 @@
 <ruleset name="Ruleset_1">
     <!-- Paths to analyse -->
     <file>src/</file>
-    <file>test.php</file>
+    <file>tests/</file>
 
     <!-- Load required sniffs -->
     <config name="installed_paths" value="vendor/slevomat/coding-standard"/>

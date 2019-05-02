@@ -4,7 +4,7 @@ namespace SmartEmailing\Sdk\ApiV3Client\Request\Test;
 
 use SmartEmailing\Sdk\ApiV3Client\ApiRequestInterface;
 
-final class Ping implements ApiRequestInterface
+final class CheckCredentials implements ApiRequestInterface
 {
 
     /**
@@ -15,7 +15,7 @@ final class Ping implements ApiRequestInterface
     /**
      * @var string
      */
-    protected static $endpoint = 'ping';
+    protected static $endpoint = 'check-credentials';
 
     public function __construct()
     {

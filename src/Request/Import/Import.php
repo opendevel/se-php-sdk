@@ -1,28 +1,27 @@
 <?php declare(strict_types = 1);
 
-namespace SmartEmailing\Sdk\Request\Import;
+namespace SmartEmailing\Sdk\ApiV3Client\Request\Import;
 
-use SmartEmailing\Sdk\Request\AbstractBaseRequest;
-use SmartEmailing\Sdk\Request\Import\Model\Contact;
-use SmartEmailing\Sdk\Request\Import\Model\Settings;
-use SmartEmailing\Sdk\Response\Import\Import as ResponseImport;
-use SmartEmailing\Sdk\Response\JsonStream;
+use SmartEmailing\Sdk\ApiV3Client\ApiRequestInterface;
+use SmartEmailing\Sdk\ApiV3Client\Request\Import\Model\Contact;
+use SmartEmailing\Sdk\ApiV3Client\Request\Import\Model\Settings;
+use SmartEmailing\Types\PrimitiveTypes;
 
-final class Import extends AbstractBaseRequest
+final class Import implements ApiRequestInterface
 {
 
     /**
      * @var string
      */
-    protected $method = 'POST';
+    protected static $method = 'POST';
 
     /**
      * @var string
      */
-    protected $uri = 'import';
+    protected static $endpoint = 'import';
 
     /**
-     * @var \SmartEmailing\Sdk\Request\Import\Model\Settings|null
+     * @var \SmartEmailing\Sdk\ApiV3Client\Request\Import\Model\Settings
      */
     protected $settings;
 
@@ -31,18 +30,49 @@ final class Import extends AbstractBaseRequest
      */
     protected $data = [];
 
-    protected function toArray(): array
+    public function __construct(?Settings $settings = null)
     {
-        if (!is_null($this->settings)) {
-            $return['settings'] = array_filter($this->settings->toArray());
+        if ($settings === null) {
+            $settings = new Settings();
         }
 
-        $return['data'] = array_filter($this->data);
-
-        return $return;
+        $this->settings = $settings;
     }
 
-    public function getSettings(): ?Settings
+    public static function getHttpMethod(): string
+    {
+        return self::$method;
+    }
+
+    public static function getEndpoint(): string
+    {
+        return self::$endpoint;
+    }
+
+    public static function fromArray(array $data, ?Settings $settings = null): self
+    {
+        $import = new self();
+
+        if ($settings !== null) {
+            $import->setSettings($settings);
+        }
+
+        foreach ($data as $contact) {
+            $import->addContact(Contact::fromArray(PrimitiveTypes::getArray($contact)));
+        }
+
+        return $import;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'settings' => $this->settings->toArray(),
+            'data' => $this->data,
+        ];
+    }
+
+    public function getSettings(): Settings
     {
         return $this->settings;
     }
@@ -54,23 +84,7 @@ final class Import extends AbstractBaseRequest
 
     public function addContact(Contact $contact): void
     {
-        $this->data[] = array_filter($contact->toArray());
-    }
-
-    public function send(): ResponseImport
-    {
-        $jsonStream = new JsonStream($this->sendRequest()->getBody());
-        $array = $jsonStream->jsonSerialize();
-
-        $import = new ResponseImport();
-
-        if (isset($array['contacts_map'])) {
-            foreach ($array['contacts_map'] as $contact) {
-                $import->newContact($contact);
-            }
-        }
-
-        return $import;
+        $this->data[] = $contact->toArray();
     }
 
 }
