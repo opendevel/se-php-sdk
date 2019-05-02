@@ -141,7 +141,7 @@ final class Contact implements ToArrayInterface
     {
         $array = array_change_key_case($array, CASE_LOWER);
 
-        $contact = new self(Emailaddress::extract($array, 'emailaddress')->getValue());
+        $contact = new self(PrimitiveTypes::extractString($array, 'emailaddress'));
 
         $contact->setName(PrimitiveTypes::extractStringOrNull($array, 'name'));
         $contact->setSurname(PrimitiveTypes::extractStringOrNull($array, 'surname'));
