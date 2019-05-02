@@ -7,7 +7,7 @@ use GuzzleHttp\Psr7\Request;
 use Http\Adapter\Guzzle6\Client as GuzzleAdapter;
 use function GuzzleHttp\Psr7\stream_for;
 
-final class HttpClient
+final class ApiClient
 {
 
     /**
@@ -50,20 +50,18 @@ final class HttpClient
     /**
      * Send HTTP request and get response
      *
-     * @param string $method
-     * @param string $uri
-     * @param array $body
+     * @param \SmartEmailing\Sdk\ApiRequestInterface $apiRequest
      * @return string
      * @throws \Http\Client\Exception
      */
-    public function send(string $method, string $uri, array $body = []): string
+    public function sendRequest(ApiRequestInterface $apiRequest): string
     {
         $headers = [
             'Content-Type' => 'application/json',
         ];
 
-        $stream = stream_for(json_encode($body));
-        $request = new Request($method, $uri, $headers, $stream);
+        $stream = stream_for(json_encode($apiRequest->toArray()));
+        $request = new Request($apiRequest::getHttpMethod(), $apiRequest::getEndpoint(), $headers, $stream);
         $response = $this->client->sendRequest($request);
 
         return $response->getBody()->getContents();

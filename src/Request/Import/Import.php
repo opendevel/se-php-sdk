@@ -1,12 +1,24 @@
 <?php declare(strict_types = 1);
 
-namespace SmartEmailing\Sdk\Request\Import\Model;
+namespace SmartEmailing\Sdk\Request\Import;
 
-use SmartEmailing\Sdk\ToArrayInterface;
+use SmartEmailing\Sdk\ApiRequestInterface;
+use SmartEmailing\Sdk\Request\Import\Model\Contact;
+use SmartEmailing\Sdk\Request\Import\Model\Settings;
 use SmartEmailing\Types\PrimitiveTypes;
 
-final class Import implements ToArrayInterface
+final class Import implements ApiRequestInterface
 {
+
+    /**
+     * @var string
+     */
+    protected static $method = 'POST';
+
+    /**
+     * @var string
+     */
+    protected static $endpoint = 'import';
 
     /**
      * @var \SmartEmailing\Sdk\Request\Import\Model\Settings
@@ -25,6 +37,16 @@ final class Import implements ToArrayInterface
         }
 
         $this->settings = $settings;
+    }
+
+    public static function getHttpMethod(): string
+    {
+        return self::$method;
+    }
+
+    public static function getEndpoint(): string
+    {
+        return self::$endpoint;
     }
 
     public static function fromArray(array $data, ?Settings $settings = null): self

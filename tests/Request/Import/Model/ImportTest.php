@@ -2,6 +2,7 @@
 
 namespace SmartEmailing\Sdk\Request\Import\Model;
 
+use SmartEmailing\Sdk\Request\Import\Import;
 use SmartEmailing\Sdk\TestCase;
 
 final class ImportTest extends TestCase

@@ -3,10 +3,10 @@
 namespace SmartEmailing\Sdk;
 
 use Dotenv\Dotenv;
+use SmartEmailing\Sdk\Request\Import\Import;
 use SmartEmailing\Sdk\Request\Import\Model\Contact;
-use SmartEmailing\Sdk\Request\Import\Model\Import;
-use SmartEmailing\Sdk\Request\Test\Model\CheckCredentials;
-use SmartEmailing\Sdk\Request\Test\Model\Ping;
+use SmartEmailing\Sdk\Request\Test\CheckCredentials;
+use SmartEmailing\Sdk\Request\Test\Ping;
 use SmartEmailing\Sdk\Response\Import\ImportResponse;
 use SmartEmailing\Sdk\Response\Test\CheckCredentialsResponse;
 use SmartEmailing\Sdk\Response\Test\PingResponse;
@@ -46,7 +46,7 @@ final class ApiTest extends TestCase
         $this->assertSame([], $checkCredentialsResponse->getMeta());
     }
 
-    public function testApi(): void
+    public function testImport(): void
     {
         // API
         $dotEnv = Dotenv::create(__DIR__)->load();
