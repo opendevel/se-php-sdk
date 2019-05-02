@@ -22,21 +22,21 @@ class Api
         $this->apiClient = new ApiClient($username, $password);
     }
 
-    public function ping(Ping $requestModel): PingResponse
+    public function ping(Ping $apiRequest): PingResponse
     {
-        $result = $this->apiClient->sendRequest($requestModel);
+        $result = $this->apiClient->sendRequest($apiRequest);
         return PingResponse::fromArray(json_decode($result, true));
     }
 
-    public function checkCredentials(CheckCredentials $requestModel): CheckCredentialsResponse
+    public function checkCredentials(CheckCredentials $apiRequest): CheckCredentialsResponse
     {
-        $result = $this->apiClient->sendRequest($requestModel);
+        $result = $this->apiClient->sendRequest($apiRequest);
         return CheckCredentialsResponse::fromArray(json_decode($result, true));
     }
 
-    public function import(Import $requestModel): ImportResponse
+    public function import(Import $apiRequest): ImportResponse
     {
-        $result = $this->apiClient->sendRequest($requestModel);
+        $result = $this->apiClient->sendRequest($apiRequest);
         return ImportResponse::fromArray(json_decode($result, true));
     }
 
