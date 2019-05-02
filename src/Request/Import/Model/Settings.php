@@ -59,46 +59,39 @@ final class Settings implements ToArrayInterface
         ];
     }
 
-    public function setUpdate(bool $update): Settings
+    public function setUpdate(bool $update): void
     {
         $this->update = $update;
-        return $this;
     }
 
-    public function setAddNamedays(bool $addNamedays): Settings
+    public function setAddNamedays(bool $addNamedays): void
     {
         $this->addNamedays = $addNamedays;
-        return $this;
     }
 
-    public function setAddGenders(bool $addGenders): Settings
+    public function setAddGenders(bool $addGenders): void
     {
         $this->addGenders = $addGenders;
-        return $this;
     }
 
-    public function setAddSalutions(bool $addSalutions): Settings
+    public function setAddSalutions(bool $addSalutions): void
     {
         $this->addSalutions = $addSalutions;
-        return $this;
     }
 
-    public function setPreserveUnsubscribed(bool $preserveUnsubscribed): Settings
+    public function setPreserveUnsubscribed(bool $preserveUnsubscribed): void
     {
         $this->preserveUnsubscribed = $preserveUnsubscribed;
-        return $this;
     }
 
-    public function setSkipInvalidemails(bool $skipInvalidEmails): Settings
+    public function setSkipInvalidemails(bool $skipInvalidEmails): void
     {
         $this->skipInvalidEmails = $skipInvalidEmails;
-        return $this;
     }
 
-    public function setConfirmationRequest(?SettingsConfirmationRequest $confirmationRequest): Settings
+    public function setConfirmationRequest(?SettingsConfirmationRequest $confirmationRequest): void
     {
         $this->confirmationRequest = $confirmationRequest;
-        return $this;
     }
 
 }

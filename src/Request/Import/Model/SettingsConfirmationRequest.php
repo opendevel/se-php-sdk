@@ -74,10 +74,9 @@ final class SettingsConfirmationRequest implements ToArrayInterface
         ];
     }
 
-    public function setConfirmationThankYouPageUrl(?UrlType $confirmationThankYouPageUrl): SettingsConfirmationRequest
+    public function setConfirmationThankYouPageUrl(?UrlType $confirmationThankYouPageUrl): void
     {
         $this->confirmationThankYouPageUrl = $confirmationThankYouPageUrl;
-        return $this;
     }
 
 }

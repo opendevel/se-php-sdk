@@ -54,16 +54,14 @@ final class ContactPurpose implements ToArrayInterface
         ];
     }
 
-    public function setValidFrom(?DateTimeImmutable $validFrom): ContactPurpose
+    public function setValidFrom(?DateTimeImmutable $validFrom): void
     {
         $this->validFrom = $validFrom;
-        return $this;
     }
 
-    public function setValidTo(?DateTimeImmutable $validTo): ContactPurpose
+    public function setValidTo(?DateTimeImmutable $validTo): void
     {
         $this->validTo = $validTo;
-        return $this;
     }
 
 }

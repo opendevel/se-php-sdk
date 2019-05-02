@@ -217,130 +217,109 @@ final class Contact implements ToArrayInterface
         ];
     }
 
-    public function setName(?string $name = null): Contact
+    public function setName(?string $name = null): void
     {
         $this->name = $name;
-        return $this;
     }
 
-    public function setSurname(?string $surname): Contact
+    public function setSurname(?string $surname): void
     {
         $this->surname = $surname;
-        return $this;
     }
 
-    public function setTitlesBefore(?string $titlesBefore): Contact
+    public function setTitlesBefore(?string $titlesBefore): void
     {
         $this->titlesBefore = $titlesBefore;
-        return $this;
     }
 
-    public function setTitlesAfter(?string $titlesAfter): Contact
+    public function setTitlesAfter(?string $titlesAfter): void
     {
         $this->titlesAfter = $titlesAfter;
-        return $this;
     }
 
-    public function setSalutation(?string $salutation): Contact
+    public function setSalutation(?string $salutation): void
     {
         $this->salutation = $salutation;
-        return $this;
     }
 
-    public function setCompany(?string $company): Contact
+    public function setCompany(?string $company): void
     {
         $this->company = $company;
-        return $this;
     }
 
-    public function setStreet(?string $street): Contact
+    public function setStreet(?string $street): void
     {
         $this->street = $street;
-        return $this;
     }
 
-    public function setTown(?string $town): Contact
+    public function setTown(?string $town): void
     {
         $this->town = $town;
-        return $this;
     }
 
-    public function setPostalCode(?string $postalCode): Contact
+    public function setPostalCode(?string $postalCode): void
     {
         $this->postalCode = $postalCode;
-        return $this;
     }
 
-    public function setCountry(?string $country): Contact
+    public function setCountry(?string $country): void
     {
         $this->country = $country;
-        return $this;
     }
 
-    public function setCellPhone(?string $cellPhone): Contact
+    public function setCellPhone(?string $cellPhone): void
     {
         $this->cellPhone = $cellPhone;
-        return $this;
     }
 
-    public function setPhone(?string $phone): Contact
+    public function setPhone(?string $phone): void
     {
         $this->phone = $phone;
-        return $this;
     }
 
-    public function setLanguage(?string $language): Contact
+    public function setLanguage(?string $language): void
     {
         $this->language = $language;
-        return $this;
     }
 
-    public function setNotes(?string $notes): Contact
+    public function setNotes(?string $notes): void
     {
         $this->notes = $notes;
-        return $this;
     }
 
-    public function setGender(?Gender $gender): Contact
+    public function setGender(?Gender $gender): void
     {
         $this->gender = $gender;
-        return $this;
     }
 
-    public function setBlackListed(?bool $blackListed): Contact
+    public function setBlackListed(?bool $blackListed): void
     {
         $this->blackListed = $blackListed;
-        return $this;
     }
 
-    public function setNameday(?DateTimeImmutable $nameday): Contact
+    public function setNameday(?DateTimeImmutable $nameday): void
     {
         $this->nameday = $nameday;
-        return $this;
     }
 
-    public function setBirthday(?DateTimeImmutable $birthday): Contact
+    public function setBirthday(?DateTimeImmutable $birthday): void
     {
         $this->birthday = $birthday;
-        return $this;
     }
 
-    public function addContactList(ContactContactlist $contactlist): Contact
+    public function addContactList(ContactContactlist $contactlist): void
     {
         $this->contactLists[] = $contactlist->toArray();
-        return $this;
     }
 
-    public function addCustomField(ContactCustomField $customfield): Contact
+    public function addCustomField(ContactCustomField $customfield): void
     {
         $this->customFields[] = $customfield->toArray();
-        return $this;
     }
 
-    public function addPurpose(ContactPurpose $purpose): Contact
+    public function addPurpose(ContactPurpose $purpose): void
     {
         $this->purposes[] = $purpose->toArray();
-        return $this;
     }
 
 }
