@@ -31,14 +31,14 @@
     },
     "autoload": {
         "psr-4": {
-            "SmartEmailing\\Sdk\\": [
+            "SmartEmailing\\Sdk\\ApiV3Client\\": [
                 "src"
             ]
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "SmartEmailing\\Sdk\\": [
+            "SmartEmailing\\Sdk\\ApiV3Client\\": [
                 "tests"
             ]
         }

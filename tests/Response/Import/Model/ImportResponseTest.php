@@ -1,9 +1,9 @@
 <?php declare(strict_types = 1);
 
-namespace SmartEmailing\Sdk\Response\Import\Model;
+namespace SmartEmailing\Sdk\ApiV3Client\Response\Import\Model;
 
-use SmartEmailing\Sdk\Response\Import\ImportResponse;
-use SmartEmailing\Sdk\TestCase;
+use SmartEmailing\Sdk\ApiV3Client\Response\Import\ImportResponse;
+use SmartEmailing\Sdk\ApiV3Client\TestCase;
 use SmartEmailing\Types\Emailaddress;
 
 final class ImportResponseTest extends TestCase

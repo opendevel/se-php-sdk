@@ -1,19 +1,19 @@
 <?php declare(strict_types = 1);
 
-namespace SmartEmailing\Sdk;
+namespace SmartEmailing\Sdk\ApiV3Client;
 
-use SmartEmailing\Sdk\Request\Import\Import;
-use SmartEmailing\Sdk\Request\Test\CheckCredentials;
-use SmartEmailing\Sdk\Request\Test\Ping;
-use SmartEmailing\Sdk\Response\Import\ImportResponse;
-use SmartEmailing\Sdk\Response\Test\CheckCredentialsResponse;
-use SmartEmailing\Sdk\Response\Test\PingResponse;
+use SmartEmailing\Sdk\ApiV3Client\Request\Import\Import;
+use SmartEmailing\Sdk\ApiV3Client\Request\Test\CheckCredentials;
+use SmartEmailing\Sdk\ApiV3Client\Request\Test\Ping;
+use SmartEmailing\Sdk\ApiV3Client\Response\Import\ImportResponse;
+use SmartEmailing\Sdk\ApiV3Client\Response\Test\CheckCredentialsResponse;
+use SmartEmailing\Sdk\ApiV3Client\Response\Test\PingResponse;
 
 class Api
 {
 
     /**
-     * @var \SmartEmailing\Sdk\ApiClient
+     * @var \SmartEmailing\Sdk\ApiV3Client\ApiClient
      */
     private $apiClient;
 

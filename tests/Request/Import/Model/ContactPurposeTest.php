@@ -1,9 +1,9 @@
 <?php declare(strict_types = 1);
 
-namespace SmartEmailing\Sdk\Request\Import\Model;
+namespace SmartEmailing\Sdk\ApiV3Client\Request\Import\Model;
 
 use DateTimeImmutable;
-use SmartEmailing\Sdk\TestCase;
+use SmartEmailing\Sdk\ApiV3Client\TestCase;
 
 final class ContactPurposeTest extends TestCase
 {

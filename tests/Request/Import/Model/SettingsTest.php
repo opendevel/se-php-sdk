@@ -1,8 +1,8 @@
 <?php declare(strict_types = 1);
 
-namespace SmartEmailing\Sdk\Request\Import\Model;
+namespace SmartEmailing\Sdk\ApiV3Client\Request\Import\Model;
 
-use SmartEmailing\Sdk\TestCase;
+use SmartEmailing\Sdk\ApiV3Client\TestCase;
 use SmartEmailing\Types\Emailaddress;
 
 final class SettingsTest extends TestCase

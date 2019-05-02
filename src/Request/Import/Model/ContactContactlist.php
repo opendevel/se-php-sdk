@@ -1,9 +1,9 @@
 <?php declare(strict_types = 1);
 
-namespace SmartEmailing\Sdk\Request\Import\Model;
+namespace SmartEmailing\Sdk\ApiV3Client\Request\Import\Model;
 
-use SmartEmailing\Sdk\Enum\ContactListStatus;
-use SmartEmailing\Sdk\ToArrayInterface;
+use SmartEmailing\Sdk\ApiV3Client\Enum\ContactListStatus;
+use SmartEmailing\Sdk\ApiV3Client\ToArrayInterface;
 use SmartEmailing\Types\PrimitiveTypes;
 
 final class ContactContactlist implements ToArrayInterface
@@ -15,7 +15,7 @@ final class ContactContactlist implements ToArrayInterface
     private $id;
 
     /**
-     * @var \SmartEmailing\Sdk\Enum\ContactListStatus
+     * @var \SmartEmailing\Sdk\ApiV3Client\Enum\ContactListStatus
      */
     private $status;
 

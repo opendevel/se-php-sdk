@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace SmartEmailing\Sdk\Request;
+namespace SmartEmailing\Sdk\ApiV3Client\Request;
 
 class BaseRequest
 {

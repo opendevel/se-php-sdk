@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace SmartEmailing\Sdk;
+namespace SmartEmailing\Sdk\ApiV3Client;
 
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Psr7\Request;
@@ -50,7 +50,7 @@ final class ApiClient
     /**
      * Send HTTP request and get response
      *
-     * @param \SmartEmailing\Sdk\ApiRequestInterface $apiRequest
+     * @param \SmartEmailing\Sdk\ApiV3Client\ApiRequestInterface $apiRequest
      * @return string
      * @throws \Http\Client\Exception
      */

@@ -1,8 +1,8 @@
 <?php declare(strict_types = 1);
 
-namespace SmartEmailing\Sdk\Request\Import\Model;
+namespace SmartEmailing\Sdk\ApiV3Client\Request\Import\Model;
 
-use SmartEmailing\Sdk\ToArrayInterface;
+use SmartEmailing\Sdk\ApiV3Client\ToArrayInterface;
 
 final class Settings implements ToArrayInterface
 {
@@ -38,7 +38,7 @@ final class Settings implements ToArrayInterface
     private $skipInvalidEmails = false;
 
     /**
-     * @var \SmartEmailing\Sdk\Request\Import\Model\SettingsConfirmationRequest|null
+     * @var \SmartEmailing\Sdk\ApiV3Client\Request\Import\Model\SettingsConfirmationRequest|null
      */
     private $confirmationRequest = null;
 

@@ -1,8 +1,8 @@
 <?php declare(strict_types = 1);
 
-namespace SmartEmailing\Sdk\Response\Test;
+namespace SmartEmailing\Sdk\ApiV3Client\Response\Test;
 
-use SmartEmailing\Sdk\Response\BaseResponse;
+use SmartEmailing\Sdk\ApiV3Client\Response\BaseResponse;
 use SmartEmailing\Types\PrimitiveTypes;
 
 final class PingResponse extends BaseResponse
@@ -10,7 +10,7 @@ final class PingResponse extends BaseResponse
 
     /**
      * @param array $array
-     * @return \SmartEmailing\Sdk\Response\Test\PingResponse
+     * @return \SmartEmailing\Sdk\ApiV3Client\Response\Test\PingResponse
      */
     public static function fromArray(array $array): self
     {

@@ -1,8 +1,8 @@
 <?php declare(strict_types = 1);
 
-namespace SmartEmailing\Sdk\Request\Import\Model;
+namespace SmartEmailing\Sdk\ApiV3Client\Request\Import\Model;
 
-use SmartEmailing\Sdk\ToArrayInterface;
+use SmartEmailing\Sdk\ApiV3Client\ToArrayInterface;
 use SmartEmailing\Types\Emailaddress;
 use SmartEmailing\Types\UrlType;
 

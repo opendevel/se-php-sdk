@@ -1,8 +1,8 @@
 <?php declare(strict_types = 1);
 
-namespace SmartEmailing\Sdk\Response\Test;
+namespace SmartEmailing\Sdk\ApiV3Client\Response\Test;
 
-use SmartEmailing\Sdk\Response\BaseResponse;
+use SmartEmailing\Sdk\ApiV3Client\Response\BaseResponse;
 use SmartEmailing\Types\PrimitiveTypes;
 
 final class CheckCredentialsResponse extends BaseResponse
@@ -19,7 +19,7 @@ final class CheckCredentialsResponse extends BaseResponse
      * Create this class from json
      *
      * @param array $array
-     * @return \SmartEmailing\Sdk\Response\Test\CheckCredentialsResponse
+     * @return \SmartEmailing\Sdk\ApiV3Client\Response\Test\CheckCredentialsResponse
      */
     public static function fromArray(array $array): self
     {

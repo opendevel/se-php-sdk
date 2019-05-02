@@ -1,10 +1,10 @@
 <?php declare(strict_types = 1);
 
-namespace SmartEmailing\Sdk\Request\Import;
+namespace SmartEmailing\Sdk\ApiV3Client\Request\Import;
 
-use SmartEmailing\Sdk\ApiRequestInterface;
-use SmartEmailing\Sdk\Request\Import\Model\Contact;
-use SmartEmailing\Sdk\Request\Import\Model\Settings;
+use SmartEmailing\Sdk\ApiV3Client\ApiRequestInterface;
+use SmartEmailing\Sdk\ApiV3Client\Request\Import\Model\Contact;
+use SmartEmailing\Sdk\ApiV3Client\Request\Import\Model\Settings;
 use SmartEmailing\Types\PrimitiveTypes;
 
 final class Import implements ApiRequestInterface
@@ -21,7 +21,7 @@ final class Import implements ApiRequestInterface
     protected static $endpoint = 'import';
 
     /**
-     * @var \SmartEmailing\Sdk\Request\Import\Model\Settings
+     * @var \SmartEmailing\Sdk\ApiV3Client\Request\Import\Model\Settings
      */
     protected $settings;
 

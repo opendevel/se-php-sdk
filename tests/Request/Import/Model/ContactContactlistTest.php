@@ -1,9 +1,9 @@
 <?php declare(strict_types = 1);
 
-namespace SmartEmailing\Sdk\Request\Import\Model;
+namespace SmartEmailing\Sdk\ApiV3Client\Request\Import\Model;
 
-use SmartEmailing\Sdk\Enum\ContactListStatus;
-use SmartEmailing\Sdk\TestCase;
+use SmartEmailing\Sdk\ApiV3Client\Enum\ContactListStatus;
+use SmartEmailing\Sdk\ApiV3Client\TestCase;
 
 final class ContactContactlistTest extends TestCase
 {

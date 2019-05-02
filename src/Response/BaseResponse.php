@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace SmartEmailing\Sdk\Response;
+namespace SmartEmailing\Sdk\ApiV3Client\Response;
 
 class BaseResponse
 {

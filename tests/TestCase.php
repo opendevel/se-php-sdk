@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace SmartEmailing\Sdk;
+namespace SmartEmailing\Sdk\ApiV3Client;
 
 use PHPUnit\Framework\TestCase as PhpUnitTestCase;
 

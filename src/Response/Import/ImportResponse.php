@@ -1,9 +1,9 @@
 <?php declare(strict_types = 1);
 
-namespace SmartEmailing\Sdk\Response\Import;
+namespace SmartEmailing\Sdk\ApiV3Client\Response\Import;
 
-use SmartEmailing\Sdk\Response\BaseResponse;
-use SmartEmailing\Sdk\Response\Import\Model\Contact;
+use SmartEmailing\Sdk\ApiV3Client\Response\BaseResponse;
+use SmartEmailing\Sdk\ApiV3Client\Response\Import\Model\Contact;
 use SmartEmailing\Types\PrimitiveTypes;
 
 final class ImportResponse extends BaseResponse
@@ -20,7 +20,7 @@ final class ImportResponse extends BaseResponse
      * Create ImportResponse class from json
      *
      * @param array $array
-     * @return \SmartEmailing\Sdk\Response\Import\ImportResponse
+     * @return \SmartEmailing\Sdk\ApiV3Client\Response\Import\ImportResponse
      */
     public static function fromArray(array $array): self
     {
@@ -45,7 +45,7 @@ final class ImportResponse extends BaseResponse
     }
 
     /**
-     * @return \SmartEmailing\Sdk\Response\Import\Model\Contact[]
+     * @return \SmartEmailing\Sdk\ApiV3Client\Response\Import\Model\Contact[]
      */
     public function getContacts(): array
     {

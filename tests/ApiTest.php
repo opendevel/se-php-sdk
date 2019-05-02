@@ -1,15 +1,15 @@
 <?php declare(strict_types = 1);
 
-namespace SmartEmailing\Sdk;
+namespace SmartEmailing\Sdk\ApiV3Client;
 
 use Dotenv\Dotenv;
-use SmartEmailing\Sdk\Request\Import\Import;
-use SmartEmailing\Sdk\Request\Import\Model\Contact;
-use SmartEmailing\Sdk\Request\Test\CheckCredentials;
-use SmartEmailing\Sdk\Request\Test\Ping;
-use SmartEmailing\Sdk\Response\Import\ImportResponse;
-use SmartEmailing\Sdk\Response\Test\CheckCredentialsResponse;
-use SmartEmailing\Sdk\Response\Test\PingResponse;
+use SmartEmailing\Sdk\ApiV3Client\Request\Import\Import;
+use SmartEmailing\Sdk\ApiV3Client\Request\Import\Model\Contact;
+use SmartEmailing\Sdk\ApiV3Client\Request\Test\CheckCredentials;
+use SmartEmailing\Sdk\ApiV3Client\Request\Test\Ping;
+use SmartEmailing\Sdk\ApiV3Client\Response\Import\ImportResponse;
+use SmartEmailing\Sdk\ApiV3Client\Response\Test\CheckCredentialsResponse;
+use SmartEmailing\Sdk\ApiV3Client\Response\Test\PingResponse;
 
 final class ApiTest extends TestCase
 {

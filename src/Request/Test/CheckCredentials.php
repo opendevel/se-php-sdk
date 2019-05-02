@@ -1,8 +1,8 @@
 <?php declare(strict_types = 1);
 
-namespace SmartEmailing\Sdk\Request\Test;
+namespace SmartEmailing\Sdk\ApiV3Client\Request\Test;
 
-use SmartEmailing\Sdk\ApiRequestInterface;
+use SmartEmailing\Sdk\ApiV3Client\ApiRequestInterface;
 
 final class CheckCredentials implements ApiRequestInterface
 {

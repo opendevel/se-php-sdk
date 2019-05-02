@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace SmartEmailing\Sdk\Response\Import\Model;
+namespace SmartEmailing\Sdk\ApiV3Client\Response\Import\Model;
 
 use SmartEmailing\Types\Emailaddress;
 use SmartEmailing\Types\PrimitiveTypes;

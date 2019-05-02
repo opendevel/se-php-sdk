@@ -1,10 +1,10 @@
 <?php declare(strict_types = 1);
 
-namespace SmartEmailing\Sdk\Request\Import\Model;
+namespace SmartEmailing\Sdk\ApiV3Client\Request\Import\Model;
 
 use DateTimeImmutable;
-use SmartEmailing\Sdk\Enum\Gender;
-use SmartEmailing\Sdk\ToArrayInterface;
+use SmartEmailing\Sdk\ApiV3Client\Enum\Gender;
+use SmartEmailing\Sdk\ApiV3Client\ToArrayInterface;
 use SmartEmailing\Types\DateTimeFormatter;
 use SmartEmailing\Types\DateTimesImmutable;
 use SmartEmailing\Types\Emailaddress;
@@ -89,7 +89,7 @@ final class Contact implements ToArrayInterface
     private $notes = null;
 
     /**
-     * @var \SmartEmailing\Sdk\Enum\Gender|null
+     * @var \SmartEmailing\Sdk\ApiV3Client\Enum\Gender|null
      */
     private $gender = null;
 
