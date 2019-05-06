@@ -5,7 +5,7 @@ namespace SmartEmailing\Sdk\ApiV3Client;
 use Dotenv\Dotenv;
 use Http\Message\Authentication\BasicAuth;
 use SmartEmailing\Sdk\ApiV3Client\Request\Contacts\ContactRequest;
-use SmartEmailing\Sdk\ApiV3Client\Request\Contacts\Contacts;
+use SmartEmailing\Sdk\ApiV3Client\Request\Contacts\ContactsRequest;
 use SmartEmailing\Sdk\ApiV3Client\Request\Import\Import;
 use SmartEmailing\Sdk\ApiV3Client\Request\Import\Model\Contact;
 use SmartEmailing\Sdk\ApiV3Client\Request\Test\CheckCredentials;
@@ -92,7 +92,7 @@ final class ApiTest extends TestCase
         $authentication = new BasicAuth($this->username, $this->password);
         $api = new Api($authentication);
 
-        $contacts = new Contacts();
+        $contacts = new ContactsRequest();
         $contactsResponse = $api->contacts($contacts);
 
         $this->assertIsArray($contactsResponse->getContacts());

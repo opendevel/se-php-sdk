@@ -4,7 +4,7 @@ namespace SmartEmailing\Sdk\ApiV3Client\Request\Contacts;
 
 use SmartEmailing\Sdk\ApiV3Client\ApiRequestInterface;
 
-final class Contacts implements ApiRequestInterface
+final class ContactsRequest implements ApiRequestInterface
 {
 
     /**
