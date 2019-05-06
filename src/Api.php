@@ -3,7 +3,7 @@
 namespace SmartEmailing\Sdk\ApiV3Client;
 
 use Http\Message\Authentication;
-use SmartEmailing\Sdk\ApiV3Client\Request\Contacts\Contact;
+use SmartEmailing\Sdk\ApiV3Client\Request\Contacts\ContactRequest;
 use SmartEmailing\Sdk\ApiV3Client\Request\Contacts\Contacts;
 use SmartEmailing\Sdk\ApiV3Client\Request\Import\Import;
 use SmartEmailing\Sdk\ApiV3Client\Request\Test\CheckCredentials;
@@ -51,7 +51,7 @@ final class Api
         return ContactsResponse::fromArray(json_decode($result, true));
     }
 
-    public function contact(Contact $apiRequest): ContactResponse
+    public function contact(ContactRequest $apiRequest): ContactResponse
     {
         $result = $this->apiClient->sendRequest($apiRequest);
         return ContactResponse::fromArray(json_decode($result, true));

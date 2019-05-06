@@ -4,7 +4,7 @@ namespace SmartEmailing\Sdk\ApiV3Client;
 
 use Dotenv\Dotenv;
 use Http\Message\Authentication\BasicAuth;
-use SmartEmailing\Sdk\ApiV3Client\Request\Contacts\Contact as ContactRequest;
+use SmartEmailing\Sdk\ApiV3Client\Request\Contacts\ContactRequest;
 use SmartEmailing\Sdk\ApiV3Client\Request\Contacts\Contacts;
 use SmartEmailing\Sdk\ApiV3Client\Request\Import\Import;
 use SmartEmailing\Sdk\ApiV3Client\Request\Import\Model\Contact;
