@@ -7,7 +7,7 @@ use SmartEmailing\Sdk\ApiV3Client\Request\Import\Model\Contact;
 use SmartEmailing\Sdk\ApiV3Client\Request\Import\Model\Settings;
 use SmartEmailing\Types\PrimitiveTypes;
 
-final class Import implements ApiRequestInterface
+final class ImportRequest implements ApiRequestInterface
 {
 
     /**

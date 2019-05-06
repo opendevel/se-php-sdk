@@ -2,7 +2,7 @@
 
 namespace SmartEmailing\Sdk\ApiV3Client\Request\Import\Model;
 
-use SmartEmailing\Sdk\ApiV3Client\Request\Import\Import;
+use SmartEmailing\Sdk\ApiV3Client\Request\Import\ImportRequest;
 use SmartEmailing\Sdk\ApiV3Client\TestCase;
 
 final class ImportTest extends TestCase
@@ -25,7 +25,7 @@ final class ImportTest extends TestCase
             ],
         ];
 
-        $import = new Import();
+        $import = new ImportRequest();
 
         // ACT
 
@@ -50,7 +50,7 @@ final class ImportTest extends TestCase
             ],
         ];
 
-        $import = new Import(new Settings());
+        $import = new ImportRequest(new Settings());
 
         // ACT
 
@@ -181,12 +181,12 @@ final class ImportTest extends TestCase
             ],
         ];
 
-        $import = Import::fromArray($input);
+        $import = ImportRequest::fromArray($input);
 
         // ACT
 
         // ASSERT
-        $this->assertInstanceOf(Import::class, $import);
+        $this->assertInstanceOf(ImportRequest::class, $import);
         $this->assertSame($output, $import->toArray());
     }
 
@@ -321,12 +321,12 @@ final class ImportTest extends TestCase
         $settings->setPreserveUnsubscribed(true);
         $settings->setSkipInvalidemails(false);
 
-        $import = Import::fromArray($input, $settings);
+        $import = ImportRequest::fromArray($input, $settings);
 
         // ACT
 
         // ASSERT
-        $this->assertInstanceOf(Import::class, $import);
+        $this->assertInstanceOf(ImportRequest::class, $import);
         $this->assertSame($output, $import->toArray());
     }
 
@@ -337,7 +337,7 @@ final class ImportTest extends TestCase
         ];
 
         $this->expectException(\SmartEmailing\Types\InvalidTypeException::class);
-        Import::fromArray($data);
+        ImportRequest::fromArray($data);
     }
 
     public function testCreateFromArrayException3(): void
@@ -347,7 +347,7 @@ final class ImportTest extends TestCase
         ];
 
         $this->expectException(\SmartEmailing\Types\InvalidTypeException::class);
-        Import::fromArray($data);
+        ImportRequest::fromArray($data);
     }
 
     public function testCreateFromArrayException4(): void
@@ -359,7 +359,7 @@ final class ImportTest extends TestCase
         ];
 
         $this->expectException(\SmartEmailing\Types\InvalidTypeException::class);
-        Import::fromArray($data);
+        ImportRequest::fromArray($data);
     }
 
     public function testCreateFromArrayException5(): void
@@ -369,7 +369,7 @@ final class ImportTest extends TestCase
         ];
 
         $this->expectException(\SmartEmailing\Types\InvalidTypeException::class);
-        Import::fromArray($data);
+        ImportRequest::fromArray($data);
     }
 
     public function testAddContact(): void
@@ -415,7 +415,7 @@ final class ImportTest extends TestCase
                 ],
         ];
 
-        $import = new Import();
+        $import = new ImportRequest();
 
         // ACT
         $import->addContact(new Contact('john.doe@example.com'));
@@ -427,7 +427,7 @@ final class ImportTest extends TestCase
     public function testSetSettings(): void
     {
         // ARRANGE
-        $import = new Import();
+        $import = new ImportRequest();
         $settings = new Settings();
 
         // ACT
