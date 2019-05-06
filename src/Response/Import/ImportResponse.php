@@ -16,12 +16,6 @@ final class ImportResponse extends BaseResponse
      */
     private $contacts = [];
 
-    /**
-     * Create ImportResponse class from json
-     *
-     * @param array $array
-     * @return \SmartEmailing\Sdk\ApiV3Client\Response\Import\ImportResponse
-     */
     public static function fromArray(array $array): self
     {
         $response = new self();
