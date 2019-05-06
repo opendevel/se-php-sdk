@@ -70,7 +70,7 @@ final class ApiClient
 
         $request = $messageFactory->createRequest(
             $apiRequest::getHttpMethod(),
-            '/' . $apiRequest::getEndpoint(),
+            '/' . $apiRequest->getEndpoint(),
             $headers,
             $stream
         );
