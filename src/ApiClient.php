@@ -44,7 +44,6 @@ final class ApiClient
             [
                 $authenticationPlugin,
                 $baseUriPlugin,
-                //@todo more plugins
             ]
         );
 
