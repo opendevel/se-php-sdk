@@ -1,14 +1,16 @@
 <?php declare(strict_types = 1);
 
-namespace SmartEmailing\Sdk\Request\Import\Model;
+namespace SmartEmailing\Sdk\ApiV3Client\Request\Import\Model;
 
 use DateTimeImmutable;
-use SmartEmailing\Sdk\Request\AbstractModel;
-use SmartEmailing\Sdk\Status\GenderStatus;
+use SmartEmailing\Sdk\ApiV3Client\Enum\Gender;
+use SmartEmailing\Sdk\ApiV3Client\ToArrayInterface;
+use SmartEmailing\Types\DateTimeFormatter;
+use SmartEmailing\Types\DateTimesImmutable;
 use SmartEmailing\Types\Emailaddress;
 use SmartEmailing\Types\PrimitiveTypes;
 
-final class Contact extends AbstractModel
+final class Contact implements ToArrayInterface
 {
 
     /**
@@ -79,7 +81,7 @@ final class Contact extends AbstractModel
     /**
      * @var string|null
      */
-    private $language = null;
+    private $language = null;   //@todo Language in POSIX format, eg. cz_CZ
 
     /**
      * @var string|null
@@ -87,7 +89,7 @@ final class Contact extends AbstractModel
     private $notes = null;
 
     /**
-     * @var string|null
+     * @var \SmartEmailing\Sdk\ApiV3Client\Enum\Gender|null
      */
     private $gender = null;
 
@@ -111,32 +113,77 @@ final class Contact extends AbstractModel
      * Any contactlist presence unlisted in imported data will be untouched.
      * Unsubscribed contacts will stay unsubscribed if settings.preserve_unsubscribed=1
      *
-     * @var array|null
+     * @var array
      */
-    private $contactLists = null;
+    private $contactLists = [];
 
     /**
      * Customfields assigned to contact
      * Customfields unlisted in imported data will be untouched.
      *
-     * @var array|null
+     * @var array
      */
-    private $customFields = null;
+    private $customFields = [];
 
     /**
      * Processing purposes assigned to contact. Every purpose may be assigned multiple times for different time intervals. Exact duplicities will be silently skipped.
      *
-     * @var array|null
+     * @var array
      */
-    private $purposes = null;
+    private $purposes = [];
 
-    /**
-     * Contact constructor.
-     * @param string $emailaddress
-     */
     public function __construct(string $emailaddress)
     {
         $this->emailAddress = Emailaddress::from($emailaddress);
+    }
+
+    public static function fromArray(array $array): self
+    {
+        $contact = new self(PrimitiveTypes::extractString($array, 'emailaddress'));
+        $contact->setName(PrimitiveTypes::extractStringOrNull($array, 'name'));
+        $contact->setSurname(PrimitiveTypes::extractStringOrNull($array, 'surname'));
+        $contact->setTitlesBefore(PrimitiveTypes::extractStringOrNull($array, 'titlesbefore'));
+        $contact->setTitlesAfter(PrimitiveTypes::extractStringOrNull($array, 'titlesafter'));
+        $contact->setSalutation(PrimitiveTypes::extractStringOrNull($array, 'salutation'));
+        $contact->setCompany(PrimitiveTypes::extractStringOrNull($array, 'company'));
+        $contact->setStreet(PrimitiveTypes::extractStringOrNull($array, 'street'));
+        $contact->setTown(PrimitiveTypes::extractStringOrNull($array, 'town'));
+        $contact->setPostalCode(PrimitiveTypes::extractStringOrNull($array, 'postalcode'));
+        $contact->setCountry(PrimitiveTypes::extractStringOrNull($array, 'country'));
+        $contact->setCellPhone(PrimitiveTypes::extractStringOrNull($array, 'cellphone'));
+        $contact->setPhone(PrimitiveTypes::extractStringOrNull($array, 'phone'));
+        $contact->setLanguage(PrimitiveTypes::extractStringOrNull($array, 'language'));
+        $contact->setNotes(PrimitiveTypes::extractStringOrNull($array, 'notes'));
+        $contact->setGender(Gender::fromOrNull(PrimitiveTypes::extractStringOrNull($array, 'gender')));
+        $contact->setBlackListed(PrimitiveTypes::extractBoolOrNull($array, 'blacklisted'));
+        $contact->setNameday(DateTimesImmutable::extractOrNull($array, 'nameday'));
+        $contact->setBirthday(DateTimesImmutable::extractOrNull($array, 'birthday'));
+
+        $arrayContactLists = PrimitiveTypes::extractArrayOrNull($array, 'contactlists');
+        if (is_array($arrayContactLists)) {
+            /** @var array $arrayContactList */
+            foreach ($arrayContactLists as $arrayContactList) {
+                $contact->addContactList(ContactContactlist::fromArray($arrayContactList));
+            }
+        }
+
+        $arrayCustomFields = PrimitiveTypes::extractArrayOrNull($array, 'customfields');
+        if (is_array($arrayCustomFields)) {
+            /** @var array $arrayCustomField */
+            foreach ($arrayCustomFields as $arrayCustomField) {
+                $contact->addCustomField(ContactCustomField::fromArray($arrayCustomField));
+            }
+        }
+
+        $arrayPurposes = PrimitiveTypes::extractArrayOrNull($array, 'purposes');
+        if (is_array($arrayPurposes)) {
+            /** @var array $arrayPurpose */
+            foreach ($arrayPurposes as $arrayPurpose) {
+                $contact->addPurpose(ContactPurpose::fromArray($arrayPurpose));
+            }
+        }
+
+        return $contact;
     }
 
     public function toArray(): array
@@ -157,146 +204,119 @@ final class Contact extends AbstractModel
             'phone' => $this->phone,
             'language' => $this->language,
             'notes' => $this->notes,
-            'gender' => $this->gender,
-            'blacklisted' => !is_null(PrimitiveTypes::getBoolOrNull($this->blackListed)) ? (int)$this->blackListed : null,
-            'nameday' => !empty($this->nameday) ? $this->nameday->format('Y-m-d H:i:s') : null,
-            'birthday' => !empty($this->birthday) ? $this->birthday->format('Y-m-d H:i:s') : null,
+            'gender' => $this->gender !== null ? $this->gender->getValue() : null,
+            'blacklisted' => PrimitiveTypes::getBoolOrNull($this->blackListed) !== null ? (int)$this->blackListed : 0,  // blacklisted must not be null
+            'nameday' => DateTimeFormatter::formatOrNull($this->nameday),
+            'birthday' => DateTimeFormatter::formatOrNull($this->birthday),
             'contactlists' => $this->contactLists,
             'customfields' => $this->customFields,
             'purposes' => $this->purposes,
         ];
     }
 
-    public function setName(?string $name = null): Contact
+    public function setName(?string $name = null): void
     {
         $this->name = $name;
-        return $this;
     }
 
-    public function setSurname(?string $surname): Contact
+    public function setSurname(?string $surname): void
     {
         $this->surname = $surname;
-        return $this;
     }
 
-    public function setTitlesBefore(?string $titlesBefore): Contact
+    public function setTitlesBefore(?string $titlesBefore): void
     {
         $this->titlesBefore = $titlesBefore;
-        return $this;
     }
 
-    public function setTitlesAfter(?string $titlesAfter): Contact
+    public function setTitlesAfter(?string $titlesAfter): void
     {
         $this->titlesAfter = $titlesAfter;
-        return $this;
     }
 
-    public function setSalutation(?string $salutation): Contact
+    public function setSalutation(?string $salutation): void
     {
         $this->salutation = $salutation;
-        return $this;
     }
 
-    public function setCompany(?string $company): Contact
+    public function setCompany(?string $company): void
     {
         $this->company = $company;
-        return $this;
     }
 
-    public function setStreet(?string $street): Contact
+    public function setStreet(?string $street): void
     {
         $this->street = $street;
-        return $this;
     }
 
-    public function setTown(?string $town): Contact
+    public function setTown(?string $town): void
     {
         $this->town = $town;
-        return $this;
     }
 
-    public function setPostalCode(?string $postalCode): Contact
+    public function setPostalCode(?string $postalCode): void
     {
         $this->postalCode = $postalCode;
-        return $this;
     }
 
-    public function setCountry(?string $country): Contact
+    public function setCountry(?string $country): void
     {
         $this->country = $country;
-        return $this;
     }
 
-    public function setCellPhone(?string $cellPhone): Contact
+    public function setCellPhone(?string $cellPhone): void
     {
         $this->cellPhone = $cellPhone;
-        return $this;
     }
 
-    public function setPhone(?string $phone): Contact
+    public function setPhone(?string $phone): void
     {
         $this->phone = $phone;
-        return $this;
     }
 
-    public function setLanguage(?string $language): Contact
+    public function setLanguage(?string $language): void
     {
         $this->language = $language;
-        return $this;
     }
 
-    public function setNotes(?string $notes): Contact
+    public function setNotes(?string $notes): void
     {
         $this->notes = $notes;
-        return $this;
     }
 
-    public function setGender(?string $gender): Contact
+    public function setGender(?Gender $gender): void
     {
-        if (!is_null($gender)) {
-            GenderStatus::checkValue($gender);
-            $this->gender = $gender;
-        } else {
-            $this->gender = null;
-        }
-
-        return $this;
+        $this->gender = $gender;
     }
 
-    public function setBlackListed(?bool $blackListed): Contact
+    public function setBlackListed(?bool $blackListed): void
     {
         $this->blackListed = $blackListed;
-        return $this;
     }
 
-    public function setNameday(?DateTimeImmutable $nameday): Contact
+    public function setNameday(?DateTimeImmutable $nameday): void
     {
         $this->nameday = $nameday;
-        return $this;
     }
 
-    public function setBirthday(?DateTimeImmutable $birthday): Contact
+    public function setBirthday(?DateTimeImmutable $birthday): void
     {
         $this->birthday = $birthday;
-        return $this;
     }
 
-    public function addContactList(ContactsContactlist $contactlist): Contact
+    public function addContactList(ContactContactlist $contactlist): void
     {
-        $this->contactLists[] = array_filter($contactlist->toArray());
-        return $this;
+        $this->contactLists[] = $contactlist->toArray();
     }
 
-    public function addCustomField(ContactCustomField $customfield): Contact
+    public function addCustomField(ContactCustomField $customfield): void
     {
-        $this->customFields[] = array_filter($customfield->toArray());
-        return $this;
+        $this->customFields[] = $customfield->toArray();
     }
 
-    public function addPurpose(ContactPurpose $purpose): Contact
+    public function addPurpose(ContactPurpose $purpose): void
     {
-        $this->purposes[] = array_filter($purpose->toArray());
-        return $this;
+        $this->purposes[] = $purpose->toArray();
     }
 
 }

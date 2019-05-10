@@ -27,6 +27,7 @@ matrix:
       env: TESTER_PHP_BIN="php-cgi"
 
   allow_failures:
+    - php: 7.1
     - php: hhvm
 
 before_install:
@@ -40,8 +41,10 @@ before_script:
   - chmod +x build.sh
 
 script:
-  #phpstan
+  # phpstan
   - ./vendor/bin/phpstan analyse -l 7 --memory-limit=500M --debug -c phpstan.neon
+  # phpunit
+  - ./vendor/bin/phpunit --colors=always -c phpunit.xml
   # nette tester
   #- ./vendor/bin/tester -p $TESTER_PHP_BIN -s -c ./tests/php.ini ./tests
 
