@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "967aa08a435db449d39535bc2bc832cd",
+    "content-hash": "05c09f86bb6651312d18c13aad2e6dc8",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -301,16 +301,16 @@
         },
         {
             "name": "jschaedl/iban-validation",
-            "version": "v1.2",
+            "version": "v1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jschaedl/iban-validation.git",
-                "reference": "63ead053e8ea07ee923552325c5a6b28ee10df3d"
+                "reference": "09a843d70eff30277c65501b73ac9d58e4727e80"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jschaedl/iban-validation/zipball/63ead053e8ea07ee923552325c5a6b28ee10df3d",
-                "reference": "63ead053e8ea07ee923552325c5a6b28ee10df3d",
+                "url": "https://api.github.com/repos/jschaedl/iban-validation/zipball/09a843d70eff30277c65501b73ac9d58e4727e80",
+                "reference": "09a843d70eff30277c65501b73ac9d58e4727e80",
                 "shasum": ""
             },
             "require": {
@@ -353,7 +353,7 @@
                 "IBAN",
                 "validation"
             ],
-            "time": "2018-12-15T09:05:47+00:00"
+            "time": "2019-04-27T08:14:47+00:00"
         },
         {
             "name": "nette/http",
@@ -1116,16 +1116,16 @@
         },
         {
             "name": "smartemailing/types",
-            "version": "v1.0.7",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/smartemailing/types.git",
-                "reference": "7d81b82a85cfbda5f7f4c1b3f4a021a0c93756e3"
+                "reference": "95dadfa0b7c65126a6e55209a4131ebb1e75b7e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/smartemailing/types/zipball/7d81b82a85cfbda5f7f4c1b3f4a021a0c93756e3",
-                "reference": "7d81b82a85cfbda5f7f4c1b3f4a021a0c93756e3",
+                "url": "https://api.github.com/repos/smartemailing/types/zipball/95dadfa0b7c65126a6e55209a4131ebb1e75b7e1",
+                "reference": "95dadfa0b7c65126a6e55209a4131ebb1e75b7e1",
                 "shasum": ""
             },
             "require": {
@@ -1165,11 +1165,11 @@
                 "strict types",
                 "value objects"
             ],
-            "time": "2018-12-04T10:44:34+00:00"
+            "time": "2019-04-27T11:48:12+00:00"
         },
         {
             "name": "symfony/options-resolver",
-            "version": "v4.2.6",
+            "version": "v4.2.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/options-resolver.git",
@@ -1281,7 +1281,7 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v4.2.6",
+            "version": "v4.2.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
@@ -4110,7 +4110,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "smartemailing/types": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
