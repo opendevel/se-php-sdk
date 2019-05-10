@@ -12,6 +12,8 @@ interface ApiRequestInterface
 
     public static function getHttpMethod(): string;
 
-    public static function getEndpoint(): string;
+    public function getEndpoint(): string;
+
+    //public function getEndpoint2(): string;
 
 }

@@ -1,20 +1,20 @@
 <?php declare(strict_types = 1);
 
-namespace SmartEmailing\Sdk\ApiV3Client\Response\Import;
+namespace SmartEmailing\Sdk\ApiV3Client\Response\Contacts;
 
 use SmartEmailing\Sdk\ApiV3Client\Response\BaseResponse;
-use SmartEmailing\Sdk\ApiV3Client\Response\Import\Model\Contact;
+use SmartEmailing\Sdk\ApiV3Client\Response\Contacts\Model\Contact;
 use SmartEmailing\Types\PrimitiveTypes;
 
-final class ImportResponse extends BaseResponse
+final class ContactsResponse extends BaseResponse
 {
 
     /**
-     * Imported contacts
+     * Contacts collection
      *
-     * @var array
+     * @var \SmartEmailing\Sdk\ApiV3Client\Response\Contacts\Model\Contact[]
      */
-    private $contacts = [];
+    private $data = [];
 
     public static function fromArray(array $array): self
     {
@@ -26,34 +26,31 @@ final class ImportResponse extends BaseResponse
 
         $response->meta = PrimitiveTypes::extractArray($array, 'meta');
 
-        $contacts = PrimitiveTypes::extractArrayOrNull($array, 'contacts_map');
+        $data = PrimitiveTypes::extractArrayOrNull($array, 'data');
 
-        if (is_array($contacts)) {
-            foreach ($contacts as $contact) {
+        if (is_array($data)) {
+            foreach ($data as $contact) {
                 $contactObj = Contact::fromArray($contact);
-                $response->contacts[$contactObj->getId()] = $contactObj;
+                $response->data[$contactObj->getId()] = $contactObj;
             }
         }
 
         return $response;
     }
 
-    /**
-     * @return \SmartEmailing\Sdk\ApiV3Client\Response\Import\Model\Contact[]
-     */
     public function getContacts(): array
     {
-        return $this->contacts;
+        return $this->data;
     }
 
     public function hasContact(int $id): bool
     {
-        return isset($this->contacts[$id]);
+        return isset($this->data[$id]);
     }
 
     public function getContact(int $id): ?Contact
     {
-        return $this->hasContact($id) ? $this->contacts[$id] : null;
+        return $this->hasContact($id) ? $this->data[$id] : null;
     }
 
 }

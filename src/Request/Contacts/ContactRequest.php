@@ -1,10 +1,10 @@
 <?php declare(strict_types = 1);
 
-namespace SmartEmailing\Sdk\ApiV3Client\Request\Test;
+namespace SmartEmailing\Sdk\ApiV3Client\Request\Contacts;
 
 use SmartEmailing\Sdk\ApiV3Client\ApiRequestInterface;
 
-final class Ping implements ApiRequestInterface
+final class ContactRequest implements ApiRequestInterface
 {
 
     /**
@@ -15,10 +15,16 @@ final class Ping implements ApiRequestInterface
     /**
      * @var string
      */
-    protected static $endpoint = 'ping';
+    protected static $endpoint = 'contacts';
 
-    public function __construct()
+    /**
+     * @var int
+     */
+    private $id;
+
+    public function __construct(int $id)
     {
+        $this->id = $id;
     }
 
     public static function getHttpMethod(): string
@@ -28,12 +34,7 @@ final class Ping implements ApiRequestInterface
 
     public function getEndpoint(): string
     {
-        return self::$endpoint;
-    }
-
-    public static function fromArray(): self
-    {
-        return new self();
+        return self::$endpoint . '/' . $this->id;
     }
 
     public function toArray(): array

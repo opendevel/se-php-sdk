@@ -10,12 +10,13 @@
     ],
     "require": {
         "ext-json": "*",
+        "php-http/client-common": "^2.0",
         "php-http/client-implementation": "^1.0",
         "php-http/httplug": "^2.0",
         "php-http/message-factory": "^1.0",
         "php-http/discovery": "^1.0",
         "psr/http-message": "^1.0",
-        "smartemailing/types": "^1.0",
+        "smartemailing/types": "dev-master",
         "vlucas/phpdotenv": "^3.3"
     },
     "require-dev": {

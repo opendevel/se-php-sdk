@@ -26,7 +26,7 @@ final class CheckCredentials implements ApiRequestInterface
         return self::$method;
     }
 
-    public static function getEndpoint(): string
+    public function getEndpoint(): string
     {
         return self::$endpoint;
     }

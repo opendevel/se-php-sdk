@@ -1,8 +1,8 @@
 <?php declare(strict_types = 1);
 
-namespace SmartEmailing\Sdk\ApiV3Client\Response\Import\Model;
+namespace SmartEmailing\Sdk\ApiV3Client\Response\Import;
 
-use SmartEmailing\Sdk\ApiV3Client\Response\Import\ImportResponse;
+use SmartEmailing\Sdk\ApiV3Client\Response\Import\Model\Contact;
 use SmartEmailing\Sdk\ApiV3Client\TestCase;
 use SmartEmailing\Types\Emailaddress;
 

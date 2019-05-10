@@ -1,19 +1,20 @@
 <?php declare(strict_types = 1);
 
-namespace SmartEmailing\Sdk\ApiV3Client\Response\Test;
+namespace SmartEmailing\Sdk\ApiV3Client\Response\Contacts;
 
 use SmartEmailing\Sdk\ApiV3Client\Response\BaseResponse;
+use SmartEmailing\Sdk\ApiV3Client\Response\Contacts\Model\Contact;
 use SmartEmailing\Types\PrimitiveTypes;
 
-final class CheckCredentialsResponse extends BaseResponse
+final class ContactResponse extends BaseResponse
 {
 
     /**
-     * Your account Id
+     * Single sontact
      *
-     * @var int|null
+     * @var \SmartEmailing\Sdk\ApiV3Client\Response\Contacts\Model\Contact
      */
-    private $accountId = null;
+    private $contact;
 
     public static function fromArray(array $array): self
     {
@@ -25,14 +26,9 @@ final class CheckCredentialsResponse extends BaseResponse
 
         $response->meta = PrimitiveTypes::extractArray($array, 'meta');
 
-        $response->accountId = PrimitiveTypes::extractIntOrNull($array, 'account_id', true);
+        $response->contact = Contact::fromArray(PrimitiveTypes::extractArray($array, 'data'));
 
         return $response;
-    }
-
-    public function getAccountId(): ?int
-    {
-        return $this->accountId;
     }
 
 }
