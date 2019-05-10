@@ -4,6 +4,8 @@ namespace SmartEmailing\Sdk\ApiV3Client\Response\Contacts\Model;
 
 use DateTimeImmutable;
 use SmartEmailing\Sdk\ApiV3Client\Enum\Gender;
+use SmartEmailing\Types\Arrays;
+use SmartEmailing\Types\DatesImmutable;
 use SmartEmailing\Types\DateTimesImmutable;
 use SmartEmailing\Types\Emailaddress;
 use SmartEmailing\Types\Guid;
@@ -153,7 +155,7 @@ final class Contact
      *
      * @var \DateTimeImmutable|null
      */
-    private $updated = null; //@todo v dokumentaci api je update VS v response jsonu je updated
+    private $updated = null;
 
     /**
      * Date and time of Contact's last click in one of your emails
@@ -185,7 +187,6 @@ final class Contact
 
     /**
      * 0 if Contact is OK, 1 if Contact has permanent delivery failure.
-     * //@todo 0 vs false
      *
      * @var bool|null
      */
@@ -220,20 +221,46 @@ final class Contact
     private $customFieldsUrl;
 
     /**
+     * @var string|null
+     */
+    private $domain = null;
+
+    /**
+     * @var bool|null
+     */
+    private $isConfirmed = null;
+
+    /**
+     * @var string|null
+     */
+    private $realName = null;
+
+    /**
+     * @var string|null
+     */
+    private $salutionUserName = null;
+
+    /**
+     * @var string|null
+     */
+    private $salutionGender = null;
+
+    /**
+     * @var string|null
+     */
+    private $salutionGenderTitle = null;
+
+    /**
+     * @var string|null
+     */
+    private $affilId = null;
+
+    /**
      * Contactlists collection
      *
      * @var \SmartEmailing\Sdk\ApiV3Client\Response\Contacts\Model\ContactList[]
      */
     private $contactLists = [];
-
-    //@todo je v json, neni v dokumentaci
-    //@todo domain
-    //@todo is_confirmed
-    //@todo realname
-    //@todo salutionusername
-    //@todo salutiongender
-    //@todo salution_gender_title
-    //@todo affilid
 
     /**
      * Contact constructor.
@@ -259,41 +286,47 @@ final class Contact
             Guid::extract($array, 'guid'),
             Emailaddress::extract($array, 'emailaddress')
         );
-        $self->name = PrimitiveTypes::extractStringOrNull($array, 'name', true);
-        $self->surname = PrimitiveTypes::extractStringOrNull($array, 'surname', true);
-        $self->titlesBefore = PrimitiveTypes::extractStringOrNull($array, 'titlesbefore', true);
-        $self->titlesAfter = PrimitiveTypes::extractStringOrNull($array, 'titlesafter', true);
-        $self->salution = PrimitiveTypes::extractStringOrNull($array, 'salution', true);
-        $self->company = PrimitiveTypes::extractStringOrNull($array, 'company', true);
-        $self->street = PrimitiveTypes::extractStringOrNull($array, 'street', true);
-        $self->town = PrimitiveTypes::extractStringOrNull($array, 'town', true);
-        $self->postalCode = PrimitiveTypes::extractStringOrNull($array, 'postalcode', true);
-        $self->country = PrimitiveTypes::extractStringOrNull($array, 'country', true);
-        $self->cellPhone = PrimitiveTypes::extractStringOrNull($array, 'cellphone', true);
-        $self->phone = PrimitiveTypes::extractStringOrNull($array, 'phone', true);
-        $self->language = PrimitiveTypes::extractStringOrNull($array, 'language', true);
-        $self->notes = PrimitiveTypes::extractStringOrNull($array, 'notes', true);
+        $self->name = PrimitiveTypes::extractStringOrNull($array, 'name');
+        $self->surname = PrimitiveTypes::extractStringOrNull($array, 'surname');
+        $self->titlesBefore = PrimitiveTypes::extractStringOrNull($array, 'titlesbefore');
+        $self->titlesAfter = PrimitiveTypes::extractStringOrNull($array, 'titlesafter');
+        $self->salution = PrimitiveTypes::extractStringOrNull($array, 'salution');
+        $self->company = PrimitiveTypes::extractStringOrNull($array, 'company');
+        $self->street = PrimitiveTypes::extractStringOrNull($array, 'street');
+        $self->town = PrimitiveTypes::extractStringOrNull($array, 'town');
+        $self->postalCode = PrimitiveTypes::extractStringOrNull($array, 'postalcode');
+        $self->country = PrimitiveTypes::extractStringOrNull($array, 'country');
+        $self->cellPhone = PrimitiveTypes::extractStringOrNull($array, 'cellphone');
+        $self->phone = PrimitiveTypes::extractStringOrNull($array, 'phone');
+        $self->language = PrimitiveTypes::extractStringOrNull($array, 'language');
+        $self->notes = PrimitiveTypes::extractStringOrNull($array, 'notes');
 
-        $self->gender = Gender::extractOrNull($array, 'gender', true);
+        $self->gender = Gender::extractOrNull($array, 'gender');
 
-        $self->created = DateTimesImmutable::extractOrNull($array, 'created', true);
-        $self->updated = DateTimesImmutable::extractOrNull($array, 'updated', true);
-        $self->lastClicked = DateTimesImmutable::extractOrNull($array, 'last_clicked', true);   //@todo kontrola predani hodnoty z jsonu
-        $self->lastOpened = DateTimesImmutable::extractOrNull($array, 'last_opened', true);    //@todo kontrola predani hodnoty z jsonu
-        $self->preferredDeliveryTime = DateTimesImmutable::extractOrNull($array, 'preferredDeliveryTime', true);    //@todo
+        $self->created = DateTimesImmutable::extractOrNull($array, 'created');
+        $self->updated = DateTimesImmutable::extractOrNull($array, 'updated');
+        $self->lastClicked = DateTimesImmutable::extractOrNull($array, 'last_clicked');
+        $self->lastOpened = DateTimesImmutable::extractOrNull($array, 'last_opened');
+        $self->preferredDeliveryTime = DateTimesImmutable::extractOrNull($array, 'preferredDeliveryTime');
 
-        $self->softBounced = PrimitiveTypes::extractIntOrNull($array, 'softbounced', true);
-        $self->hardBounced = PrimitiveTypes::extractBoolOrNull($array, 'hardbounced', true);
-        $self->blackListed = PrimitiveTypes::extractBoolOrNull($array, 'blacklisted', true);
+        $self->softBounced = PrimitiveTypes::extractIntOrNull($array, 'softbounced');
+        $self->hardBounced = PrimitiveTypes::extractBoolOrNull($array, 'hardbounced');
+        $self->blackListed = PrimitiveTypes::extractBoolOrNull($array, 'blacklisted');
 
-        //@todo DateTimesImmutable::extractOrNull VS DateTimesImmutable::extractDateOrNull
-        //$self->nameDay = DateTimesImmutable::extractOrNull($array, 'nameday', true);   //@todo vraci string ve formatu YYY-MM-DD
-        $self->nameDay = DateTimesImmutable::extractDateOrNull($array, 'nameday');
-        $self->birthDay = DateTimesImmutable::extractDateOrNull($array, 'birthday');
+        $self->nameDay = DatesImmutable::extractOrNull($array, 'nameday');
+        $self->birthDay = DatesImmutable::extractOrNull($array, 'birthday');
 
-        $self->customFieldsUrl = UrlType::extractOrNull($array, 'customfields_url', true);
+        $self->customFieldsUrl = UrlType::extractOrNull($array, 'customfields_url');
 
-        $contactLists = PrimitiveTypes::extractArrayOrNull($array, 'contactlists');
+        $self->domain = PrimitiveTypes::extractStringOrNull($array, 'domain');
+        $self->isConfirmed = PrimitiveTypes::extractBoolOrNull($array, 'is_confirmed');
+        $self->realName = PrimitiveTypes::extractStringOrNull($array, 'realname');
+        $self->salutionUserName = PrimitiveTypes::extractStringOrNull($array, 'salutionsurname');
+        $self->salutionGender = PrimitiveTypes::extractStringOrNull($array, 'salutiongender');
+        $self->salutionGenderTitle = PrimitiveTypes::extractStringOrNull($array, 'salution_gender_title');
+        $self->affilId = PrimitiveTypes::extractStringOrNull($array, 'affilid');
+
+        $contactLists = Arrays::extractArrayOrNull($array, 'contactlists');
         if (is_array($contactLists)) {
             foreach ($contactLists as $contactList) {
                 $objContactList = ContactList::fromArray($contactList);
@@ -447,6 +480,41 @@ final class Contact
     public function getCustomFieldsUrl(): ?UrlType
     {
         return $this->customFieldsUrl;
+    }
+
+    public function getDomain(): ?string
+    {
+        return $this->domain;
+    }
+
+    public function getIsConfirmed(): ?bool
+    {
+        return $this->isConfirmed;
+    }
+
+    public function getRealName(): ?string
+    {
+        return $this->realName;
+    }
+
+    public function getSalutionUserName(): ?string
+    {
+        return $this->salutionUserName;
+    }
+
+    public function getSalutionGender(): ?string
+    {
+        return $this->salutionGender;
+    }
+
+    public function getSalutionGenderTitle(): ?string
+    {
+        return $this->salutionGenderTitle;
+    }
+
+    public function getAffilId(): ?string
+    {
+        return $this->affilId;
     }
 
     /**

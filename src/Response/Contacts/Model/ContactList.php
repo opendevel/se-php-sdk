@@ -48,9 +48,8 @@ final class ContactList
      */
     private $updated = null;
 
-    //@todo score_clicks
-    //@todo score_opens
-    //@todo contact_id
+    //@todo? score_clicks - typ promenne
+    //@todo? score_opens - typ promenne
 
     public function __construct(int $id, int $contactListId)
     {
@@ -64,9 +63,9 @@ final class ContactList
             PrimitiveTypes::extractInt($array, 'id'),
             PrimitiveTypes::extractInt($array, 'contactlist_id')
         );
-        $self->status = ContactListStatus::extractOrNull($array, 'status', true);
-        $self->added = DateTimesImmutable::extractOrNull($array, 'added', true);
-        $self->updated = DateTimesImmutable::extractOrNull($array, 'updated', true);
+        $self->status = ContactListStatus::extractOrNull($array, 'status');
+        $self->added = DateTimesImmutable::extractOrNull($array, 'added');
+        $self->updated = DateTimesImmutable::extractOrNull($array, 'updated');
 
         return $self;
     }
