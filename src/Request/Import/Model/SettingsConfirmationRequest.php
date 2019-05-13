@@ -1,36 +1,62 @@
 <?php declare(strict_types = 1);
 
-namespace SmartEmailing\Sdk\Request\Import\Model;
+namespace SmartEmailing\Sdk\ApiV3Client\Request\Import\Model;
 
-use SmartEmailing\Sdk\Request\AbstractModel;
+use SmartEmailing\Sdk\ApiV3Client\ToArrayInterface;
+use SmartEmailing\Types\Emailaddress;
+use SmartEmailing\Types\UrlType;
 
-final class SettingsConfirmationRequest extends AbstractModel
+final class SettingsConfirmationRequest implements ToArrayInterface
 {
 
     /**
+     * ID of E-mail containing {{confirmlink}}.
+     *
      * @var int
      */
-    private $email_id;
+    private $emailId;
 
     /**
-     * @var string
+     * From e-mail address of opt-in campaign
+     *
+     * @var \SmartEmailing\Types\Emailaddress
      */
     private $from;
 
     /**
+     * From name of opt-in campaign
+     *
      * @var string
      */
-    private $sender_name;
+    private $senderName;
 
     /**
-     * @var string
+     * Reply-To e-mail address in opt-in campaign
+     *
+     * @var \SmartEmailing\Types\Emailaddress
      */
-    private $reply_to;
+    private $replyTo;
 
     /**
-     * @var string|null
+     * URL of thank-you page where contact will be redirected after clicking at confirmation link. If not provided, contact will be redirected to default page
+     *
+     * @var \SmartEmailing\Types\UrlType|null
      */
-    private $confirmation_thank_you_page_url = null;
+    private $confirmationThankYouPageUrl = null;
+
+    public function __construct(
+        int $emailId,
+        Emailaddress $from,
+        string $senderName,
+        Emailaddress $replyTo,
+        ?UrlType $confirmationThankYouPageUrl = null
+    ) {
+        $this->emailId = $emailId;
+        $this->from = $from;
+        $this->senderName = $senderName;
+        $this->replyTo = $replyTo;
+        $this->confirmationThankYouPageUrl = $confirmationThankYouPageUrl;
+    }
 
     /**
      * @return array
@@ -38,29 +64,19 @@ final class SettingsConfirmationRequest extends AbstractModel
     public function toArray(): array
     {
         return [
-            'email_id' => $this->email_id,
+            'email_id' => $this->emailId,
             'sender_credentials' => [
-                'from' => $this->from,
-                'reply_to' => $this->reply_to,
-                'sender_name' => $this->sender_name,
+                'from' => $this->from->getValue(),
+                'sender_name' => $this->senderName,
+                'reply_to' => $this->replyTo->getValue(),
             ],
-            'confirmation_thank_you_page_url' => $this->confirmation_thank_you_page_url,
+            'confirmation_thank_you_page_url' => $this->confirmationThankYouPageUrl !== null ? $this->confirmationThankYouPageUrl->getValue() : null,
         ];
     }
 
-    public function __construct(int $emailId, string $from, string $replyTo, string $senderName, ?string $confirmationThankYouPageUrl = null)
+    public function setConfirmationThankYouPageUrl(?UrlType $confirmationThankYouPageUrl): void
     {
-        $this->email_id = $emailId;
-        $this->from = $from;
-        $this->reply_to = $replyTo;
-        $this->sender_name = $senderName;
-        $this->confirmation_thank_you_page_url = $confirmationThankYouPageUrl;
-    }
-
-    public function setConfirmationThankYouPageUrl(?string $confirmation_thank_you_page_url): SettingsConfirmationRequest
-    {
-        $this->confirmation_thank_you_page_url = $confirmation_thank_you_page_url;
-        return $this;
+        $this->confirmationThankYouPageUrl = $confirmationThankYouPageUrl;
     }
 
 }

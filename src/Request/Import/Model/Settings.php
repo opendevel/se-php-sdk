@@ -1,10 +1,10 @@
 <?php declare(strict_types = 1);
 
-namespace SmartEmailing\Sdk\Request\Import\Model;
+namespace SmartEmailing\Sdk\ApiV3Client\Request\Import\Model;
 
-use SmartEmailing\Sdk\Request\AbstractModel;
+use SmartEmailing\Sdk\ApiV3Client\ToArrayInterface;
 
-final class Settings extends AbstractModel
+final class Settings implements ToArrayInterface
 {
 
     /**
@@ -38,9 +38,13 @@ final class Settings extends AbstractModel
     private $skipInvalidEmails = false;
 
     /**
-     * @var \SmartEmailing\Sdk\Request\Import\Model\SettingsConfirmationRequest|null
+     * @var \SmartEmailing\Sdk\ApiV3Client\Request\Import\Model\SettingsConfirmationRequest|null
      */
     private $confirmationRequest = null;
+
+    public function __construct()
+    {
+    }
 
     public function toArray(): array
     {
@@ -51,50 +55,43 @@ final class Settings extends AbstractModel
             'add_salutions' => $this->addSalutions,
             'preserve_unsubscribed' => $this->preserveUnsubscribed,
             'skip_invalid_emails' => $this->skipInvalidEmails,
-            'confirmation_request' => $this->confirmationRequest,
+            'confirmation_request' => $this->confirmationRequest !== null ? $this->confirmationRequest->toArray() : null,
         ];
     }
 
-    public function setUpdate(bool $update = true): Settings
+    public function setUpdate(bool $update): void
     {
         $this->update = $update;
-        return $this;
     }
 
-    public function setAddNamedays(bool $addNamedays): Settings
+    public function setAddNamedays(bool $addNamedays): void
     {
         $this->addNamedays = $addNamedays;
-        return $this;
     }
 
-    public function setAddGenders(bool $addGenders): Settings
+    public function setAddGenders(bool $addGenders): void
     {
         $this->addGenders = $addGenders;
-        return $this;
     }
 
-    public function setAddSalutions(bool $addSalutions): Settings
+    public function setAddSalutions(bool $addSalutions): void
     {
         $this->addSalutions = $addSalutions;
-        return $this;
     }
 
-    public function setPreserveUnsubscribed(bool $preserveUnsubscribed): Settings
+    public function setPreserveUnsubscribed(bool $preserveUnsubscribed): void
     {
         $this->preserveUnsubscribed = $preserveUnsubscribed;
-        return $this;
     }
 
-    public function setSkipInvalidemails(bool $skipInvalidEmails): Settings
+    public function setSkipInvalidemails(bool $skipInvalidEmails): void
     {
         $this->skipInvalidEmails = $skipInvalidEmails;
-        return $this;
     }
 
-    public function setConfirmationRequest(?SettingsConfirmationRequest $confirmationRequest): Settings
+    public function setConfirmationRequest(?SettingsConfirmationRequest $confirmationRequest): void
     {
         $this->confirmationRequest = $confirmationRequest;
-        return $this;
     }
 
 }

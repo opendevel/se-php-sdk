@@ -1,12 +1,10 @@
 <?php declare(strict_types = 1);
 
-namespace SmartEmailing\Sdk;
+namespace SmartEmailing\Sdk\ApiV3Client;
+
+use const E_ALL;
+use function error_reporting;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use Tester\Environment;
-
-\error_reporting(\E_ALL);
-
-
-Environment::setup();
+error_reporting(E_ALL);

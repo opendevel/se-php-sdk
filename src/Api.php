@@ -1,43 +1,60 @@
 <?php declare(strict_types = 1);
 
-namespace SmartEmailing\Sdk;
+namespace SmartEmailing\Sdk\ApiV3Client;
 
-use GuzzleHttp\Client as GuzzleClient;
-use Http\Adapter\Guzzle6\Client as GuzzleAdapter;
-use Http\Client\HttpClient;
+use Http\Message\Authentication;
+use SmartEmailing\Sdk\ApiV3Client\Request\Contacts\ContactRequest;
+use SmartEmailing\Sdk\ApiV3Client\Request\Contacts\ContactsRequest;
+use SmartEmailing\Sdk\ApiV3Client\Request\Import\ImportRequest;
+use SmartEmailing\Sdk\ApiV3Client\Request\Test\CheckCredentials;
+use SmartEmailing\Sdk\ApiV3Client\Request\Test\Ping;
+use SmartEmailing\Sdk\ApiV3Client\Response\Contacts\ContactResponse;
+use SmartEmailing\Sdk\ApiV3Client\Response\Contacts\ContactsResponse;
+use SmartEmailing\Sdk\ApiV3Client\Response\Import\ImportResponse;
+use SmartEmailing\Sdk\ApiV3Client\Response\Test\CheckCredentialsResponse;
+use SmartEmailing\Sdk\ApiV3Client\Response\Test\PingResponse;
 
 final class Api
 {
 
     /**
-     * @var string
+     * @var \SmartEmailing\Sdk\ApiV3Client\ApiClient
      */
-    private $baseUri = 'https://app.smartemailing.cz/api/v3/';
+    private $apiClient;
 
-    /**
-     * @var \Http\Client\HttpClient
-     */
-    private $client;
-
-    public function __construct(string $username, string $password)
+    public function __construct(Authentication $authentication)
     {
-
-        $config = [
-            'auth' => [
-                $username,
-                $password,
-            ],
-            'base_uri' => $this->baseUri,
-            'timeout' => 5.0,
-        ];
-
-        $this->client = new GuzzleAdapter(new GuzzleClient($config));
+        $this->apiClient = new ApiClient($authentication);
     }
 
-
-    public function getHttpClient(): HttpClient
+    public function ping(Ping $apiRequest): PingResponse
     {
-        return $this->client;
+        $result = $this->apiClient->sendRequest($apiRequest);
+        return PingResponse::fromArray(json_decode($result, true));
+    }
+
+    public function checkCredentials(CheckCredentials $apiRequest): CheckCredentialsResponse
+    {
+        $result = $this->apiClient->sendRequest($apiRequest);
+        return CheckCredentialsResponse::fromArray(json_decode($result, true));
+    }
+
+    public function import(ImportRequest $apiRequest): ImportResponse
+    {
+        $result = $this->apiClient->sendRequest($apiRequest);
+        return ImportResponse::fromArray(json_decode($result, true));
+    }
+
+    public function contacts(ContactsRequest $apiRequest): ContactsResponse
+    {
+        $result = $this->apiClient->sendRequest($apiRequest);
+        return ContactsResponse::fromArray(json_decode($result, true));
+    }
+
+    public function contact(ContactRequest $apiRequest): ContactResponse
+    {
+        $result = $this->apiClient->sendRequest($apiRequest);
+        return ContactResponse::fromArray(json_decode($result, true));
     }
 
 }
