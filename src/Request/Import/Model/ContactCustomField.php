@@ -47,10 +47,13 @@ final class ContactCustomField implements ToArrayInterface
         $this->id = $id;
 
         $options = UniqueIntArray::fromOrNull($value, true);
+
+        if ($options === null) {
+            $this->value = $value;
+        }
+
         if ($options !== null) {
             $this->options = UniqueIntArray::from($options);
-        } else {
-            $this->value = $value;
         }
     }
 
