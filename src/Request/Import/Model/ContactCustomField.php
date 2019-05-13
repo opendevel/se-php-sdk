@@ -61,9 +61,13 @@ final class ContactCustomField implements ToArrayInterface
     {
         $id = PrimitiveTypes::extractInt($array, 'id');
 
+        $value = null;
+
         if (PrimitiveTypes::extractArrayOrNull($array, 'options') !== null) {
             $value = PrimitiveTypes::extractArray($array, 'options');
-        } else {
+        }
+
+        if (PrimitiveTypes::extractArrayOrNull($array, 'options') === null) {
             $value = PrimitiveTypes::extractString($array, 'value');
         }
 
@@ -78,12 +82,12 @@ final class ContactCustomField implements ToArrayInterface
                 'id' => $this->id,
                 'options' => $this->options !== null ? $this->options->getValues() : null,
             ];
-        } else {
-            return [
-                'id' => $this->id,
-                'value' => $this->value,
-            ];
         }
+
+        return [
+            'id' => $this->id,
+            'value' => $this->value,
+        ];
     }
 
 }
