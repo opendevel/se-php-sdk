@@ -31,4 +31,9 @@ final class ContactResponse extends BaseResponse
         return $response;
     }
 
+    public function getContact(): Contact
+    {
+        return $this->contact;
+    }
+
 }
