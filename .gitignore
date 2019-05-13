@@ -3,6 +3,7 @@
 /.phpunit.result.cache
 /_/
 /tests/.env
+/tests/ApiTest.php
 /tests/output/
 /tests/.phpunit.result.cache
 /tests/Request/Import/Model/.phpunit.result.cache
