@@ -3,11 +3,13 @@
 namespace SmartEmailing\Sdk\ApiV3Client;
 
 use Http\Message\Authentication;
+use SmartEmailing\Sdk\ApiV3Client\Request\Campaigns\SendCustomEmailsBulkRequest;
 use SmartEmailing\Sdk\ApiV3Client\Request\Contacts\ContactRequest;
 use SmartEmailing\Sdk\ApiV3Client\Request\Contacts\ContactsRequest;
 use SmartEmailing\Sdk\ApiV3Client\Request\Import\ImportRequest;
 use SmartEmailing\Sdk\ApiV3Client\Request\Test\CheckCredentials;
 use SmartEmailing\Sdk\ApiV3Client\Request\Test\Ping;
+use SmartEmailing\Sdk\ApiV3Client\Response\Campaigns\SendCustomEmailsBulkResponse;
 use SmartEmailing\Sdk\ApiV3Client\Response\Contacts\ContactResponse;
 use SmartEmailing\Sdk\ApiV3Client\Response\Contacts\ContactsResponse;
 use SmartEmailing\Sdk\ApiV3Client\Response\Import\ImportResponse;
@@ -55,6 +57,12 @@ final class Api
     {
         $result = $this->apiClient->sendRequest($apiRequest);
         return ContactResponse::fromArray(json_decode($result, true));
+    }
+
+    public function sendCustomEmailsBulk(SendCustomEmailsBulkRequest $apiRequest): SendCustomEmailsBulkResponse
+    {
+        $result = $this->apiClient->sendRequest($apiRequest);
+        return SendCustomEmailsBulkResponse::fromArray(json_decode($result, true));
     }
 
 }
