@@ -4,7 +4,7 @@ namespace SmartEmailing\Sdk\ApiV3Client\Request\Campaigns\Model;
 
 use SmartEmailing\Sdk\ApiV3Client\ToArrayInterface;
 
-class Task implements ToArrayInterface
+final class Task implements ToArrayInterface
 {
 
     /**
