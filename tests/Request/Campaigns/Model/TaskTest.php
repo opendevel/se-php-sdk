@@ -34,7 +34,7 @@ final class TaskTest extends TestCase
         // ACT
         $task = new Task(new Recipient('john.doe@example.com'));
 
-        $task->addTemplateVariable(new TemplateVariable('order_id', '0037565'));
+        $task->addTemplateVariable('order_id', '0037565');
 
         $templateVariable2Value = [
             [
@@ -49,7 +49,7 @@ final class TaskTest extends TestCase
             ],
         ];
 
-        $task->addTemplateVariable(new TemplateVariable('products', $templateVariable2Value));
+        $task->addTemplateVariable('products', $templateVariable2Value);
 
         // ASSERT
         $this->assertSame($output, $task->toArray());

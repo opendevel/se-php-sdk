@@ -64,8 +64,8 @@ final class SendCustomEmailsBulkRequestTest extends TestCase
 
         $recipient1 = new Recipient('john.doe@example.com');
         $task1 = new Task($recipient1);
-        $task1->addTemplateVariable(new TemplateVariable('order_id', 0037565));
-        $task1->addTemplateVariable(new TemplateVariable(
+        $task1->addTemplateVariable('order_id', 0037565);
+        $task1->addTemplateVariable(
             'products',
             [
                 [
@@ -79,7 +79,7 @@ final class SendCustomEmailsBulkRequestTest extends TestCase
                     'image_url' => 'http://www.imcdb.org/i013795.jpg',
                 ],
             ]
-        ));
+        );
 
         $sendCustomEmailsBulkRequest->addTask($task1);
 

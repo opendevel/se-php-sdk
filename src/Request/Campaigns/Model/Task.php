@@ -43,8 +43,9 @@ class Task implements ToArrayInterface
         return $return;
     }
 
-    public function addTemplateVariable(TemplateVariable $templateVariable): void
+    public function addTemplateVariable(string $key, $value): void
     {
+        $templateVariable = new TemplateVariable($key, $value);
         $this->templateVariables[] = $templateVariable;
     }
 
