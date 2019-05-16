@@ -5,7 +5,7 @@ namespace SmartEmailing\Sdk\ApiV3Client\Request\Campaigns\Model;
 use SmartEmailing\Sdk\ApiV3Client\ToArrayInterface;
 use SmartEmailing\Types\Emailaddress;
 
-class SenderCredentials implements ToArrayInterface
+final class SenderCredentials implements ToArrayInterface
 {
 
     /**
