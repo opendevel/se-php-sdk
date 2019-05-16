@@ -24,7 +24,7 @@ final class SendCustomEmailsBulkRequest implements ApiRequestInterface
      *
      * @var \SmartEmailing\Sdk\ApiV3Client\Request\Campaigns\Model\SenderCredentials
      */
-    private $sender_credentials;
+    private $senderCredentials;
 
     /**
      * Tag used for email grouping
@@ -39,7 +39,7 @@ final class SendCustomEmailsBulkRequest implements ApiRequestInterface
      *
      * @var int
      */
-    private $email_id;
+    private $emailId;
 
     /**
      * Array of sending tasks, one per recipient.
@@ -48,11 +48,11 @@ final class SendCustomEmailsBulkRequest implements ApiRequestInterface
      */
     private $tasks = [];
 
-    public function __construct(SenderCredentials $sender_credentials, string $tag, int $email_id)
+    public function __construct(SenderCredentials $senderCredentials, string $tag, int $emailId)
     {
-        $this->sender_credentials = $sender_credentials;
+        $this->senderCredentials = $senderCredentials;
         $this->tag = $tag;
-        $this->email_id = $email_id;
+        $this->emailId = $emailId;
     }
 
 
@@ -69,9 +69,9 @@ final class SendCustomEmailsBulkRequest implements ApiRequestInterface
     public function toArray(): array
     {
         return [
-            'sender_credentials' => $this->sender_credentials->toArray(),
+            'sender_credentials' => $this->senderCredentials->toArray(),
             'tag' => $this->tag,
-            'email_id' => $this->email_id,
+            'email_id' => $this->emailId,
             'tasks' => $this->toArrayTasks(),
         ];
     }
