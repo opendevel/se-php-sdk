@@ -2,7 +2,7 @@
 
 namespace SmartEmailing\Sdk\ApiV3Client\Request\Campaigns\Model;
 
-class TemplateVariable
+final class TemplateVariable
 {
 
     /**
