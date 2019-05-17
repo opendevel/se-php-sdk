@@ -70,7 +70,7 @@ final class SettingsConfirmationRequest implements ToArrayInterface
                 'sender_name' => $this->senderName,
                 'reply_to' => $this->replyTo->getValue(),
             ],
-            'confirmation_thank_you_page_url' => $this->confirmationThankYouPageUrl !== null ? $this->confirmationThankYouPageUrl->getValue() : null,
+            'confirmation_thank_you_page_url' => $this->confirmationThankYouPageUrl !== null ? $this->confirmationThankYouPageUrl->getAbsoluteUrl() : null,
         ];
     }
 
