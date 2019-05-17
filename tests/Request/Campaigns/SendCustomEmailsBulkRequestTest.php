@@ -1,8 +1,10 @@
 <?php declare(strict_types = 1);
 
-namespace SmartEmailing\Sdk\ApiV3Client\Request\Campaigns\Model;
+namespace SmartEmailing\Sdk\ApiV3Client\Request\Campaigns;
 
-use SmartEmailing\Sdk\ApiV3Client\Request\Campaigns\SendCustomEmailsBulkRequest;
+use SmartEmailing\Sdk\ApiV3Client\Request\Campaigns\Model\Recipient;
+use SmartEmailing\Sdk\ApiV3Client\Request\Campaigns\Model\SenderCredentials;
+use SmartEmailing\Sdk\ApiV3Client\Request\Campaigns\Model\Task;
 use SmartEmailing\Sdk\ApiV3Client\TestCase;
 
 final class SendCustomEmailsBulkRequestTest extends TestCase
