@@ -9,8 +9,6 @@ final class SenderCredentials implements ToArrayInterface
 {
 
     /**
-     * //@todo popis
-     *
      * @var \SmartEmailing\Types\Emailaddress
      */
     private $from;
