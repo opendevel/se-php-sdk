@@ -68,6 +68,7 @@ final class OrdersResponseTest extends TestCase
         $orderResponse = OrdersResponse::fromArray($array);
         
         $this->assertSame('ok', $orderResponse->getStatus());
+        $this->assertSame(null, $orderResponse->getMessage());
         $this->assertSame([], $orderResponse->getMeta());
     }
     

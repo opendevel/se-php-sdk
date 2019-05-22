@@ -49,16 +49,12 @@ final class OrdersRequest implements ApiRequestInterface
     private $items = [];
     
     /**
+     * Array of items in shopping cart with feed reference
+     *
      * @var \SmartEmailing\Sdk\ApiV3Client\Request\Eshops\Model\ItemFeed[]
      */
     private $itemFeeds = [];
     
-    /**
-     * OrdersRequest constructor.
-     * @param string $eshopName
-     * @param string $emailAddress
-     * @param \DateTimeImmutable $createdAt
-     */
     public function __construct(
         string $eshopName,
         string $emailAddress,
