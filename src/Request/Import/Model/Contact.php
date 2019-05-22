@@ -81,7 +81,7 @@ final class Contact implements ToArrayInterface
     /**
      * @var string|null
      */
-    private $language = null;   //@todo Language in POSIX format, eg. cz_CZ
+    private $language = null;
 
     /**
      * @var string|null
