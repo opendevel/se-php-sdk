@@ -4,7 +4,7 @@ namespace SmartEmailing\Sdk\ApiV3Client\Request\Eshops\Model;
 
 use SmartEmailing\Sdk\ApiV3Client\TestCase;
 
-final class ItemFeedTest extends TestCase
+final class FeedItemTest extends TestCase
 {
 
     public function testCreate(): void
@@ -16,10 +16,10 @@ final class ItemFeedTest extends TestCase
             'quantity' => 3,
         ];
 
-        $itemFeed = new ItemFeed('ZYX987', 'my-feed', 3);
+        $feedItem = new FeedItem('ZYX987', 'my-feed', 3);
 
         // ASSERT
-        $this->assertSame($output, $itemFeed->toArray());
+        $this->assertSame($output, $feedItem->toArray());
     }
 
     public function testCreateWithQuantityZero(): void
@@ -31,16 +31,16 @@ final class ItemFeedTest extends TestCase
             'quantity' => 0,
         ];
 
-        $itemFeed = new ItemFeed('ZYX987', 'my-feed', 0);
+        $feedItem = new FeedItem('ZYX987', 'my-feed', 0);
 
         // ASSERT
-        $this->assertSame($output, $itemFeed->toArray());
+        $this->assertSame($output, $feedItem->toArray());
     }
 
     public function testCreateWithQuantityNegative(): void
     {
         $this->expectException(\SmartEmailing\Types\InvalidTypeException::class);
-        new ItemFeed('ZYX987', 'my-feed', -3);
+        new FeedItem('ZYX987', 'my-feed', -3);
     }
 
 }

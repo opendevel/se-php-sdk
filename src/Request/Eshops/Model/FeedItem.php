@@ -5,7 +5,7 @@ namespace SmartEmailing\Sdk\ApiV3Client\Request\Eshops\Model;
 use SmartEmailing\Sdk\ApiV3Client\ToArrayInterface;
 use SmartEmailing\Types\UnsignedInt;
 
-final class ItemFeed implements ToArrayInterface
+final class FeedItem implements ToArrayInterface
 {
 
     /**

@@ -8,7 +8,7 @@ use SmartEmailing\Types\Price;
 
 final class OrdersShoppingCartTest extends TestCase
 {
-    
+
     public function testCreateFull(): void
     {
         // ARRANGE
@@ -52,13 +52,13 @@ final class OrdersShoppingCartTest extends TestCase
                 ],
             ],
         ];
-        
+
         $shoppingCartRequest = new ShoppingCartRequest(
             'my-eshop',
             'john.doe@example.com',
             new DateTimeImmutable('2019-01-01 00:00:00')
         );
-        
+
         $shoppingCartRequest->addItem(
             'ABC123',
             'My product',
@@ -72,7 +72,7 @@ final class OrdersShoppingCartTest extends TestCase
             'https://www.example.com/my-product',
             'https://www.example.com/images/my-product.jpg'
         );
-        
+
         $shoppingCartRequest->addItem(
             'XYZ789',
             'My another product',
@@ -86,11 +86,11 @@ final class OrdersShoppingCartTest extends TestCase
             'https://www.example.com/my-another-product',
             'https://www.example.com/images/my-another-product.jpg'
         );
-        
-        $shoppingCartRequest->addItemFeed('ZYX987', 'my-feed', 3);
-        
+
+        $shoppingCartRequest->addFeedItem('ZYX987', 'my-feed', 3);
+
         // ASSERT
         $this->assertEquals($output, $shoppingCartRequest->toArray());
     }
-    
+
 }
