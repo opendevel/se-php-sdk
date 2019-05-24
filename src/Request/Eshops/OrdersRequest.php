@@ -30,6 +30,13 @@ final class OrdersRequest implements ApiRequestInterface
     private $eshopName;
 
     /**
+     * Unique order code
+     *
+     * @var string|null
+     */
+    private $eshopCode = null;
+
+    /**
      * Contact's email address
      *
      * @var \SmartEmailing\Types\Emailaddress
@@ -77,13 +84,31 @@ final class OrdersRequest implements ApiRequestInterface
 
     public function toArray(): array
     {
-        return [
+        $return = [
             'eshop_name' => $this->eshopName,
             'emailaddress' => $this->emailAddress->getValue(),
             'created_at' => $this->createdAt->format('Y-m-d H:i:s'),
-            'items' => $this->toArrayItems(),
-            'item_feeds' => $this->toArrayFeedItems(),
         ];
+
+        if (!is_null($this->eshopCode)) {
+            $return['eshop_code'] = $this->eshopCode;
+        }
+
+        if (!empty($this->items)) {
+            $return['items'] = $this->toArrayItems();
+        }
+
+        if (!empty($this->feedItems)) {
+            $return['item_feeds'] = $this->toArrayFeedItems();
+        }
+
+        return $return;
+
+    }
+
+    public function setEshopCode(?string $eshopCode): void
+    {
+        $this->eshopCode = $eshopCode;
     }
 
     public function addItem(

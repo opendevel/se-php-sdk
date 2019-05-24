@@ -9,11 +9,31 @@ use SmartEmailing\Types\Price;
 final class OrdersRequestTest extends TestCase
 {
 
+    public function testCreateMin(): void
+    {
+        // ARRANGE
+        $output = [
+            'eshop_name' => 'my-eshop',
+            'emailaddress' => 'john.doe@example.com',
+            'created_at' => '2019-01-01 00:00:00',
+        ];
+
+        $ordersRequest = new OrdersRequest(
+            'my-eshop',
+            'john.doe@example.com',
+            new DateTimeImmutable('2019-01-01 00:00:00')
+        );
+
+        // ASSERT
+        $this->assertEquals($output, $ordersRequest->toArray());
+    }
+
     public function testCreateFull(): void
     {
         // ARRANGE
         $output = [
             'eshop_name' => 'my-eshop',
+            'eshop_code' => 'A12345',
             'emailaddress' => 'john.doe@example.com',
             'created_at' => '2019-01-01 00:00:00',
             'items' => [
@@ -33,7 +53,6 @@ final class OrdersRequestTest extends TestCase
                 [
                     'id' => 'XYZ789',
                     'name' => 'My another product',
-                    'description' => 'My another product description',
                     'price' => [
                         'without_vat' => 165.70,
                         'with_vat' => 200.50,
@@ -41,7 +60,6 @@ final class OrdersRequestTest extends TestCase
                     ],
                     'quantity' => 2,
                     'url' => 'https://www.example.com/my-another-product',
-                    'image_url' => 'https://www.example.com/images/my-another-product.jpg',
                 ],
             ],
             'item_feeds' => [
@@ -58,6 +76,8 @@ final class OrdersRequestTest extends TestCase
             'john.doe@example.com',
             new DateTimeImmutable('2019-01-01 00:00:00')
         );
+
+        $ordersRequest->setEshopCode('A12345');
 
         $ordersRequest->addItem(
             'ABC123',
@@ -76,15 +96,14 @@ final class OrdersRequestTest extends TestCase
         $ordersRequest->addItem(
             'XYZ789',
             'My another product',
-            'My another product description',
+            null,
             Price::from([
                 'without_vat' => 165.70,
                 'with_vat' => 200.50,
                 'currency' => 'CZK',
             ]),
             2,
-            'https://www.example.com/my-another-product',
-            'https://www.example.com/images/my-another-product.jpg'
+            'https://www.example.com/my-another-product'
         );
 
         $ordersRequest->addFeedItem('ZYX987', 'my-feed', 3);

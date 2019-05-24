@@ -8,14 +8,13 @@ use SmartEmailing\Types\Price;
 
 final class ItemTest extends TestCase
 {
-    
+
     public function testCreateMin(): void
     {
         // ARRANGE
         $output = [
             'id' => 'ABC123',
             'name' => 'My product',
-            'description' => null,
             'price' => [
                 'without_vat' => 123.97,
                 'with_vat' => 150.00,
@@ -23,9 +22,8 @@ final class ItemTest extends TestCase
             ],
             'quantity' => 1,
             'url' => 'https://www.example.com/my-product',
-            'image_url' => null,
         ];
-        
+
         $item = new Item(
             'ABC123',
             'My product',
@@ -38,18 +36,17 @@ final class ItemTest extends TestCase
             1,
             'https://www.example.com/my-product'
         );
-        
+
         // ASSERT
         $this->assertSame($output, $item->toArray());
     }
-    
+
     public function testCreateFull(): void
     {
         // ARRANGE
         $output = [
             'id' => 'ABC123',
             'name' => 'My product',
-            'description' => 'My product description',
             'price' => [
                 'without_vat' => 123.97,
                 'with_vat' => 150.00,
@@ -57,9 +54,10 @@ final class ItemTest extends TestCase
             ],
             'quantity' => 1,
             'url' => 'https://www.example.com/my-product',
+            'description' => 'My product description',
             'image_url' => 'https://www.example.com/images/my-product.jpg',
         ];
-        
+
         $item = new Item(
             'ABC123',
             'My product',
@@ -73,11 +71,11 @@ final class ItemTest extends TestCase
             'https://www.example.com/my-product',
             'https://www.example.com/images/my-product.jpg'
         );
-        
+
         // ASSERT
         $this->assertSame($output, $item->toArray());
     }
-    
+
     public function testCreateException(): void
     {
         // ARRANGE
@@ -94,8 +92,8 @@ final class ItemTest extends TestCase
             'url' => 'lorem ipsum',
             'image_url' => null,
         ];
-        
-        
+
+
         $this->expectException(\SmartEmailing\Types\InvalidTypeException::class);
         $item = new Item(
             'ABC123',
@@ -109,9 +107,9 @@ final class ItemTest extends TestCase
             1,
             'lorem ipsum'
         );
-        
+
         // ASSERT
         $this->assertSame($output, $item->toArray());
     }
-    
+
 }

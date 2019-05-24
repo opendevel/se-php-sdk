@@ -9,6 +9,7 @@ use SmartEmailing\Types\Price;
 final class OrdersShoppingCartTest extends TestCase
 {
 
+    //@todo pokracovat Min/Full
     public function testCreateFull(): void
     {
         // ARRANGE
