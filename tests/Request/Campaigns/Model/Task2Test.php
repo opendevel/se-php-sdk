@@ -7,7 +7,47 @@ use SmartEmailing\Sdk\ApiV3Client\TestCase;
 final class Task2Test extends TestCase
 {
 
-    public function testCreate(): void
+    public function testCreateMin(): void
+    {
+        // ARRANGE
+        $output = [
+            'recipient' => [
+                'emailaddress' => 'john.doe@example.com',
+            ],
+            'attachments' => [
+                [
+                    'file_name' => 'Invoice.pdf',
+                    'content_type' => 'application/pdf',
+                    'data_base64' => 'XNoZWQsIG5vdCBvbmx5IGJ5IGhpcyByZWFzb24sIGJ1dCBieSB0aGlzIHNpbmd1bGFy=',
+                ],
+                [
+                    'file_name' => 'TermsAndConditions.pdf',
+                    'content_type' => 'application/pdf',
+                    'data_base64' => 'YNoZWQsIG5vdCBvbmx5IGJ5IGhpcyByZWFzb24sIGJ1dCBieSB0aGlzIHNpbmd1bGFy=',
+                ],
+            ],
+        ];
+
+        // ACT
+        $task = new Task2(new Recipient('john.doe@example.com'));
+
+        $task->addAttachment(
+            'Invoice.pdf',
+            'application/pdf',
+            'XNoZWQsIG5vdCBvbmx5IGJ5IGhpcyByZWFzb24sIGJ1dCBieSB0aGlzIHNpbmd1bGFy='
+        );
+
+        $task->addAttachment(
+            'TermsAndConditions.pdf',
+            'application/pdf',
+            'YNoZWQsIG5vdCBvbmx5IGJ5IGhpcyByZWFzb24sIGJ1dCBieSB0aGlzIHNpbmd1bGFy='
+        );
+
+        // ASSERT
+        $this->assertSame($output, $task->toArray());
+    }
+
+    public function testCreateFull(): void
     {
         // ARRANGE
         $output = [

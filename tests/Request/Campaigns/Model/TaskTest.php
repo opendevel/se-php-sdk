@@ -7,7 +7,23 @@ use SmartEmailing\Sdk\ApiV3Client\TestCase;
 final class TaskTest extends TestCase
 {
 
-    public function testCreate(): void
+    public function testCreateMin(): void
+    {
+        // ARRANGE
+        $output = [
+            'recipient' => [
+                'emailaddress' => 'john.doe@example.com',
+            ],
+        ];
+
+        // ACT
+        $task = new Task(new Recipient('john.doe@example.com'));
+
+        // ASSERT
+        $this->assertSame($output, $task->toArray());
+    }
+
+    public function testCreateFull(): void
     {
         // ARRANGE
         $output = [
