@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SmartEmailing\Sdk\ApiV3Client\Request\Eshops;
 
@@ -6,10 +6,28 @@ use DateTimeImmutable;
 use SmartEmailing\Sdk\ApiV3Client\TestCase;
 use SmartEmailing\Types\Price;
 
-final class OrdersShoppingCartTest extends TestCase
+final class ShoppingCartRequestTest extends TestCase
 {
 
-    //@todo pokracovat Min/Full
+    public function testCreateMin(): void
+    {
+        // ARRANGE
+        $output = [
+            'eshop_name' => 'my-eshop',
+            'emailaddress' => 'john.doe@example.com',
+            'updated_at' => '2019-01-01 00:00:00',
+        ];
+
+        $shoppingCartRequest = new ShoppingCartRequest(
+            'my-eshop',
+            'john.doe@example.com',
+            new DateTimeImmutable('2019-01-01 00:00:00')
+        );
+
+        // ASSERT
+        $this->assertEquals($output, $shoppingCartRequest->toArray());
+    }
+
     public function testCreateFull(): void
     {
         // ARRANGE

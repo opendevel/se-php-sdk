@@ -53,7 +53,7 @@ final class ShoppingCartRequest implements ApiRequestInterface
      *
      * @var \SmartEmailing\Sdk\ApiV3Client\Request\Eshops\Model\FeedItem[]
      */
-    private $FeedItems = [];
+    private $feedItems = [];
 
     public function __construct(
         string $eshopName,
@@ -78,13 +78,20 @@ final class ShoppingCartRequest implements ApiRequestInterface
 
     public function toArray(): array
     {
-        return [
+        $return = [
             'eshop_name' => $this->eshopName,
             'emailaddress' => $this->emailAddress->getValue(),
             'updated_at' => $this->updatedAt->format('Y-m-d H:i:s'),
-            'items' => $this->toArrayItems(),
-            'item_feeds' => $this->toArrayFeedItems(),
         ];
+
+        if (!empty($this->items)) {
+            $return['items'] = $this->toArrayItems();
+        }
+
+        if (!empty($this->feedItems))
+            $return['item_feeds'] = $this->toArrayFeedItems();
+
+        return $return;
     }
 
     public function addItem(
@@ -109,7 +116,7 @@ final class ShoppingCartRequest implements ApiRequestInterface
 
     public function addFeedItem(string $itemId, string $feedName, int $quantity): void
     {
-        $this->FeedItems[] = new FeedItem($itemId, $feedName, $quantity);
+        $this->feedItems[] = new FeedItem($itemId, $feedName, $quantity);
     }
 
     private function toArrayItems(): array
@@ -129,7 +136,7 @@ final class ShoppingCartRequest implements ApiRequestInterface
         $return = [];
 
         /** @var \SmartEmailing\Sdk\ApiV3Client\Request\Eshops\Model\FeedItem $feedItem */
-        foreach ($this->FeedItems as $feedItem) {
+        foreach ($this->feedItems as $feedItem) {
             $return[] = $feedItem->toArray();
         }
 
