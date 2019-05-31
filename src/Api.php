@@ -7,6 +7,7 @@ use SmartEmailing\Sdk\ApiV3Client\Request\Campaigns\SendCustomEmailsBulkRequest;
 use SmartEmailing\Sdk\ApiV3Client\Request\Campaigns\SendTransactionalEmailsBulkRequest;
 use SmartEmailing\Sdk\ApiV3Client\Request\Contacts\ContactRequest;
 use SmartEmailing\Sdk\ApiV3Client\Request\Contacts\ContactsRequest;
+use SmartEmailing\Sdk\ApiV3Client\Request\Contacts\ForgetContactRequest;
 use SmartEmailing\Sdk\ApiV3Client\Request\Eshops\OrdersRequest;
 use SmartEmailing\Sdk\ApiV3Client\Request\Eshops\ShoppingCartRequest;
 use SmartEmailing\Sdk\ApiV3Client\Request\Import\ImportRequest;
@@ -17,6 +18,7 @@ use SmartEmailing\Sdk\ApiV3Client\Response\Campaigns\SendCustomEmailsBulkRespons
 use SmartEmailing\Sdk\ApiV3Client\Response\Campaigns\SendTransactionalEmailsBulkResponse;
 use SmartEmailing\Sdk\ApiV3Client\Response\Contacts\ContactResponse;
 use SmartEmailing\Sdk\ApiV3Client\Response\Contacts\ContactsResponse;
+use SmartEmailing\Sdk\ApiV3Client\Response\Contacts\ForgetContactResponse;
 use SmartEmailing\Sdk\ApiV3Client\Response\Eshops\OrdersResponse;
 use SmartEmailing\Sdk\ApiV3Client\Response\Eshops\ShoppingCartResponse;
 use SmartEmailing\Sdk\ApiV3Client\Response\Import\ImportResponse;
@@ -95,6 +97,12 @@ final class Api
     {
         $result = $this->apiClient->sendRequest($apiRequest);
         return NewsletterResponse::fromArray(json_decode($result, true));
+    }
+
+    public function forgetContact(ForgetContactRequest $apiRequest): ForgetContactResponse
+    {
+        $result = $this->apiClient->sendRequest($apiRequest);
+        return ForgetContactResponse::fromArray(json_decode($result, true));
     }
 
 }
