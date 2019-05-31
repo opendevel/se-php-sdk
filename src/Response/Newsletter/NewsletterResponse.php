@@ -26,7 +26,7 @@ final class NewsletterResponse extends BaseResponse
 
         $response->meta = Arrays::extractArray($array, 'meta');
 
-        $response->data = Arrays::extractArrayOrNull($array, 'data');
+        $response->data = Arrays::extractArray($array, 'data'); //@todo!!! pokud vraci validation error - prvek data neni pritomen - oseztrit
 
         return $response;
     }
