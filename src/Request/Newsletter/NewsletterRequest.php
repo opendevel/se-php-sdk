@@ -2,6 +2,7 @@
 
 namespace SmartEmailing\Sdk\ApiV3Client\Request\Newsletter;
 
+use DateTimeImmutable;
 use SmartEmailing\Sdk\ApiV3Client\ApiRequestInterface;
 use SmartEmailing\Types\Emailaddress;
 use SmartEmailing\Types\PrimitiveTypes;
@@ -199,12 +200,11 @@ final class NewsletterRequest implements ApiRequestInterface
         return $return;
     }
 
-    public function setExcludedContactLists(?array $excludedContactLists): void
+    public function setExcludedContactLists(array $excludedContactLists): void
     {
         foreach ($excludedContactLists as $excludedContactList) {
             $this->excludedContactLists[] = PrimitiveTypes::getInt($excludedContactList);
         }
-
     }
 
     public function setName(?string $name): void
@@ -212,7 +212,7 @@ final class NewsletterRequest implements ApiRequestInterface
         $this->name = $name;
     }
 
-    public function setStart(?\DateTimeImmutable $start): void
+    public function setStart(?DateTimeImmutable $start): void
     {
         $this->start = $start;
     }
@@ -239,7 +239,7 @@ final class NewsletterRequest implements ApiRequestInterface
 
     public function setReplyTo(?string $replyTo): void
     {
-        $this->replyTo = \SmartEmailing\Types\Emailaddress::from($replyTo);
+        $this->replyTo = Emailaddress::from($replyTo);
     }
 
     public function setUtmSource(?string $utmSource): void

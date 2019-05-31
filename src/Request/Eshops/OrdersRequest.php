@@ -4,8 +4,8 @@ namespace SmartEmailing\Sdk\ApiV3Client\Request\Eshops;
 
 use DateTimeImmutable;
 use SmartEmailing\Sdk\ApiV3Client\ApiRequestInterface;
-use SmartEmailing\Sdk\ApiV3Client\Request\Eshops\Model\Item;
 use SmartEmailing\Sdk\ApiV3Client\Request\Eshops\Model\FeedItem;
+use SmartEmailing\Sdk\ApiV3Client\Request\Eshops\Model\Item;
 use SmartEmailing\Types\Emailaddress;
 use SmartEmailing\Types\Price;
 
@@ -103,7 +103,6 @@ final class OrdersRequest implements ApiRequestInterface
         }
 
         return $return;
-
     }
 
     public function setEshopCode(?string $eshopCode): void

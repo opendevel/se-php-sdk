@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace SmartEmailing\Sdk\ApiV3Client\Request\Eshops;
 

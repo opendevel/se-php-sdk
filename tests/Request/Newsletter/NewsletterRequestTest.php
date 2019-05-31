@@ -2,6 +2,7 @@
 
 namespace SmartEmailing\Sdk\ApiV3Client\Request\Newsletter;
 
+use DateTimeImmutable;
 use SmartEmailing\Sdk\ApiV3Client\TestCase;
 
 final class NewsletterRequestTest extends TestCase
@@ -49,7 +50,7 @@ final class NewsletterRequestTest extends TestCase
         $request = new NewsletterRequest(1, [1, 2]);
         $request->setExcludedContactLists([3]);
         $request->setName('My awesome newsletter');
-        $request->setStart(new \DateTimeImmutable('2020-06-15 18:30:00'));
+        $request->setStart(new DateTimeImmutable('2020-06-15 18:30:00'));
         $request->setMeasureStats(true);
         $request->setSendOnPreferredTime(false);
         $request->setSenderEmail('john.doe@example.com');
