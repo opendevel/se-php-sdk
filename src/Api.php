@@ -10,6 +10,7 @@ use SmartEmailing\Sdk\ApiV3Client\Request\Contacts\ContactsRequest;
 use SmartEmailing\Sdk\ApiV3Client\Request\Eshops\OrdersRequest;
 use SmartEmailing\Sdk\ApiV3Client\Request\Eshops\ShoppingCartRequest;
 use SmartEmailing\Sdk\ApiV3Client\Request\Import\ImportRequest;
+use SmartEmailing\Sdk\ApiV3Client\Request\Newsletter\NewsletterRequest;
 use SmartEmailing\Sdk\ApiV3Client\Request\Test\CheckCredentials;
 use SmartEmailing\Sdk\ApiV3Client\Request\Test\Ping;
 use SmartEmailing\Sdk\ApiV3Client\Response\Campaigns\SendCustomEmailsBulkResponse;
@@ -19,6 +20,7 @@ use SmartEmailing\Sdk\ApiV3Client\Response\Contacts\ContactsResponse;
 use SmartEmailing\Sdk\ApiV3Client\Response\Eshops\OrdersResponse;
 use SmartEmailing\Sdk\ApiV3Client\Response\Eshops\ShoppingCartResponse;
 use SmartEmailing\Sdk\ApiV3Client\Response\Import\ImportResponse;
+use SmartEmailing\Sdk\ApiV3Client\Response\Newsletter\NewsletterResponse;
 use SmartEmailing\Sdk\ApiV3Client\Response\Test\CheckCredentialsResponse;
 use SmartEmailing\Sdk\ApiV3Client\Response\Test\PingResponse;
 
@@ -87,6 +89,12 @@ final class Api
     {
         $result = $this->apiClient->sendRequest($apiRequest);
         return ShoppingCartResponse::fromArray(json_decode($result, true));
+    }
+
+    public function createNewsletter(NewsletterRequest $apiRequest): NewsletterResponse
+    {
+        $result = $this->apiClient->sendRequest($apiRequest);
+        return NewsletterResponse::fromArray(json_decode($result, true));
     }
 
 }
