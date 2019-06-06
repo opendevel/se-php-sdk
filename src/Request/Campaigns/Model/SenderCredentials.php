@@ -34,7 +34,9 @@ final class SenderCredentials implements ToArrayInterface
         $this->replyTo = Emailaddress::from($replyTo);
     }
 
-
+    /**
+     * @return mixed[]
+     */
     public function toArray(): array
     {
         return [

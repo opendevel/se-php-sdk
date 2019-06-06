@@ -40,6 +40,10 @@ class Data
      */
     private $items = [];
 
+    /**
+     * @param mixed[] $array
+     * @return \SmartEmailing\Sdk\ApiV3Client\Response\Eshops\Model\Data
+     */
     public static function fromArray(array $array): self
     {
         $data = new self();

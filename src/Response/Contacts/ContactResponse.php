@@ -16,6 +16,10 @@ final class ContactResponse extends BaseResponse
      */
     private $contact;
 
+    /**
+     * @param mixed[] $array
+     * @return \SmartEmailing\Sdk\ApiV3Client\Response\Contacts\ContactResponse
+     */
     public static function fromArray(array $array): self
     {
         $response = new self();

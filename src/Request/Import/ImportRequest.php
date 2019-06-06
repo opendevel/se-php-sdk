@@ -26,7 +26,7 @@ final class ImportRequest implements ApiRequestInterface
     protected $settings;
 
     /**
-     * @var array
+     * @var mixed[]
      */
     protected $data = [];
 
@@ -49,6 +49,11 @@ final class ImportRequest implements ApiRequestInterface
         return self::$endpoint;
     }
 
+    /**
+     * @param mixed[] $data
+     * @param \SmartEmailing\Sdk\ApiV3Client\Request\Import\Model\Settings|null $settings
+     * @return \SmartEmailing\Sdk\ApiV3Client\Request\Import\ImportRequest
+     */
     public static function fromArray(array $data, ?Settings $settings = null): self
     {
         $import = new self();
@@ -64,6 +69,9 @@ final class ImportRequest implements ApiRequestInterface
         return $import;
     }
 
+    /**
+     * @return mixed[]
+     */
     public function toArray(): array
     {
         return [

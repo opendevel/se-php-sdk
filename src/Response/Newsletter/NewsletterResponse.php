@@ -12,10 +12,14 @@ final class NewsletterResponse extends BaseResponse
     /**
      * Response data
      *
-     * @var array
+     * @var mixed[]
      */
     private $data = [];
 
+    /**
+     * @param mixed[] $array
+     * @return \SmartEmailing\Sdk\ApiV3Client\Response\Newsletter\NewsletterResponse
+     */
     public static function fromArray(array $array): self
     {
         $response = new self();
@@ -26,11 +30,15 @@ final class NewsletterResponse extends BaseResponse
 
         $response->meta = Arrays::extractArray($array, 'meta');
 
-        $response->data = Arrays::extractArray($array, 'data'); //@todo!!! pokud vraci validation error - prvek data neni pritomen - oseztrit
+        //@todo!!! pokud vraci validation error - prvek data neni pritomen - oseztrit
+        $response->data = Arrays::extractArray($array, 'data');
 
         return $response;
     }
 
+    /**
+     * @return mixed[]
+     */
     public function getData(): array
     {
         return $this->data;

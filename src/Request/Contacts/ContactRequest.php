@@ -37,6 +37,9 @@ final class ContactRequest implements ApiRequestInterface
         return self::$endpoint . '/' . $this->id;
     }
 
+    /**
+     * @return mixed[]
+     */
     public function toArray(): array
     {
         return [

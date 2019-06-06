@@ -30,14 +30,14 @@ final class NewsletterRequest implements ApiRequestInterface
     /**
      * Ids of contactlists to send newsletter to.
      *
-     * @var array
+     * @var mixed[]
      */
     private $contactLists = [];
 
     /**
      * Ids of contactlists to exclude from sending
      *
-     * @var array
+     * @var mixed[]
      */
     private $excludedContactLists = [];
 
@@ -123,6 +123,11 @@ final class NewsletterRequest implements ApiRequestInterface
      */
     private $utmContent = null;
 
+    /**
+     * NewsletterRequest constructor.
+     * @param int $email_id
+     * @param mixed[] $contactlists
+     */
     public function __construct(int $email_id, array $contactlists)
     {
         $this->emailId = $email_id;
@@ -142,6 +147,9 @@ final class NewsletterRequest implements ApiRequestInterface
         return self::$endpoint;
     }
 
+    /**
+     * @return mixed[]
+     */
     public function toArray(): array
     {
         $return = [
@@ -200,6 +208,9 @@ final class NewsletterRequest implements ApiRequestInterface
         return $return;
     }
 
+    /**
+     * @param mixed[] $excludedContactLists
+     */
     public function setExcludedContactLists(array $excludedContactLists): void
     {
         foreach ($excludedContactLists as $excludedContactList) {

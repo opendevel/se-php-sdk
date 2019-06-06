@@ -25,6 +25,10 @@ final class ContactContactlist implements ToArrayInterface
         $this->status = $status;
     }
 
+    /**
+     * @param mixed[] $array
+     * @return \SmartEmailing\Sdk\ApiV3Client\Request\Import\Model\ContactContactlist
+     */
     public static function fromArray(array $array): self
     {
         return new self(
@@ -33,6 +37,9 @@ final class ContactContactlist implements ToArrayInterface
         );
     }
 
+    /**
+     * @return mixed[]
+     */
     public function toArray(): array
     {
         return [

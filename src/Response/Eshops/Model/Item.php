@@ -45,6 +45,10 @@ final class Item
      */
     private $imageUrl = null;
 
+    /**
+     * @param mixed[] $array
+     * @return \SmartEmailing\Sdk\ApiV3Client\Response\Eshops\Model\Item
+     */
     public static function fromArray(array $array): self
     {
         $item = new self();

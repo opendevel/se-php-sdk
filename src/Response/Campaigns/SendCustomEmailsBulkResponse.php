@@ -8,6 +8,10 @@ use SmartEmailing\Types\PrimitiveTypes;
 final class SendCustomEmailsBulkResponse extends BaseResponse
 {
 
+    /**
+     * @param mixed[] $array
+     * @return \SmartEmailing\Sdk\ApiV3Client\Response\Campaigns\SendCustomEmailsBulkResponse
+     */
     public static function fromArray(array $array): self
     {
         $response = new self();

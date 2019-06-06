@@ -31,6 +31,9 @@ final class ContactsRequest implements ApiRequestInterface
         return self::$endpoint;
     }
 
+    /**
+     * @return mixed[]
+     */
     public function toArray(): array
     {
         return [

@@ -38,6 +38,9 @@ final class Task implements ToArrayInterface
         $this->recipient = $recipient;
     }
 
+    /**
+     * @return mixed[]
+     */
     public function toArray(): array
     {
         $return['recipient'] = $this->recipient->toArray();
@@ -55,6 +58,10 @@ final class Task implements ToArrayInterface
         return $return;
     }
 
+    /**
+     * @param string $key
+     * @param mixed $value
+     */
     public function addTemplateVariable(string $key, $value): void
     {
         $this->templateVariables[] = new TemplateVariable($key, $value);

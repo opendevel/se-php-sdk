@@ -36,6 +36,9 @@ final class Ping implements ApiRequestInterface
         return new self();
     }
 
+    /**
+     * @return mixed[]
+     */
     public function toArray(): array
     {
         return [

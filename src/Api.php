@@ -89,8 +89,9 @@ final class Api
         return SendCustomEmailsBulkResponse::fromArray(json_decode($result, true));
     }
 
-    public function sendTransactionalEmailsBulk(SendTransactionalEmailsBulkRequest $apiRequest): SendTransactionalEmailsBulkResponse
-    {
+    public function sendTransactionalEmailsBulk(
+        SendTransactionalEmailsBulkRequest $apiRequest
+    ): SendTransactionalEmailsBulkResponse {
         $result = $this->apiClient->sendRequest($apiRequest);
         return SendTransactionalEmailsBulkResponse::fromArray(json_decode($result, true));
     }

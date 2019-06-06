@@ -76,6 +76,9 @@ final class ShoppingCartRequest implements ApiRequestInterface
         return self::$endpoint;
     }
 
+    /**
+     * @return mixed[]
+     */
     public function toArray(): array
     {
         $return = [
@@ -112,6 +115,9 @@ final class ShoppingCartRequest implements ApiRequestInterface
         $this->feedItems[] = new FeedItem($itemId, $feedName, $quantity);
     }
 
+    /**
+     * @return array|mixed[]
+     */
     private function toArrayItems(): array
     {
         $return = [];
@@ -124,6 +130,9 @@ final class ShoppingCartRequest implements ApiRequestInterface
         return $return;
     }
 
+    /**
+     * @return array|mixed[]
+     */
     private function toArrayFeedItems(): array
     {
         $return = [];

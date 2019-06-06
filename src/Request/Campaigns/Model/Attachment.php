@@ -36,7 +36,9 @@ final class Attachment implements ToArrayInterface
         $this->dataBase64 = Base64String::from($dataBase64);
     }
 
-
+    /**
+     * @return mixed[]
+     */
     public function toArray(): array
     {
         return [

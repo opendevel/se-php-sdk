@@ -29,6 +29,10 @@ final class Contact
         $this->emailAddress = $emailAddress;
     }
 
+    /**
+     * @param mixed[] $array
+     * @return \SmartEmailing\Sdk\ApiV3Client\Response\Import\Model\Contact
+     */
     public static function fromArray(array $array): self
     {
         return new self(

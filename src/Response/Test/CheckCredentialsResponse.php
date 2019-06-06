@@ -15,6 +15,10 @@ final class CheckCredentialsResponse extends BaseResponse
      */
     private $accountId = null;
 
+    /**
+     * @param mixed[] $array
+     * @return \SmartEmailing\Sdk\ApiV3Client\Response\Test\CheckCredentialsResponse
+     */
     public static function fromArray(array $array): self
     {
         $response = new self();

@@ -22,7 +22,7 @@ class BaseResponse
     /**
      * Response meta
      *
-     * @var array
+     * @var mixed[]
      */
     protected $meta = [];
 
@@ -37,7 +37,7 @@ class BaseResponse
     }
 
     /**
-     * @return array
+     * @return mixed[]
      */
     public function getMeta(): array
     {

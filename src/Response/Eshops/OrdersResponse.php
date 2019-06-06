@@ -9,32 +9,36 @@ use SmartEmailing\Types\PrimitiveTypes;
 
 final class OrdersResponse extends BaseResponse
 {
-    
+
     /**
      * Response data
      *
      * @var \SmartEmailing\Sdk\ApiV3Client\Response\Eshops\Model\Data
      */
     private $data;
-    
+
+    /**
+     * @param mixed[] $array
+     * @return \SmartEmailing\Sdk\ApiV3Client\Response\Eshops\OrdersResponse
+     */
     public static function fromArray(array $array): self
     {
         $response = new self();
-        
+
         $response->status = PrimitiveTypes::extractStringOrNull($array, 'status', true);
-        
+
         $response->message = PrimitiveTypes::extractStringOrNull($array, 'message', true);
-        
+
         $response->meta = Arrays::extractArray($array, 'meta');
-        
+
         $response->data = Data::fromArray(Arrays::extractArray($array, 'data'));
-        
+
         return $response;
     }
-    
+
     public function getData(): Data
     {
         return $this->data;
     }
-    
+
 }

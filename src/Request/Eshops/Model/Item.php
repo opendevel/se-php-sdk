@@ -78,6 +78,9 @@ final class Item implements ToArrayInterface
     }
 
 
+    /**
+     * @return mixed[]
+     */
     public function toArray(): array
     {
         $return = [
