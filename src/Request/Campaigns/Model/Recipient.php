@@ -20,6 +20,9 @@ final class Recipient implements ToArrayInterface
         $this->emailAddress = Emailaddress::from($emailaddress);
     }
 
+    /**
+     * @return mixed[]
+     */
     public function toArray(): array
     {
         return [

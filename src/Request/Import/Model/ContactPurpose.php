@@ -33,6 +33,10 @@ final class ContactPurpose implements ToArrayInterface
         $this->validTo = $validTo;
     }
 
+    /**
+     * @param mixed[] $array
+     * @return \SmartEmailing\Sdk\ApiV3Client\Request\Import\Model\ContactPurpose
+     */
     public static function fromArray(array $array): self
     {
         return new self(
@@ -42,6 +46,9 @@ final class ContactPurpose implements ToArrayInterface
         );
     }
 
+    /**
+     * @return mixed[]
+     */
     public function toArray(): array
     {
         return [

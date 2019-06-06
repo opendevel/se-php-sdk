@@ -57,6 +57,10 @@ final class ContactList
         $this->contactListId = $contactListId;
     }
 
+    /**
+     * @param mixed[] $array
+     * @return \SmartEmailing\Sdk\ApiV3Client\Response\Contacts\Model\ContactList
+     */
     public static function fromArray(array $array): self
     {
         $self = new self(

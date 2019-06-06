@@ -38,7 +38,8 @@ final class SettingsConfirmationRequest implements ToArrayInterface
     private $replyTo;
 
     /**
-     * URL of thank-you page where contact will be redirected after clicking at confirmation link. If not provided, contact will be redirected to default page
+     * URL of thank-you page where contact will be redirected after clicking at confirmation link.
+     * If not provided, contact will be redirected to default page
      *
      * @var \SmartEmailing\Types\UrlType|null
      */
@@ -59,7 +60,7 @@ final class SettingsConfirmationRequest implements ToArrayInterface
     }
 
     /**
-     * @return array
+     * @return mixed[]
      */
     public function toArray(): array
     {
@@ -70,7 +71,9 @@ final class SettingsConfirmationRequest implements ToArrayInterface
                 'sender_name' => $this->senderName,
                 'reply_to' => $this->replyTo->getValue(),
             ],
-            'confirmation_thank_you_page_url' => $this->confirmationThankYouPageUrl !== null ? $this->confirmationThankYouPageUrl->getAbsoluteUrl() : null,
+            'confirmation_thank_you_page_url' => $this->confirmationThankYouPageUrl !== null
+                ? $this->confirmationThankYouPageUrl->getAbsoluteUrl()
+                : null,
         ];
     }
 

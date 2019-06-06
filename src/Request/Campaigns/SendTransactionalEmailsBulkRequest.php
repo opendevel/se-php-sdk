@@ -64,6 +64,9 @@ final class SendTransactionalEmailsBulkRequest implements ApiRequestInterface
         return self::$endpoint;
     }
 
+    /**
+     * @return mixed[]
+     */
     public function toArray(): array
     {
         return [
@@ -79,6 +82,9 @@ final class SendTransactionalEmailsBulkRequest implements ApiRequestInterface
         $this->tasks[] = $task;
     }
 
+    /**
+     * @return array|mixed[]
+     */
     private function toArrayTasks(): array
     {
         $return = [];

@@ -36,6 +36,9 @@ final class FeedItem implements ToArrayInterface
         $this->quantity = UnsignedInt::from($quantity);
     }
 
+    /**
+     * @return mixed[]
+     */
     public function toArray(): array
     {
         return [

@@ -12,10 +12,14 @@ final class ImportResponse extends BaseResponse
     /**
      * Imported contacts
      *
-     * @var array
+     * @var mixed[]
      */
     private $contacts = [];
 
+    /**
+     * @param mixed[] $array
+     * @return \SmartEmailing\Sdk\ApiV3Client\Response\Import\ImportResponse
+     */
     public static function fromArray(array $array): self
     {
         $response = new self();

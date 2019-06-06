@@ -16,6 +16,10 @@ final class ContactsResponse extends BaseResponse
      */
     private $data = [];
 
+    /**
+     * @param mixed[] $array
+     * @return \SmartEmailing\Sdk\ApiV3Client\Response\Contacts\ContactsResponse
+     */
     public static function fromArray(array $array): self
     {
         $response = new self();
@@ -38,6 +42,9 @@ final class ContactsResponse extends BaseResponse
         return $response;
     }
 
+    /**
+     * @return \SmartEmailing\Sdk\ApiV3Client\Response\Contacts\Model\Contact[]
+     */
     public function getContacts(): array
     {
         return $this->data;

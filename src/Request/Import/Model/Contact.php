@@ -113,7 +113,7 @@ final class Contact implements ToArrayInterface
      * Any contactlist presence unlisted in imported data will be untouched.
      * Unsubscribed contacts will stay unsubscribed if settings.preserve_unsubscribed=1
      *
-     * @var array
+     * @var mixed[]
      */
     private $contactLists = [];
 
@@ -121,14 +121,16 @@ final class Contact implements ToArrayInterface
      * Customfields assigned to contact
      * Customfields unlisted in imported data will be untouched.
      *
-     * @var array
+     * @var mixed[]
      */
     private $customFields = [];
 
     /**
-     * Processing purposes assigned to contact. Every purpose may be assigned multiple times for different time intervals. Exact duplicities will be silently skipped.
+     * Processing purposes assigned to contact.
+     * Every purpose may be assigned multiple times for different time intervals.
+     * Exact duplicities will be silently skipped.
      *
-     * @var array
+     * @var mixed[]
      */
     private $purposes = [];
 
@@ -137,6 +139,10 @@ final class Contact implements ToArrayInterface
         $this->emailAddress = Emailaddress::from($emailaddress);
     }
 
+    /**
+     * @param mixed[] $array
+     * @return \SmartEmailing\Sdk\ApiV3Client\Request\Import\Model\Contact
+     */
     public static function fromArray(array $array): self
     {
         $contact = new self(PrimitiveTypes::extractString($array, 'emailaddress'));
@@ -186,6 +192,9 @@ final class Contact implements ToArrayInterface
         return $contact;
     }
 
+    /**
+     * @return mixed[]
+     */
     public function toArray(): array
     {
         return [

@@ -57,6 +57,10 @@ final class ContactCustomField implements ToArrayInterface
         }
     }
 
+    /**
+     * @param mixed[] $array
+     * @return \SmartEmailing\Sdk\ApiV3Client\Request\Import\Model\ContactCustomField
+     */
     public static function fromArray(array $array): self
     {
         $id = PrimitiveTypes::extractInt($array, 'id');
@@ -71,10 +75,12 @@ final class ContactCustomField implements ToArrayInterface
             $value = PrimitiveTypes::extractString($array, 'value');
         }
 
-        $customField = new self($id, $value);
-        return $customField;
+        return new self($id, $value);
     }
 
+    /**
+     * @return mixed[]
+     */
     public function toArray(): array
     {
         if ($this->options !== null) {

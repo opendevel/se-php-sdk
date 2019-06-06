@@ -9,7 +9,7 @@ final class PingResponse extends BaseResponse
 {
 
     /**
-     * @param array $array
+     * @param mixed[] $array
      * @return \SmartEmailing\Sdk\ApiV3Client\Response\Test\PingResponse
      */
     public static function fromArray(array $array): self
