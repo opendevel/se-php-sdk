@@ -39,6 +39,8 @@ final class Api
         $this->apiClient = new ApiClient($authentication);
     }
 
+    // test
+
     public function ping(Ping $apiRequest): PingResponse
     {
         $result = $this->apiClient->sendRequest($apiRequest);
@@ -51,10 +53,26 @@ final class Api
         return CheckCredentialsResponse::fromArray(json_decode($result, true));
     }
 
+    // import
+
     public function importContacts(ImportRequest $apiRequest): ImportResponse
     {
         $result = $this->apiClient->sendRequest($apiRequest);
         return ImportResponse::fromArray(json_decode($result, true));
+    }
+
+    // contacts
+
+    public function forgetContact(ForgetContactRequest $apiRequest): ForgetContactResponse
+    {
+        $result = $this->apiClient->sendRequest($apiRequest);
+        return ForgetContactResponse::fromArray(json_decode($result, true));
+    }
+
+    public function getContact(ContactRequest $apiRequest): ContactResponse
+    {
+        $result = $this->apiClient->sendRequest($apiRequest);
+        return ContactResponse::fromArray(json_decode($result, true));
     }
 
     public function getContacts(ContactsRequest $apiRequest): ContactsResponse
@@ -63,11 +81,7 @@ final class Api
         return ContactsResponse::fromArray(json_decode($result, true));
     }
 
-    public function getContact(ContactRequest $apiRequest): ContactResponse
-    {
-        $result = $this->apiClient->sendRequest($apiRequest);
-        return ContactResponse::fromArray(json_decode($result, true));
-    }
+    // custom campaigns
 
     public function sendCustomEmailsBulk(SendCustomEmailsBulkRequest $apiRequest): SendCustomEmailsBulkResponse
     {
@@ -81,6 +95,8 @@ final class Api
         return SendTransactionalEmailsBulkResponse::fromArray(json_decode($result, true));
     }
 
+    // eshops
+
     public function addPlacedOrder(OrdersRequest $apiRequest): OrdersResponse
     {
         $result = $this->apiClient->sendRequest($apiRequest);
@@ -93,16 +109,12 @@ final class Api
         return ShoppingCartResponse::fromArray(json_decode($result, true));
     }
 
+    // newsletter
+
     public function createNewsletter(NewsletterRequest $apiRequest): NewsletterResponse
     {
         $result = $this->apiClient->sendRequest($apiRequest);
         return NewsletterResponse::fromArray(json_decode($result, true));
-    }
-
-    public function forgetContact(ForgetContactRequest $apiRequest): ForgetContactResponse
-    {
-        $result = $this->apiClient->sendRequest($apiRequest);
-        return ForgetContactResponse::fromArray(json_decode($result, true));
     }
 
 }
