@@ -82,7 +82,6 @@ final class OrdersRequestTest extends TestCase
         $ordersRequest->addItem(
             'ABC123',
             'My product',
-            'My product description',
             Price::from([
                 'without_vat' => 123.97,
                 'with_vat' => 150.00,
@@ -90,13 +89,13 @@ final class OrdersRequestTest extends TestCase
             ]),
             1,
             'https://www.example.com/my-product',
+            'My product description',
             'https://www.example.com/images/my-product.jpg'
         );
 
         $ordersRequest->addItem(
             'XYZ789',
             'My another product',
-            null,
             Price::from([
                 'without_vat' => 165.70,
                 'with_vat' => 200.50,

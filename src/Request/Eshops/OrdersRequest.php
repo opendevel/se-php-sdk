@@ -113,21 +113,13 @@ final class OrdersRequest implements ApiRequestInterface
     public function addItem(
         string $id,
         string $name,
-        ?string $description,
         Price $price,
         int $quantity,
         string $url,
+        ?string $description = null,
         ?string $imageUrl = null
     ): void {
-        $this->items[] = new Item(
-            $id,
-            $name,
-            $description,
-            $price,
-            $quantity,
-            $url,
-            $imageUrl
-        );
+        $this->items[] = new Item($id, $name, $price, $quantity, $url, $description, $imageUrl);
     }
 
     public function addFeedItem(string $itemId, string $feedName, int $quantity): void

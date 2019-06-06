@@ -81,7 +81,6 @@ final class ShoppingCartRequestTest extends TestCase
         $shoppingCartRequest->addItem(
             'ABC123',
             'My product',
-            'My product description',
             Price::from([
                 'without_vat' => 123.97,
                 'with_vat' => 150.00,
@@ -89,13 +88,13 @@ final class ShoppingCartRequestTest extends TestCase
             ]),
             1,
             'https://www.example.com/my-product',
+            'My product description',
             'https://www.example.com/images/my-product.jpg'
         );
 
         $shoppingCartRequest->addItem(
             'XYZ789',
             'My another product',
-            'My another product description',
             Price::from([
                 'without_vat' => 165.70,
                 'with_vat' => 200.50,
@@ -103,6 +102,7 @@ final class ShoppingCartRequestTest extends TestCase
             ]),
             2,
             'https://www.example.com/my-another-product',
+            'My another product description',
             'https://www.example.com/images/my-another-product.jpg'
         );
 
