@@ -29,7 +29,7 @@ final class Task2Test extends TestCase
         ];
 
         // ACT
-        $task = new Task2(new Recipient('john.doe@example.com'));
+        $task = new Task(new Recipient('john.doe@example.com'));
 
         $task->addAttachment(
             'Invoice.pdf',
@@ -84,7 +84,7 @@ final class Task2Test extends TestCase
         ];
 
         // ACT
-        $task = new Task2(new Recipient('john.doe@example.com'));
+        $task = new Task(new Recipient('john.doe@example.com'));
 
         $task->addTemplateVariable('order_id', '0037565');
 

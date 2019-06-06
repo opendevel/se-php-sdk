@@ -4,7 +4,7 @@ namespace SmartEmailing\Sdk\ApiV3Client\Request\Campaigns;
 
 use SmartEmailing\Sdk\ApiV3Client\ApiRequestInterface;
 use SmartEmailing\Sdk\ApiV3Client\Request\Campaigns\Model\SenderCredentials;
-use SmartEmailing\Sdk\ApiV3Client\Request\Campaigns\Model\Task2;
+use SmartEmailing\Sdk\ApiV3Client\Request\Campaigns\Model\Task;
 
 final class SendTransactionalEmailsBulkRequest implements ApiRequestInterface
 {
@@ -43,7 +43,7 @@ final class SendTransactionalEmailsBulkRequest implements ApiRequestInterface
     /**
      * Array of sending tasks, one per recipient.
      *
-     * @var \SmartEmailing\Sdk\ApiV3Client\Request\Campaigns\Model\Task2[]
+     * @var \SmartEmailing\Sdk\ApiV3Client\Request\Campaigns\Model\Task[]
      */
     private $tasks = [];
 
@@ -74,7 +74,7 @@ final class SendTransactionalEmailsBulkRequest implements ApiRequestInterface
         ];
     }
 
-    public function addTask(Task2 $task): void
+    public function addTask(Task $task): void
     {
         $this->tasks[] = $task;
     }
@@ -83,7 +83,7 @@ final class SendTransactionalEmailsBulkRequest implements ApiRequestInterface
     {
         $return = [];
 
-        /** @var \SmartEmailing\Sdk\ApiV3Client\Request\Campaigns\Model\Task2 $task */
+        /** @var \SmartEmailing\Sdk\ApiV3Client\Request\Campaigns\Model\Task $task */
         foreach ($this->tasks as $task) {
             $return[] = $task->toArray();
         }

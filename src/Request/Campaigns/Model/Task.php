@@ -23,6 +23,13 @@ final class Task implements ToArrayInterface
     private $templateVariables = [];
 
     /**
+     * E-mail's attachments.
+     *
+     * @var \SmartEmailing\Sdk\ApiV3Client\Request\Campaigns\Model\Attachment[]
+     */
+    private $attachments = [];
+
+    /**
      * Task constructor.
      * @param \SmartEmailing\Sdk\ApiV3Client\Request\Campaigns\Model\Recipient $recipient
      */
@@ -40,13 +47,22 @@ final class Task implements ToArrayInterface
             $return['template_variables'][$templateVariable->getKey()] = $templateVariable->getValue();
         }
 
+        /** @var \SmartEmailing\Sdk\ApiV3Client\Request\Campaigns\Model\Attachment $attachment */
+        foreach ($this->attachments as $attachment) {
+            $return['attachments'][] = $attachment->toArray();
+        }
+
         return $return;
     }
 
     public function addTemplateVariable(string $key, $value): void
     {
-        $templateVariable = new TemplateVariable($key, $value);
-        $this->templateVariables[] = $templateVariable;
+        $this->templateVariables[] = new TemplateVariable($key, $value);
+    }
+
+    public function addAttachment(string $fileName, string $contentType, string $dataBase64): void
+    {
+        $this->attachments[] = new Attachment($fileName, $contentType, $dataBase64);
     }
 
 }
