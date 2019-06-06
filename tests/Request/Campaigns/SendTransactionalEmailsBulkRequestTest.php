@@ -4,7 +4,7 @@ namespace SmartEmailing\Sdk\ApiV3Client\Request\Campaigns;
 
 use SmartEmailing\Sdk\ApiV3Client\Request\Campaigns\Model\Recipient;
 use SmartEmailing\Sdk\ApiV3Client\Request\Campaigns\Model\SenderCredentials;
-use SmartEmailing\Sdk\ApiV3Client\Request\Campaigns\Model\Task2;
+use SmartEmailing\Sdk\ApiV3Client\Request\Campaigns\Model\Task;
 use SmartEmailing\Sdk\ApiV3Client\TestCase;
 
 final class SendTransactionalEmailsBulkRequestTest extends TestCase
@@ -77,7 +77,7 @@ final class SendTransactionalEmailsBulkRequestTest extends TestCase
         );
 
         $recipient1 = new Recipient('john.doe@example.com');
-        $task1 = new Task2($recipient1);
+        $task1 = new Task($recipient1);
         $task1->addTemplateVariable('order_id', 0037565);
         $task1->addTemplateVariable(
             'products',
@@ -108,7 +108,7 @@ final class SendTransactionalEmailsBulkRequestTest extends TestCase
 
         $sendTransactionalEmailsBulkRequest->addTask($task1);
 
-        $task2 = new Task2(new Recipient('john.doe@example.com'));
+        $task2 = new Task(new Recipient('john.doe@example.com'));
 
         $sendTransactionalEmailsBulkRequest->addTask($task2);
 
