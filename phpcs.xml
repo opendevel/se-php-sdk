@@ -13,7 +13,7 @@
     <!-- Rules configuration -->
     <rule ref="SlevomatCodingStandard.Files.TypeNameMatchesFileName">
         <properties>
-            <property name="rootNamespaces" type="array" value="src=>SmartEmailing\Sdk"/>
+            <property name="rootNamespaces" type="array" value="src=>SmartEmailing\Sdk\ApiV3Client"/>
         </properties>
     </rule>
 
