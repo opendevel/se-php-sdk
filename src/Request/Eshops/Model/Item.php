@@ -62,10 +62,10 @@ final class Item implements ToArrayInterface
     public function __construct(
         string $id,
         string $name,
-        ?string $description,   //@todo presunout pred imageUrl
         Price $price,
         int $quantity,
         string $url,
+        ?string $description = null,
         ?string $imageUrl = null
     ) {
         $this->id = $id;
